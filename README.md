@@ -30,7 +30,7 @@ and also in the installed package: `help(package = "tsjson")`.
 
 ## Quickstart
 
-### Create a tjson object
+### Create a tsjson object
 
 Create a tsjson object from a string:
 

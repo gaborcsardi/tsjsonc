@@ -7,7 +7,7 @@
 tsjson quickstart
 }
 \details{
-\subsection{Create a tjson object}{
+\subsection{Create a tsjson object}{
 
 Create a tsjson object from a string:
 
