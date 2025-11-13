@@ -5,7 +5,7 @@
 #'   connections are supported. Use `stdout()` to output to the screen.
 #' @return Nothing.
 #'
-#' @seealso [load_json()] to create a tsjson object from a JSON file or
+#' @seealso [parse_json()] to create a tsjson object from a JSON file or
 #'   string. [unserialize_selected()] obtain a JSON string for a tsjson
 #'   object.
 #' @export

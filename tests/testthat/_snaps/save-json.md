@@ -1,7 +1,7 @@
 # save_json
 
     Code
-      load_json(tmp)
+      parse_json(tmp)
     Output
       # json (test.json, 10 lines)
        1 | {
@@ -26,7 +26,7 @@
 ---
 
     Code
-      load_json(tmp)
+      parse_json(tmp)
     Output
       # json (test.json, 5 lines)
       1 | {
@@ -54,7 +54,7 @@
 ---
 
     Code
-      load_json(tmp2)
+      parse_json(tmp2)
     Output
       # json (bin.json, 10 lines)
        1 | {

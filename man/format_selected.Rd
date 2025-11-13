@@ -8,9 +8,6 @@ format_selected(json, options = NULL)
 }
 \arguments{
 \item{json}{tsjson object.}
-
-\item{options}{List of options, see \code{\link[=tsjson_options]{tsjson_options()}}. This argument
-must be named and cannot be abbreviated.}
 }
 \value{
 The updated tsjson object.
@@ -23,7 +20,7 @@ If \code{json} does not have a selection, then all of it is formatted.
 If \code{json} has an empty selection, then nothing happens.
 }
 \examples{
-json <- load_json(text = "{ \"a\": [1,2,3] }")
+json <- parse_json(text = "{ \"a\": [1,2,3] }")
 json
 
 json |> format_selected()

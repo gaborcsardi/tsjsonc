@@ -37,14 +37,14 @@
 #'
 #' # array, use an unnamed list, i.e. _not_ an atomic vector
 #' txt <- serialize_json(list(1, 2, 3,"x", "y"))
-#' load_json(text = txt)
+#' parse_json(text = txt)
 #'
 #' # empty array
 #' serialize_json(list())
 #'
 #' # object, use a named (or partially named) list, i.e. _not_ an atomic vector
 #' txt <- serialize_json(list(a = 1, b = 2))
-#' load_json(text = txt)
+#' parse_json(text = txt)
 #'
 #' # empty object, use a named empty list
 #' serialize_json(structure(list(), names = character()))

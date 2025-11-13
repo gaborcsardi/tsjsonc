@@ -13,7 +13,7 @@
 #'
 #' @export
 #' @examples
-#' json <- load_json(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
+#' json <- parse_json(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
 #' json
 #'
 #' json |> select("a")
@@ -116,7 +116,7 @@ delete_selected <- function(json) {
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
+  new <- parse_json(text = text)
   attr(new, "file") <- attr(json, "file")
 
   new

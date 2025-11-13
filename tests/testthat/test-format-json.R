@@ -24,7 +24,7 @@ test_that("format_selected", {
       d = list(1, 2, 3)
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
 
   expect_snapshot({
     format_selected(json)
@@ -47,11 +47,11 @@ test_that("format_selected null, true, false, string, comment", {
       d = list("a", "b", "c")
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
   expect_snapshot({
     format_selected(json)
   })
-  json <- load_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
+  json <- parse_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
   expect_snapshot({
     format_selected(json)
   })
@@ -65,7 +65,7 @@ test_that("format_selected empty array", {
       b = TRUE
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
   expect_snapshot({
     format_selected(json)
   })
@@ -78,7 +78,7 @@ test_that("format_selected compact arrays", {
       b = TRUE
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
   expect_snapshot({
     json
     format_selected(json, options = list(format = "compact"))
@@ -92,7 +92,7 @@ test_that("format_selected oneline arrays", {
       b = TRUE
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
   expect_snapshot({
     json
     format_selected(json, options = list(format = "oneline"))
@@ -107,14 +107,14 @@ test_that("format_selected empty object", {
       b = TRUE
     )
   )
-  json <- load_json(text = text)
+  json <- parse_json(text = text)
   expect_snapshot({
     format_selected(json)
   })
 })
 
 test_that("format_selected drop comments in compact, oneline modes", {
-  json <- load_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
+  json <- parse_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
   expect_snapshot({
     json
     format_selected(json, options = list(format = "compact"))
@@ -123,7 +123,7 @@ test_that("format_selected drop comments in compact, oneline modes", {
 })
 
 test_that("format_selected comments before commas in array", {
-  json <- load_json(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
+  json <- parse_json(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
   expect_snapshot({
     json
     format_selected(json, options = list(format = "pretty"))

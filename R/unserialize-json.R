@@ -12,7 +12,7 @@
 #' @export
 #' @seealso [serialize_json()] for the opposite, [select()] and
 #' [unserialize_selected()] to unserialize part(s) of a JSON document.
-#' [load_json()] to load a JSON document and then manipulate it.
+#' [parse_json()] to load a JSON document and then manipulate it.
 #' @examples
 #' # null -> NULL
 #' unserialize_json(text = "null")
@@ -83,7 +83,7 @@ unserialize_json <- function(
 #' @seealso [unserialize_json()] to unserialize a JSON document from a
 #'   file or string. [serialize_json()] to create JSON from R objects.
 #' @examples
-#' json <- load_json(text = serialize_json(list(
+#' json <- parse_json(text = serialize_json(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
 #'   c = list(c1 = list("a", "b"))

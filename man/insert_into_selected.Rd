@@ -23,9 +23,6 @@ insert_into_selected(json, new, key = NULL, at = Inf, options = NULL)
 if that key exists, when inserting into an object. If this key does
 not exist, then the new element is inserted at the end of the object.
 }}
-
-\item{options}{List of options, see \code{\link[=tsjson_options]{tsjson_options()}}. This argument
-must be named and cannot be abbreviated.}
 }
 \value{
 The modified tsjson object.
@@ -38,7 +35,7 @@ It is an error trying to insert into an element that is not an array and
 not an object.
 }
 \examples{
-json <- load_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
 json
 
 json |> select("b") |> insert_into_selected("foo", at = 1)

@@ -1,30 +1,3 @@
-# sexpr_json
-
-    Code
-      sexpr_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
-    Output
-      [1] "(document (object (pair key: (string (string_content)) value: (true)) (pair key: (string (string_content)) value: (array (number) (number) (number)))))"
-
-# sexpr_json errors
-
-    Code
-      sexpr_json()
-    Condition
-      Error in `sexpr_json()`:
-      ! Invalid arguments in `sexpr_json()`: exactly one of `file` and `text` must be given.
-    Code
-      sexpr_json(text = "foo", file = "bar")
-    Condition
-      Error in `sexpr_json()`:
-      ! Invalid arguments in `sexpr_json()`: exactly one of `file` and `text` must be given.
-
-# sexpr_json from a file
-
-    Code
-      sexpr_json(file = tmp)
-    Output
-      [1] "(document (object (pair key: (string (string_content)) value: (true)) (pair key: (string (string_content)) value: (array (number) (number) (number)))))"
-
 # token_table
 
     Code
@@ -66,7 +39,7 @@
       token_table(file = tmp)
     Output
       # A data frame: 26 x 15
-            id parent field_name type             code   start_byte end_byte start_row start_column end_row end_column is_missing has_error expected children 
+            id parent field_name type             code   start_byte end_byte start_row start_column end_row end_column is_missing has_error expected children
          <int>  <int> <chr>      <chr>            <chr>       <int>    <int>     <int>        <int>   <int>      <int> <lgl>      <lgl>     <list>   <I<list>>
        1     1     NA <NA>       "document"        <NA>           0       30         0            0       1          0 FALSE      FALSE     <NULL>   <int [1]>
        2     2      1 <NA>       "object"          <NA>           0       29         0            0       0         29 FALSE      FALSE     <NULL>   <int [5]>
@@ -196,7 +169,7 @@
 # query_json
 
     Code
-      json <- format_selected(load_json(text = txt))
+      json <- format_selected(parse_json(text = txt))
       json
     Output
       # json (5 lines)
@@ -213,14 +186,14 @@
            id name  pattern                           match_count
         <int> <chr> <chr>                                   <int>
       1     1 <NA>  "((pair value: (number) @num))\n"           2
-      
+    
       $matched_captures
       # A data frame: 2 x 12
-           id pattern match type   start_byte end_byte start_row start_column end_row end_column name  code 
+           id pattern match type   start_byte end_byte start_row start_column end_row end_column name  code
         <int>   <int> <int> <chr>       <int>    <int>     <int>        <int>   <int>      <int> <chr> <chr>
-      1     1       1     1 number          7        8         0            7       0          8 num   1    
-      2     1       1     2 number         27       29         0           27       0         29 num   20   
-      
+      1     1       1     1 number          7        8         0            7       0          8 num   1
+      2     1       1     2 number         27       29         0           27       0         29 num   20
+    
 
 # query_json errors
 
@@ -245,12 +218,11 @@
            id name  pattern                           match_count
         <int> <chr> <chr>                                   <int>
       1     1 <NA>  "((pair value: (number) @num))\n"           2
-      
+    
       $matched_captures
       # A data frame: 2 x 12
-           id pattern match type   start_byte end_byte start_row start_column end_row end_column name  code 
+           id pattern match type   start_byte end_byte start_row start_column end_row end_column name  code
         <int>   <int> <int> <chr>       <int>    <int>     <int>        <int>   <int>      <int> <chr> <chr>
-      1     1       1     1 number          7        8         0            7       0          8 num   1    
-      2     1       1     2 number         27       29         0           27       0         29 num   20   
-      
+      1     1       1     1 number          7        8         0            7       0          8 num   1
+      2     1       1     2 number         27       29         0           27       0         29 num   20
 

@@ -22,7 +22,7 @@ If \code{json} has no selection then the the whole document is deleted.
 If \code{json} has an empty selection, then nothing is delted.
 }
 \examples{
-json <- load_json(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
+json <- parse_json(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
 json
 
 json |> select("a")

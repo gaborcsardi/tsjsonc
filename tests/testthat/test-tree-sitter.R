@@ -1,25 +1,3 @@
-test_that("sexpr_json", {
-  expect_snapshot({
-    sexpr_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
-  })
-})
-
-test_that("sexpr_json errors", {
-  expect_snapshot(error = TRUE, {
-    sexpr_json()
-    sexpr_json(text = "foo", file = "bar")
-  })
-})
-
-test_that("sexpr_json from a file", {
-  tmp <- tempfile(fileext = ".json")
-  on.exit(unlink(tmp), add = TRUE)
-  writeLines('{ "a": true, "b": [1, 2, 3] }', tmp)
-  expect_snapshot({
-    sexpr_json(file = tmp)
-  })
-})
-
 test_that("token_table", {
   loadNamespace("pillar")
   expect_snapshot({
@@ -78,7 +56,7 @@ test_that("query_json", {
   loadNamespace("pillar")
   txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
   expect_snapshot({
-    json <- load_json(text = txt) |> format_selected()
+    json <- parse_json(text = txt) |> format_selected()
     json
     query_json(text = txt, query = "((pair value: (number) @num))")
   })

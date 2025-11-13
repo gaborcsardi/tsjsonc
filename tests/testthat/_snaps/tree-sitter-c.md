@@ -6,37 +6,6 @@
       Error:
       ! Unknonwn tree-sitter language code
 
-# get_ranges
-
-    Code
-      sexpr_json(text = text1, ranges = ranges)
-    Output
-      [1] "(document (object (pair key: (string (string_content)) value: (true)) (pair key: (string (string_content)) value: (array (number) (number) (number)))))"
-
----
-
-    Code
-      sexpr_json(text = text1, ranges = list(c(1L, 10L), c(111L, nchar(text1))))
-    Condition
-      Error:
-      ! Invalid ranges, must be a data frame of 6 integer columns
-
----
-
-    Code
-      sexpr_json(text = text1, ranges = badranges)
-    Condition
-      Error:
-      ! Invalid ranges, must be a data frame of 6 integer columns
-
----
-
-    Code
-      sexpr_json(text = text, ranges = badranges2)
-    Condition
-      Error:
-      ! Invalid ranges for tree-sitter parser
-
 # token_table
 
     Code

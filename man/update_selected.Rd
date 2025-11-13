@@ -12,9 +12,6 @@ update_selected(json, new, options = NULL)
 \item{new}{R object that will be serialized to JSON (using
 \code{\link[=serialize_json]{serialize_json()}}) and inserted in place of the selected JSON
 elements.}
-
-\item{options}{List of options, see \code{\link[=tsjson_options]{tsjson_options()}}. This argument
-must be named and cannot be abbreviated.}
 }
 \value{
 The updated tsjson object
@@ -25,7 +22,7 @@ selection then the whole document is replaced. If \code{json} has an empty
 selection, then nothing happens.
 }
 \examples{
-json <- load_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
 json
 
 json |> select("a") |> update_selected(list("new", "element"))

@@ -13,11 +13,11 @@ reference:
     * See [quickstart](quickstart.html) for a quick demonstration of tsjson.
     * See `serialize_json()` to create JSON from R.
     * See `unserialize_json()` to parse JSON into R.
-    * See `load_json()`, `select()`, and `unserialize_selected()` to parse
+    * See `parse_json()`, `select()`, and `unserialize_selected()` to parse
       parts of JSON into R.
-    * See `load_json()`, `select()`, `format_selected()`, and `save_json()`
+    * See `parse_json()`, `select()`, `format_selected()`, and `save_json()`
       to format parts of a JSON file or string and save it to a file.
-    * See `load_json()`, `select()`, `delete_selected()`,
+    * See `parse_json()`, `select()`, `delete_selected()`,
       `insert_into_selected()`, `update_selected()`, and `save_json()` to
       edit a JSON file or string and save it to a file.
 
@@ -33,7 +33,7 @@ reference:
 
 - title: Extraction
 - contents:
-  - load_json
+  - parse_json
   - select
   - select_query
 
@@ -52,7 +52,6 @@ reference:
 - title: Utilities and Options
 - contents:
   - query_json
-  - sexpr_json
   - syntax_tree_json
   - token_table
   - tsjson_options

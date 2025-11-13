@@ -19,7 +19,7 @@ Nothing.
 Write a tsjson object to a file
 }
 \seealso{
-\code{\link[=load_json]{load_json()}} to create a tsjson object from a JSON file or
+\code{\link[=parse_json]{parse_json()}} to create a tsjson object from a JSON file or
 string. \code{\link[=unserialize_selected]{unserialize_selected()}} obtain a JSON string for a tsjson
 object.
 }

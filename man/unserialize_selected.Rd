@@ -21,7 +21,7 @@ If \code{json} does not have a selection, then all of it is unserialized.
 If \code{json} has an empty selection, then an empty list is returned.
 }
 \examples{
-json <- load_json(text = serialize_json(list(
+json <- parse_json(text = serialize_json(list(
   a = list(a1 = list(1,2,3), a2 = "string"),
   b = list(4, 5, 6),
   c = list(c1 = list("a", "b"))

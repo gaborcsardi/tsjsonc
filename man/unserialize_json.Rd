@@ -6,18 +6,6 @@
 \usage{
 unserialize_json(file = NULL, text = NULL, ranges = NULL, options = NULL)
 }
-\arguments{
-\item{file}{Path of a JSON file. Use either \code{file} or \code{text}.}
-
-\item{text}{JSON string. Use either \code{file} or \code{text}.}
-
-\item{ranges}{Can be used to parse part(s) of the input. It must be a
-data frame with integer columns \code{start_row}, \code{start_col}, \code{end_row},
-\code{end_col}, \code{start_byte}, \code{end_byte}, in this order.}
-
-\item{options}{List of options, see \code{\link[=tsjson_options]{tsjson_options()}}. This argument
-must be named and cannot be abbreviated.}
-}
 \value{
 R object.
 }
@@ -52,5 +40,5 @@ unserialize_json(text = "{\"a\": 1, \"b\": 2 }")
 \seealso{
 \code{\link[=serialize_json]{serialize_json()}} for the opposite, \code{\link[=select]{select()}} and
 \code{\link[=unserialize_selected]{unserialize_selected()}} to unserialize part(s) of a JSON document.
-\code{\link[=load_json]{load_json()}} to load a JSON document and then manipulate it.
+\code{\link[=parse_json]{parse_json()}} to load a JSON document and then manipulate it.
 }

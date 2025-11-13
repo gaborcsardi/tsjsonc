@@ -1,5 +1,5 @@
 test_that("save_json", {
-  json <- load_json(
+  json <- parse_json(
     text = serialize_json(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
 
@@ -10,16 +10,16 @@ test_that("save_json", {
   save_json(json, file = tmp)
 
   expect_snapshot({
-    load_json(tmp)
+    parse_json(tmp)
   })
 
   expect_snapshot(error = TRUE, {
     save_json(json)
   })
 
-  save_json(delete_selected(select(load_json(tmp), "a")))
+  save_json(delete_selected(select(parse_json(tmp), "a")))
   expect_snapshot({
-    load_json(tmp)
+    parse_json(tmp)
   })
 
   expect_snapshot({
@@ -32,6 +32,6 @@ test_that("save_json", {
   save_json(json, file = out)
   close(out)
   expect_snapshot({
-    load_json(tmp2)
+    parse_json(tmp2)
   })
 })

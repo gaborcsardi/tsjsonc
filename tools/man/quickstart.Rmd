@@ -29,7 +29,7 @@ txt <- r"(
   ]
 }
 )"
-json <- load_json(text = txt)
+json <- parse_json(text = txt)
 ```
 
 Pretty print a tsjson object:
@@ -117,7 +117,7 @@ Inserts the element if some parents are missing:
 
 ```{asciicast}
 #| label: update-insert
-json <- load_json(text = "{ \"a\": { \"b\": true } }")
+json <- parse_json(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 

@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 #' @importFrom utils head tail
+#' @import ts
 NULL
 
 #' @name quickstart
@@ -16,3 +17,7 @@ NULL
 #' @useDynLib tsjson, .registration = TRUE, .fixes = "c_"
 ## usethis namespace: end
 NULL
+
+ts_language_json <- function() {
+  .Call(c_ts_language_json)
+}

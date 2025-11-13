@@ -1,45 +1,7 @@
-# A section is a list of records. Each record has a selector
-# and a list of selected nodes.
-#
-# 1. there is an explicit selection
-# 2. otherwise the top element is selected (or elements if many)
-# 3. otherwise the document node is selected
-
-get_selection <- function(json, default = TRUE) {
-  sel <- attr(json, "selection")
-  if (!is.null(sel)) {
-    sel
-  } else if (default) {
-    get_default_selection(json)
-  } else {
-    NULL
-  }
-}
-
-get_selected_nodes <- function(json, default = TRUE) {
-  sel <- get_selection(json, default = default)
-  if (is.null(sel)) {
-    return(integer())
-  } else {
-    sel[[length(sel)]]$nodes
-  }
-}
-
-get_default_selection <- function(json) {
-  top <- json$children[[1]]
-  top <- top[json$type[top] != "comment"]
-  list(
-    list(
-      selector = sel_default(),
-      nodes = if (length(top) > 0) top else 1L
-    )
-  )
-}
-
 #' Select elements in a tsjson object
 #'
 #' This function is the heart of tsjson. To delete or manipulate parts of
-#' a JSON document, you need to [select()] those parts first. To insert new
+#' a JSON document, you need to [ts_select()] those parts first. To insert new
 #' elements into a JSON document, you need to select the arrays or objects
 #' the elements will be inserted into.
 #'
@@ -49,7 +11,7 @@ get_default_selection <- function(json) {
 #' of JSON elements, starting from the document element (the default
 #' selection).
 #'
-#' For [select()] the list of selectors may be specified in a single list
+#' For [ts_select()] the list of selectors may be specified in a single list
 #' argument, or as multiple arguments.
 #'
 #' Available selectors:
@@ -66,16 +28,16 @@ get_default_selection <- function(json) {
 #'
 #' ## Refining selections
 #'
-#' [select_refine()] is similar to [select()], but it starts from the
+#' [ts_select_refine()] is similar to [ts_select()], but it starts from the
 #' already selected elements (all of them simultanously), instead of
 #' starting from the document element.
 #'
 #' ## The `[[` and `[[<-` operators
 #'
-#' The `[[` operator works similarly to [select_refine()] on tsjson objects,
+#' The `[[` operator works similarly to [ts_select_refine()] on tsjson objects,
 #' but it might be more readable.
 #'
-#' The `[[<-` operator works similarly to [select<-()], but it might be
+#' The `[[<-` operator works similarly to [ts_select<-()], but it might be
 #' more readable.
 #'
 #' @param x,json tsjson object.
@@ -84,7 +46,7 @@ get_default_selection <- function(json) {
 #'
 #' @export
 #' @examples
-#' json <- load_json(text = serialize_json(list(
+#' json <- parse_json(text = serialize_json(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
 #'   c = list(c1 = list("a", "b"))
@@ -107,7 +69,7 @@ get_default_selection <- function(json) {
 #' # Regular expressions
 #' json |> select(c("a", "c"), c(regex = "1$"))
 
-select <- function(json, ...) {
+ts_select.ts_tokens_json <- function(json, ...) {
   slts <- list(...)
   if (length(slts) == 1 && is.null(slts[[1]])) {
     attr(json, "selection") <- NULL
@@ -115,16 +77,6 @@ select <- function(json, ...) {
   } else {
     select_(json, current = NULL, slts)
   }
-}
-
-#' @rdname select
-#' @export
-
-`[[.tsjson` <- function(x, i, ...) {
-  if (missing(i)) {
-    i <- list()
-  }
-  unserialize_selected(select(x, i, ...))
 }
 
 #' Select the nodes matching a tree-sitter query in a tsjson object
@@ -140,7 +92,7 @@ select <- function(json, ...) {
 #' Comments may appear between any tokens, but they are not part of the
 #' grammar.
 #'
-#' Use [token_table()], [syntax_tree_json()] or [sexpr_json()] to explore
+#' Use [token_table()], [syntax_tree_json()] to explore
 #' the parse tree of a JSON document.
 #'
 #' ## `document`
@@ -200,57 +152,44 @@ select <- function(json, ...) {
 #'
 #' @seealso [query_json()] for running a tree sitter query on text and
 #' obtaining the result.
+# TODO: better name
+#' @rdname select-json-query
 #' @export
 #' @examples
 #' # A very simple JSON document
 #' txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 #'
 #' # Take a look at it
-#' load_json(text = txt) |> format_selected()
+#' parse_json(text = txt) |> format_selected()
 #'
 #' # Select all pairs where the value is a number and change them to 100
-#' load_json(text = txt) |>
+#' parse_json(text = txt) |>
 #'   select_query("((pair value: (number) @num))") |>
 #'   update_selected(100)
+NULL
 
 # TODO: keep the parse tree as an external pointer and reuse it.
 # TODO: do we need to make sure that there is no recursive selection? Probably.
-
-select_query <- function(json, query) {
-  text <- attr(json, "text")
-  mch <- query_json(text = text, query = query)$matched_captures
-  ids <- if (nrow(mch) == 0) {
-    integer()
-  } else {
-    json0 <- json[
-      json$start_byte %in% mch$start_byte & json$end_byte %in% mch$end_byte,
-    ]
-    mkeys <- paste0(mch$type, ":", mch$start_byte, ":", mch$end_byte)
-    jkeys <- paste0(json0$type, ":", json0$start_byte, ":", json0$end_byte)
-    json0$id[match(mkeys, jkeys)]
-  }
-  json |> select(sel_ids(ids))
-}
 
 #' Update selected elements in a tsjson object
 #'
 #' Update the selected elements of a JSON document, using the replacement
 #' function syntax.
 #'
-#' Technically [select<-()] is equivalent to [select_refine()] plus
+#' Technically [ts_l()] is equivalent to [ts_select_refine()] plus
 #' [update_selected()]. In case when `value` is
 #'
-#' @param x,json tsjson object. Create a tsjson object with [load_json()].
-#' @param i,... Selectors, see [select()].
+#' @param x,json tsjson object. Create a tsjson object with [parse_json()].
+#' @param i,... Selectors, see [ts_select()].
 #' @param value New value. Will be serialized to JSON with [serialize_json()].
 #' @return The updated tsjson object.
 #'
 #' @seealso Save the updated tjson object to a file with [save_json()].
 #'
-#' @name select-set
+#' @rdname select-set
 #' @export
 #' @examples
-#' json <- load_json(text = "{}")
+#' json <- parse_json(text = "{}")
 #'
 #' json <- json |> select("r", "editor.formatOnSave") |> update_selected(TRUE)
 #' json
@@ -272,47 +211,18 @@ select_query <- function(json, query) {
 #' json |> select("foo") |> insert_into_selected(0, at = Inf)
 #'
 #' # Only the modified elements are reformatted
-#' json <- load_json(text = '{"foo":[1,2],\n"bar":1}')
+#' json <- parse_json(text = '{"foo":[1,2],\n"bar":1}')
 #' json |> select("foo") |> insert_into_selected(0, at = Inf)
 #'
 #' # You can control how those elements are formatted
 #' json |> select("foo") |>
 #'   insert_into_selected(0, at = Inf, options = list(indent_width = 2))
-
-`select<-` <- function(json, ..., value) {
-  res <- if (inherits(value, "tsjson")) {
-    value # nocov
-  } else if (inherits(value, "tsjson_action_delete")) {
-    delete_selected(select_refine(json, ...))
-  } else {
-    update_selected(select_refine(json, ...), value)
-  }
-  attr(res, "selection") <- NULL
-  res
-}
-
-#' @rdname select-set
-#' @export
-
-`[[<-.tsjson` <- function(x, i, value) {
-  if (missing(i)) {
-    i <- list()
-  }
-  res <- if (inherits(value, "tsjson")) {
-    value # nocov
-  } else if (inherits(value, "tsjson_action_delete")) {
-    delete_selected(select_refine(x, i))
-  } else {
-    update_selected(select_refine(x, i), value)
-  }
-  attr(res, "selection") <- NULL
-  res
-}
+NULL
 
 #' @rdname select
 #' @export
 
-select_refine <- function(json, ...) {
+ts_select_refine.ts_tokens_json <- function(json, ...) {
   current <- get_selection(json)
   select_(json, current = current, list(...))
 }
@@ -320,7 +230,7 @@ select_refine <- function(json, ...) {
 select_ <- function(json, current, slts) {
   slts <- unlist(
     lapply(slts, function(x) {
-      if (inherits(x, "tsjson_selector") || !is.list(x)) list(x) else x
+      if (inherits(x, "ts_selector") || !is.list(x)) list(x) else x
     }),
     recursive = FALSE
   )
@@ -365,7 +275,7 @@ select1 <- function(json, idx, slt) {
       keyvals <- map_chr(keys, unserialize_string, token_table = json)
       pairs[grep(slt, keyvals)]
     }
-  } else if (inherits(slt, "tsjson_selector_ids")) {
+  } else if (inherits(slt, "ts_selector_ids")) {
     # this is special, select exactly these elements
     return(slt$ids)
   } else if (is.character(slt)) {
@@ -410,51 +320,4 @@ select1 <- function(json, idx, slt) {
   }
 
   sel
-}
-
-sel_default <- function() {
-  structure(
-    list(),
-    class = c("tsjson_selector_default", "tsjson_selector", "list")
-  )
-}
-
-sel_ids <- function(ids) {
-  structure(
-    list(ids = ids),
-    class = c("tsjson_selector_ids", "tsjson_selector", "list")
-  )
-}
-
-#' @rdname select-set
-#' @usage NULL
-#' @details
-#' [deleted()] is a special marker to delete elements from a tsjson object
-#' with [select<-()] or the double bracket operator.
-#'
-#' @return [deleted()] returns a marker object to be used at the right
-#'   hand side of the [select<-()] or the double bracket replacement
-#'   functions, see examples below.
-#'
-#' @export
-#' @examples
-#'
-#' # Using `deleted()` to delete elements
-#' json <- load_json(text = serialize_json(list(
-#'   a = list(a1 = list(1,2,3), a2 = "string"),
-#'   b = list(4, 5, 6),
-#'   c = list(c1 = list("a", "b"))
-#' )))
-#'
-#' select(json, list("a", "a1")) <- deleted()
-#' json
-#'
-#' json[[list("a", "a2")]] <- deleted()
-#' json
-
-deleted <- function() {
-  structure(
-    list(),
-    class = c("tsjson_action_delete", "tsjson_action", "list")
-  )
 }

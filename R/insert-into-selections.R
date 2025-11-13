@@ -28,7 +28,7 @@
 #'
 #' @export
 #' @examples
-#' json <- load_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json
 #'
 #' json |> select("b") |> insert_into_selected("foo", at = 1)
@@ -93,7 +93,7 @@ insert_into_selected <- function(
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
+  new <- parse_json(text = text)
   attr(new, "file") <- attr(json, "file")
 
   # now reformat the new parts, or the newly non-empty arrays/objects
@@ -108,12 +108,12 @@ insert_into_selected <- function(
     for (tofmt1 in tofmt2) {
       options[["format"]] <- auto_format(new, tofmt1)
       new <- format_selected(
-        select(new, sel_ids(tofmt1)),
+        ts::ts_select(new, ts::ts_selector_ids(tofmt1)),
         options = options
       )
     }
   } else {
-    new <- select(new, sel_ids(tofmt2))
+    new <- ts::ts_select(new, ts::ts_selector_ids(tofmt2))
     new <- format_selected(new, options = options)
   }
   new

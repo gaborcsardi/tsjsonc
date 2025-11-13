@@ -13,7 +13,7 @@
 #'
 #' @export
 #' @examples
-#' json <- load_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json
 #'
 #' json |> select("a") |> update_selected(list("new", "element"))
@@ -36,7 +36,7 @@ update_selected <- function(
     while (length(selection[[ptr]]$nodes) == 0) {
       slt <- selection[[ptr]]$selector
       # only if characters
-      if (inherits(slt, "tsjson_selector") || !is.character(slt)) {
+      if (inherits(slt, "ts_selector") || !is.character(slt)) {
         return(json)
       }
       ptr <- ptr - 1L
@@ -85,7 +85,7 @@ update_selected <- function(
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
+  new <- parse_json(text = text)
   attr(new, "file") <- attr(json, "file")
 
   new

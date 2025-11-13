@@ -28,7 +28,7 @@ format_json <- function(
 #'
 #' @export
 #' @examples
-#' json <- load_json(text = "{ \"a\": [1,2,3] }")
+#' json <- parse_json(text = "{ \"a\": [1,2,3] }")
 #' json
 #'
 #' json |> format_selected()
@@ -77,7 +77,7 @@ format_selected <- function(
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
+  new <- parse_json(text = text)
   attr(new, "file") <- attr(json, "file")
 
   new
@@ -323,14 +323,14 @@ format_pair <- function(json, id, options) {
   switch(
     options[["format"]],
     "compact" = {
-      glue('"{keystr}":{fvalue}')
+      sprintf('"%s":%s', keystr, fvalue)
     },
     "oneline" = {
-      glue('"{keystr}": {fvalue}')
+      sprintf('"%s": %s', keystr, fvalue)
     },
     "pretty" = {
       if (length(cmts) == 0) {
-        fvalue[1] <- glue('"{keystr}": {fvalue[1]}')
+        fvalue[1] <- sprintf('"%s": %s', keystr, fvalue[1])
         fvalue
       } else {
         fcmts <- lapply(
@@ -340,7 +340,7 @@ format_pair <- function(json, id, options) {
           options = options
         )
         c(
-          glue('"{keystr}":'),
+          sprintf('"%s":', keystr),
           paste0(indent, unlist(fcmts)),
           paste0(indent, fvalue)
         )

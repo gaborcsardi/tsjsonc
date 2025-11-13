@@ -31,7 +31,7 @@ Create a tsjson object from a string:
   ]
 \}
 )"
-json <- load_json(text = txt)
+json <- parse_json(text = txt)
 }\if{html}{\out{</div>}}
 
 Pretty print a tsjson object:
@@ -250,12 +250,13 @@ Update existing element:
 
 Inserts the element if some parents are missing:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- load_json(text = "\{ \\"a\\": \{ \\"b\\": true \} \}")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- parse_json(text = "\{ \\"a\\": \{ \\"b\\": true \} \}")
 json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># json (1 line)</span>                                                                 
-#> <span style="color: #6F7783;">1 | </span>\{ "a": \{ "b": true \} \}                                                      
+#> Error in parse_json(text = "\{ \\"a\\": \{ \\"b\\": true \} \}") :                      
+#>   could not find function "parse_json"                                          
+#> Error: object 'json' not found                                                  
 </pre></div>
 }}
 

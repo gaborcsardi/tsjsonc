@@ -1,7 +1,7 @@
 test_that("empty file parsing works", {
   expect_identical(unserialize_json(text = ""), NULL)
   expect_identical(
-    load_json(text = "") |> select("a") |> unserialize_selected(),
+    parse_json(text = "") |> select("a") |> unserialize_selected(),
     list(NULL)
   )
 })
@@ -10,7 +10,7 @@ test_that("Output is always returned visibly", {
   expect_identical(withVisible(unserialize_json(text = "{}"))$visible, TRUE)
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
+      parse_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
     )$visible,
     TRUE
   )
@@ -19,7 +19,7 @@ test_that("Output is always returned visibly", {
   expect_identical(withVisible(unserialize_json(text = ""))$visible, TRUE)
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
+      parse_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
     )$visible,
     TRUE
   )
@@ -28,7 +28,9 @@ test_that("Output is always returned visibly", {
   expect_identical(withVisible(unserialize_json(text = "null"))$visible, TRUE)
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": null }') |> select("a") |> unserialize_selected()
+      parse_json(text = '{ "a": null }') |>
+        select("a") |>
+        unserialize_selected()
     )$visible,
     TRUE
   )

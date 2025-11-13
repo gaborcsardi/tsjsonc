@@ -7,8 +7,7 @@
       [[1]]$selector
       list()
       attr(,"class")
-      [1] "tsjson_selector_default" "tsjson_selector"        
-      [3] "list"                   
+      [1] "ts_selector_default" "ts_selector"         "list"               
       
       [[1]]$nodes
       [1] 1
@@ -36,8 +35,7 @@
       [[1]]$selector
       list()
       attr(,"class")
-      [1] "tsjson_selector_default" "tsjson_selector"        
-      [3] "list"                   
+      [1] "ts_selector_default" "ts_selector"         "list"               
       
       [[1]]$nodes
       [1] 2
@@ -56,10 +54,10 @@
     Output
       integer(0)
 
-# select
+# ts_select
 
     Code
-      select(json)
+      ts_select(json)
     Output
       # json (13 lines, 1 selected element)
       >  1 | {
@@ -76,7 +74,7 @@
       > 12 |   ]
       > 13 | }
     Code
-      select(json, "a")
+      ts_select(json, "a")
     Output
       # json (13 lines, 1 selected element)
         1   | {
@@ -86,7 +84,7 @@
         5   |     "b2": 22
         ...   
     Code
-      select(json, c("a", "b"))
+      ts_select(json, c("a", "b"))
     Output
       # json (13 lines, 2 selected elements)
          1  | {
@@ -100,7 +98,7 @@
          9  |     1,
         ...   
     Code
-      select(json, "b", "b1")
+      ts_select(json, "b", "b1")
     Output
       # json (13 lines, 1 selected element)
         1   | {
@@ -112,7 +110,7 @@
         7   |   "c": 3,
         ...   
     Code
-      select(json, list("b", "b1"))
+      ts_select(json, list("b", "b1"))
     Output
       # json (13 lines, 1 selected element)
         1   | {
@@ -124,7 +122,7 @@
         7   |   "c": 3,
         ...   
     Code
-      select(json, "d", 1)
+      ts_select(json, "d", 1)
     Output
       # json (13 lines, 1 selected element)
         ...   
@@ -137,7 +135,7 @@
         12  |   ]
         ...   
     Code
-      select(json, "d", TRUE)
+      ts_select(json, "d", TRUE)
     Output
       # json (13 lines, 3 selected elements)
         ...   
@@ -153,7 +151,7 @@
 ---
 
     Code
-      select(json, raw(0))
+      ts_select(json, raw(0))
     Condition
       Error in `select1()`:
       ! Invalid JSON selector
@@ -161,7 +159,7 @@
 # deselect with NULL
 
     Code
-      select(json, "a")
+      ts_select(json, "a")
     Output
       # json (4 lines, 1 selected element)
         1 | {
@@ -169,7 +167,7 @@
         3 |   "c": 3
         4 | }
     Code
-      select(select(json, "a"), NULL)
+      ts_select(ts_select(json, "a"), NULL)
     Output
       # json (4 lines)
       1 | {
@@ -366,7 +364,7 @@
 # [[<-.tsjson deletion
 
     Code
-      json[[c("a", "b")]] <- deleted()
+      json[[c("a", "b")]] <- ts::ts_deleted()
       json
     Output
       # json (8 lines)
@@ -432,19 +430,19 @@
       [1] 2
       
 
-# sel_ids
+# ts::ts_selector_ids
 
     Code
-      json[[sel_ids(26)]]
+      json[[ts::ts_selector_ids(26)]]
     Output
       [[1]]
       [1] 21
       
 
-# select<-
+# ts_select<-
 
     Code
-      select(json, "a") <- 2
+      ts_select(json, "a") <- 2
       json
     Output
       # json (13 lines)
@@ -464,7 +462,7 @@
 ---
 
     Code
-      select(json, c("a")) <- deleted()
+      ts_select(json, c("a")) <- ts::ts_deleted()
       json
     Output
       # json (12 lines)
@@ -484,7 +482,7 @@
 ---
 
     Code
-      select(json, list("b", "b1")) <- 100
+      ts_select(json, list("b", "b1")) <- 100
       json
     Output
       # json (12 lines)
@@ -520,10 +518,10 @@
       Error in `select1()`:
       ! Zero indices are not allowed in JSON selectors.
 
-# select_query
+# ts_select_query
 
     Code
-      update_selected(select_query(load_json(text = txt),
+      update_selected(ts_select_query(parse_json(text = txt),
       "((pair value: (number) @num))"), 100)
     Output
       # json (1 line)
