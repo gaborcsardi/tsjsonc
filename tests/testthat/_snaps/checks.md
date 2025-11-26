@@ -53,7 +53,7 @@
 # default options
 
     Code
-      as_tsjson_options(NULL)
+      as_tsjsonc_options(NULL)
     Output
       $allow_empty_content
       [1] TRUE
@@ -74,10 +74,10 @@
       [1] "space"
       
 
-# as_tsjson_options
+# as_tsjsonc_options
 
     Code
-      as_tsjson_options(list(format = "compact", allow_comments = FALSE))
+      as_tsjsonc_options(list(format = "compact", allow_comments = FALSE))
     Output
       $format
       [1] "compact"
@@ -101,42 +101,42 @@
 ---
 
     Code
-      as_tsjson_options(v1)
+      as_tsjsonc_options(v1)
     Condition
       Error:
-      ! Invalid argument: `v1` must be a named list of tsjson options (see `?tsjson_options`), but it is a function.
+      ! Invalid argument: `v1` must be a named list of tsjsonc options (see `?tsjsonc_options`), but it is a function.
     Code
-      as_tsjson_options(v2)
+      as_tsjsonc_options(v2)
     Condition
       Error:
-      ! Invalid argument: `v2` must be a named list of tsjson options (see `?tsjson_options`), but not all of its entries are named.
+      ! Invalid argument: `v2` must be a named list of tsjsonc options (see `?tsjsonc_options`), but not all of its entries are named.
     Code
-      as_tsjson_options(v3)
+      as_tsjsonc_options(v3)
     Condition
       Error:
-      ! Invalid argument: `v3` contains unknown tsjson option: `foo`. Known tsjson options are: `allow_empty_content`, `allow_comments`, `allow_trailing_comma`, `format`, `indent_width`, and `indent_style`.
+      ! Invalid argument: `v3` contains unknown tsjsonc option: `foo`. Known tsjsonc options are: `allow_empty_content`, `allow_comments`, `allow_trailing_comma`, `format`, `indent_width`, and `indent_style`.
     Code
-      as_tsjson_options(v4)
+      as_tsjsonc_options(v4)
     Condition
       Error:
       ! Invalid argument: `v4[["allow_empty_content"]]` must a flag (logical scalar), but it is a string.
     Code
-      as_tsjson_options(v5)
+      as_tsjsonc_options(v5)
     Condition
       Error:
       ! Invalid argument: `v5[["allow_comments"]]` must a flag (logical scalar), but it is a string.
     Code
-      as_tsjson_options(v6)
+      as_tsjsonc_options(v6)
     Condition
       Error:
       ! Invalid argument: `v6[["format"]]` must be one of 'pretty', 'compact', 'oneline', but it is 'fancy'.
     Code
-      as_tsjson_options(v7)
+      as_tsjsonc_options(v7)
     Condition
       Error:
       ! Invalid argument: `v7[["indent_width"]]` must be non-negative.
     Code
-      as_tsjson_options(v8)
+      as_tsjsonc_options(v8)
     Condition
       Error:
       ! Invalid argument: `v8[["indent_style"]]` must be one of 'space', 'tab', but it is 'fancy'.

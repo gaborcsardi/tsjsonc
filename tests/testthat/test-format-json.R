@@ -1,5 +1,5 @@
 test_that("format_json", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
       a = 1,
@@ -15,7 +15,7 @@ test_that("format_json", {
 })
 
 test_that("format_selected", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
       a = 1,
@@ -24,21 +24,21 @@ test_that("format_selected", {
       d = list(1, 2, 3)
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
 
   expect_snapshot({
-    format_selected(json)
-    format_selected(select(json, "a"))
-    format_selected(select(json, "b"))
+    ts_tree_format(json)
+    ts_tree_format(ts_tree_select(json, "a"))
+    ts_tree_format(ts_tree_select(json, "b"))
   })
-  json <- format_selected(json)
+  json <- ts_tree_format(json)
   expect_snapshot({
-    format_selected(select(json, "b"))
+    ts_tree_format(ts_tree_select(json, "b"))
   })
 })
 
 test_that("format_selected null, true, false, string, comment", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
       a = NULL,
@@ -47,85 +47,89 @@ test_that("format_selected null, true, false, string, comment", {
       d = list("a", "b", "c")
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
   expect_snapshot({
-    format_selected(json)
+    ts_tree_format(json)
   })
-  json <- parse_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
+  json <- ts_tree_read_jsonc(
+    text = "{ // comment\n  \"a\": // comment\n    null\n}"
+  )
   expect_snapshot({
-    format_selected(json)
+    ts_tree_format(json)
   })
 })
 
 test_that("format_selected empty array", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
       a = list(),
       b = TRUE
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
   expect_snapshot({
-    format_selected(json)
+    ts_tree_format(json)
   })
 })
 
 test_that("format_selected compact arrays", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     list(
       a = list(1, 2, 3),
       b = TRUE
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
   expect_snapshot({
     json
-    format_selected(json, options = list(format = "compact"))
+    ts_tree_format(json, options = list(format = "compact"))
   })
 })
 
 test_that("format_selected oneline arrays", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     list(
       a = list(1, 2, 3),
       b = TRUE
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
   expect_snapshot({
     json
-    format_selected(json, options = list(format = "oneline"))
+    ts_tree_format(json, options = list(format = "oneline"))
   })
 })
 
 test_that("format_selected empty object", {
-  text <- serialize_json(
+  text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
       a = structure(list(), names = character()),
       b = TRUE
     )
   )
-  json <- parse_json(text = text)
+  json <- ts_tree_read_jsonc(text = text)
   expect_snapshot({
-    format_selected(json)
+    ts_tree_format(json)
   })
 })
 
 test_that("format_selected drop comments in compact, oneline modes", {
-  json <- parse_json(text = "{ // comment\n  \"a\": // comment\n    null\n}")
+  json <- ts_tree_read_jsonc(
+    text = "{ // comment\n  \"a\": // comment\n    null\n}"
+  )
   expect_snapshot({
     json
-    format_selected(json, options = list(format = "compact"))
-    format_selected(json, options = list(format = "oneline"))
+    ts_tree_format(json, options = list(format = "compact"))
+    ts_tree_format(json, options = list(format = "oneline"))
   })
 })
 
 test_that("format_selected comments before commas in array", {
-  json <- parse_json(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
+  json <- ts_tree_read_jsonc(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
   expect_snapshot({
     json
-    format_selected(json, options = list(format = "pretty"))
+    ts_tree_format(json, options = list(format = "pretty"))
   })
 })

@@ -1,9 +1,9 @@
 # can modify objects by name
 
     Code
-      update_selected(select(parse_json(text = "{}"), "foo"), 1)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "{}"), "foo"), 1)
     Output
-      # json (3 lines)
+      # jsonc (3 lines)
       1 | {
       2 |     "foo": 1
       3 | }
@@ -11,9 +11,9 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = "{}"), "foo"), 1:2)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "{}"), "foo"), 1:2)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | {
       2 |     "foo": [
       3 |         1,
@@ -24,9 +24,10 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = "{}"), "foo"), list(1, "x"))
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "{}"), "foo"), list(1,
+        "x"))
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | {
       2 |     "foo": [
       3 |         1,
@@ -37,10 +38,10 @@
 # modification retains comments
 
     Code
-      update_selected(select(parse_json(text = text), "foo"), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = text), "foo"), 0)
     Output
-      # json (14 lines)
-       1 |
+      # jsonc (14 lines)
+       1 | 
        2 | {
        3 |     // a
        4 |     "foo": 0, // b
@@ -56,10 +57,10 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = text), "bar", 2), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = text), "bar", 2), 0)
     Output
-      # json (14 lines)
-       1 |
+      # jsonc (14 lines)
+       1 | 
        2 | {
        3 |     // a
        4 |     "foo": 1, // b
@@ -75,11 +76,11 @@
 ---
 
     Code
-      print(insert_into_selected(select(parse_json(text = text), "bar"), 0, at = 2),
-      n = 20)
+      print(ts_tree_insert(ts_tree_select(ts_tree_read_jsonc(text = text), "bar"), 0,
+      at = 2), n = 20)
     Output
-      # json (15 lines)
-       1 |
+      # jsonc (15 lines)
+       1 | 
        2 | {
        3 |     // a
        4 |     "foo": 1, // b
@@ -93,15 +94,16 @@
       12 |     ] // f
       13 |     // g
       14 | }
-      15 |
+      15 |   
 
 ---
 
     Code
-      print(update_selected(select(parse_json(text = text), "new"), 0), n = 20)
+      print(ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = text), "new"), 0),
+      n = 20)
     Output
-      # json (15 lines)
-       1 |
+      # jsonc (15 lines)
+       1 | 
        2 | {
        3 |     // a
        4 |     "foo": 1, // b
@@ -115,12 +117,12 @@
       12 |     "new": 0
       13 |     // g
       14 | }
-      15 |
+      15 |   
 
 # can't modify non-object non-array parents
 
     Code
-      update_selected(select(parse_json(text = "1"), "foo"), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "1"), "foo"), 0)
     Condition
       Error in `FUN()`:
       ! Cannot insert into a 'number' JSON element. Can only insert into 'array' and 'object' elements and empty JSON documents.
@@ -128,7 +130,7 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = "\"a\""), "foo"), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "\"a\""), "foo"), 0)
     Condition
       Error in `FUN()`:
       ! Cannot insert into a 'string' JSON element. Can only insert into 'array' and 'object' elements and empty JSON documents.
@@ -136,7 +138,7 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = "true"), "foo"), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "true"), "foo"), 0)
     Condition
       Error in `FUN()`:
       ! Cannot insert into a 'true' JSON element. Can only insert into 'array' and 'object' elements and empty JSON documents.
@@ -144,7 +146,7 @@
 ---
 
     Code
-      update_selected(select(parse_json(text = "null"), "foo"), 0)
+      ts_tree_update(ts_tree_select(ts_tree_read_jsonc(text = "null"), "foo"), 0)
     Condition
       Error in `FUN()`:
       ! Cannot insert into a 'null' JSON element. Can only insert into 'array' and 'object' elements and empty JSON documents.

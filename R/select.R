@@ -1,9 +1,10 @@
-#' Select elements in a tsjson object
+#' Select elements in a tsjsonc object
 #'
-#' This function is the heart of tsjson. To delete or manipulate parts of
-#' a JSON document, you need to [ts_select()] those parts first. To insert new
-#' elements into a JSON document, you need to select the arrays or objects
-#' the elements will be inserted into.
+#' @details
+#' This function is the heart of tsjsonc. To delete or manipulate parts of
+#' a JSON document, you need to [ts_tree_select()] those parts first. To
+#' insert new elements into a JSON document, you need to select the arrays
+#' or objects the elements will be inserted into.
 #'
 #' ## Selectors
 #'
@@ -11,8 +12,8 @@
 #' of JSON elements, starting from the document element (the default
 #' selection).
 #'
-#' For [ts_select()] the list of selectors may be specified in a single list
-#' argument, or as multiple arguments.
+#' For [ts_tree_select()] the list of selectors may be specified in a
+#' single list argument, or as multiple arguments.
 #'
 #' Available selectors:
 #' - `TRUE` selects all child elements of the current selections.
@@ -28,25 +29,24 @@
 #'
 #' ## Refining selections
 #'
-#' [ts_select_refine()] is similar to [ts_select()], but it starts from the
-#' already selected elements (all of them simultanously), instead of
-#' starting from the document element.
+#' If the `refine` argument of [ts_tree_select()] is `TRUE`, then
+#' the selection starts from the already selected elements (all of them
+#' simultanously), instead of starting from the document element.
 #'
 #' ## The `[[` and `[[<-` operators
 #'
-#' The `[[` operator works similarly to [ts_select_refine()] on tsjson objects,
-#' but it might be more readable.
+#' The `[[` operator works similarly to [ts_tree_select())] on tsjsonc
+#' objects, but it might be more readable.
 #'
-#' The `[[<-` operator works similarly to [ts_select<-()], but it might be
-#' more readable.
+#' The `[[<-` operator works similarly to [ts_tree_select<-()], but it
+#' might be more readable.
 #'
-#' @param x,json tsjson object.
+#' @param x,json tsjsonc object.
 #' @param i,... Selectors, see below.
-#' @return A tsjson object, potentially with some elements selected.
+#' @return A tsjsonc object, potentially with some elements selected.
 #'
-#' @export
 #' @examples
-#' json <- parse_json(text = serialize_json(list(
+#' json <- ts_tree_read_jsonc(text = ts_serialize_jsonc(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
 #'   c = list(c1 = list("a", "b"))
@@ -55,31 +55,23 @@
 #' json
 #'
 #' # Select object by key
-#' json |> select("a")
+#' json |> ts_tree_select("a")
 #'
 #' # Select within select, these are the same
-#' json |> select("a", "a1")
-#' json |> select(list("a", "a1"))
+#' json |> ts_tree_select("a", "a1")
+#' json |> ts_tree_select(list("a", "a1"))
 #'
 #' # Select elements of an array
-#' json |> select("b", TRUE)           # all elements
-#' json |> select("b", 1:2)            # first two elements
-#' json |> select("b", c(1, -1))       # first and last elements
+#' json |> ts_tree_select("b", TRUE)           # all elements
+#' json |> ts_tree_select("b", 1:2)            # first two elements
+#' json |> ts_tree_select("b", c(1, -1))       # first and last elements
 #'
 #' # Regular expressions
-#' json |> select(c("a", "c"), c(regex = "1$"))
+#' json |> ts_tree_select(c("a", "c"), c(regex = "1$"))
+#' @name ts_tree_select
+NULL
 
-ts_select.ts_tokens_json <- function(json, ...) {
-  slts <- list(...)
-  if (length(slts) == 1 && is.null(slts[[1]])) {
-    attr(json, "selection") <- NULL
-    json
-  } else {
-    select_(json, current = NULL, slts)
-  }
-}
-
-#' Select the nodes matching a tree-sitter query in a tsjson object
+#' Select the nodes matching a tree-sitter query in a tsjsonc object
 #'
 #' See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 #' queries. Captured nodes of the TOML document will be selected.
@@ -92,8 +84,9 @@ ts_select.ts_tokens_json <- function(json, ...) {
 #' Comments may appear between any tokens, but they are not part of the
 #' grammar.
 #'
-#' Use [token_table()], [syntax_tree_json()] to explore
-#' the parse tree of a JSON document.
+#' Use the [bracket operator][ts::ts_tree-brackets],
+#' [ts::ts_tree_dom()] and [ts::ts_tree_ast()] to explore the parse tree
+#' of a JSON document.
 #'
 #' ## `document`
 #'
@@ -147,177 +140,78 @@ ts_select.ts_tokens_json <- function(json, ...) {
 #'
 #' The literals `true`, `false`, and `null`.
 #'
-#' @param json tsjson object.
+#' @param json tsjsonc object.
 #' @param query String, a tree-sitter query.
 #'
-#' @seealso [query_json()] for running a tree sitter query on text and
-#' obtaining the result.
-# TODO: better name
-#' @rdname select-json-query
-#' @export
+#' @rdname ts_tree_select
 #' @examples
 #' # A very simple JSON document
 #' txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 #'
 #' # Take a look at it
-#' parse_json(text = txt) |> format_selected()
+#' ts_tree_read_jsonc(text = txt) |> ts_tree_format()
 #'
 #' # Select all pairs where the value is a number and change them to 100
-#' parse_json(text = txt) |>
-#'   select_query("((pair value: (number) @num))") |>
-#'   update_selected(100)
+#' ts_tree_read_jsonc(text = txt) |>
+#'   ts_tree_select_query("((pair value: (number) @num))") |>
+#'   ts_tree_update(100)
+# TODO
+#' @name select2
+
 NULL
 
 # TODO: keep the parse tree as an external pointer and reuse it.
 # TODO: do we need to make sure that there is no recursive selection? Probably.
 
-#' Update selected elements in a tsjson object
+#' Update selected elements in a tsjsonc object
 #'
 #' Update the selected elements of a JSON document, using the replacement
 #' function syntax.
 #'
-#' Technically [ts_l()] is equivalent to [ts_select_refine()] plus
-#' [update_selected()]. In case when `value` is
+#' @param x,json tsjsonc object. Create a tsjsonc object with
+#'   [ts_tree_read_jsonc()].
+#' @param i,... Selectors, see [ts_tree_select()].
+#' @param value New value. Will be serialized to JSON with
+#'   [ts_serialize_jsonc()].
+#' @return The updated tsjsonc object.
 #'
-#' @param x,json tsjson object. Create a tsjson object with [parse_json()].
-#' @param i,... Selectors, see [ts_select()].
-#' @param value New value. Will be serialized to JSON with [serialize_json()].
-#' @return The updated tsjson object.
-#'
-#' @seealso Save the updated tjson object to a file with [save_json()].
+#' @seealso Save the updated tjsonc object to a file with [ts_tree_write()].
 #'
 #' @rdname select-set
-#' @export
 #' @examples
-#' json <- parse_json(text = "{}")
+#' json <- ts_tree_read_jsonc(text = "{}")
 #'
-#' json <- json |> select("r", "editor.formatOnSave") |> update_selected(TRUE)
+#' json <- json |>
+#'   ts_tree_select("r", "editor.formatOnSave") |>
+#'   ts_tree_update(TRUE)
 #' json
 #'
-#' json <- json |> select("r", "editor.formatOnSave") |> delete_selected()
+#' json <- json |>
+#'   ts_tree_select("r", "editor.formatOnSave") |>
+#'   ts_tree_delete()
 #' json
 #'
 #' # Insert an array
-#' json <- json |> select("foo") |> update_selected(1:3)
+#' json <- json |>
+#'   ts_tree_select("foo") |>
+#'   ts_tree_update(1:3)
 #' json
 #'
 #' # Update the array at location 2
-#' json |> select("foo", 2) |> update_selected(0)
+#' json |> ts_tree_select("foo", 2) |> ts_tree_update(0)
 #'
 #' # Insert at location 2
-#' json |> select("foo") |> insert_into_selected(0, at = 2)
+#' json |> ts_tree_select("foo") |> ts_tree_insert(0, at = 2)
 #'
 #' # Insert at the end of the array with `Inf` as `at`
-#' json |> select("foo") |> insert_into_selected(0, at = Inf)
+#' json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 #'
 #' # Only the modified elements are reformatted
-#' json <- parse_json(text = '{"foo":[1,2],\n"bar":1}')
-#' json |> select("foo") |> insert_into_selected(0, at = Inf)
+#' json <- ts_tree_read_jsonc(text = '{"foo":[1,2],\n"bar":1}')
+#' json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 #'
 #' # You can control how those elements are formatted
-#' json |> select("foo") |>
-#'   insert_into_selected(0, at = Inf, options = list(indent_width = 2))
+#' json |> ts_tree_select("foo") |>
+#'   ts_tree_insert(0, at = Inf, options = list(indent_width = 2))
+#' @name ts_tree_select<-
 NULL
-
-#' @rdname select
-#' @export
-
-ts_select_refine.ts_tokens_json <- function(json, ...) {
-  current <- get_selection(json)
-  select_(json, current = current, list(...))
-}
-
-select_ <- function(json, current, slts) {
-  slts <- unlist(
-    lapply(slts, function(x) {
-      if (inherits(x, "ts_selector") || !is.list(x)) list(x) else x
-    }),
-    recursive = FALSE
-  )
-  current <- current %||% get_default_selection(json)
-  cnodes <- current[[length(current)]]$nodes
-
-  for (slt in slts) {
-    nxt <- integer()
-    for (cur in cnodes) {
-      nxt <- unique(c(nxt, select1(json, cur, slt)))
-    }
-    current[[length(current) + 1L]] <- list(
-      selector = slt,
-      nodes = sort(nxt)
-    )
-    cnodes <- current[[length(current)]]$nodes
-  }
-  # if 'document' is selected, that means there is no selection
-  if (identical(current[[1]]$nodes, 1L)) {
-    attr(json, "selection") <- NULL
-  } else {
-    attr(json, "selection") <- current
-  }
-  json
-}
-
-select1 <- function(json, idx, slt) {
-  type <- json$type[idx]
-  sel <- if (identical(slt, TRUE)) {
-    chdn <- json$children[[idx]]
-    chdn[!json$type[chdn] %in% c("[", ",", "]", "{", "}", "comment")]
-  } else if (is.character(slt) && identical(names(slt), "regex")) {
-    if (type != "object") {
-      integer()
-    } else {
-      pairs <- json$children[[idx]]
-      pairs <- pairs[json$type[pairs] == "pair"]
-      chdn <- unlist(json$children[pairs])
-      keys <- chdn[
-        !is.na(json$field_name[chdn]) & json$field_name[chdn] == "key"
-      ]
-      keyvals <- map_chr(keys, unserialize_string, token_table = json)
-      pairs[grep(slt, keyvals)]
-    }
-  } else if (inherits(slt, "ts_selector_ids")) {
-    # this is special, select exactly these elements
-    return(slt$ids)
-  } else if (is.character(slt)) {
-    if (type != "object") {
-      integer()
-    } else {
-      pairs <- json$children[[idx]]
-      pairs <- pairs[json$type[pairs] == "pair"]
-      chdn <- unlist(json$children[pairs])
-      keys <- chdn[
-        !is.na(json$field_name[chdn]) & json$field_name[chdn] == "key"
-      ]
-      keyvals <- map_chr(keys, unserialize_string, token_table = json)
-      pairs[keyvals %in% slt]
-    }
-  } else if (is.numeric(slt)) {
-    if (any(slt == 0)) {
-      stop(cnd("Zero indices are not allowed in JSON selectors."))
-    }
-    chdn <- json$children[[idx]]
-    chdn <- chdn[!json$type[chdn] %in% c("[", ",", "]", "{", "}", "comment")]
-    res <- integer(length(slt))
-    pos <- slt >= 0
-    if (any(pos)) {
-      res[pos] <- chdn[slt[pos]]
-    }
-    if (any(!pos)) {
-      res[!pos] <- rev(rev(chdn)[abs(slt[!pos])])
-    }
-    res
-  } else {
-    stop("Invalid JSON selector")
-  }
-
-  # for objects we select the values, instead of the pairs
-  if (type == "object") {
-    sel <- map_int(sel, function(sel1) {
-      gchdn <- json$children[[sel1]]
-      gchdn <- gchdn[!is.na(json$field_name[gchdn])]
-      gchdn[json$field_name[gchdn] == "value"]
-    })
-  }
-
-  sel
-}

@@ -1,12 +1,12 @@
-test_that("parse_json", {
+test_that("ts_tree_read_jsonc", {
   testthat::local_reproducible_output(width = 500)
-  json <- parse_json(text = "")
+  json <- ts_tree_read_jsonc(text = "")
   expect_snapshot(json)
 
-  json <- parse_json(text = "[]")
+  json <- ts_tree_read_jsonc(text = "[]")
   expect_snapshot(json)
 
-  json <- parse_json(text = "// comment\n[1,2,3]")
+  json <- ts_tree_read_jsonc(text = "// comment\n[1,2,3]")
   expect_snapshot({
     json
     json[]
@@ -18,22 +18,22 @@ test_that("parse_json", {
   mkdirp(tmpdir)
   tmp <- file.path(tmpdir, "three.json")
   writeLines(c("// comment", "[1,2,3]"), tmp)
-  json <- parse_json(tmp)
+  json <- ts_tree_read_jsonc(tmp)
   expect_snapshot({
     json
   })
 
   # leading whitespace
-  json <- parse_json(text = "\n\n   [1,2,3]\n")
+  json <- ts_tree_read_jsonc(text = "\n\n   [1,2,3]\n")
   expect_snapshot({
     json
     json[]
   })
 })
 
-test_that("parse_json with options", {
+test_that("ts_tree_read_jsonc with options", {
   testthat::local_reproducible_output(width = 500)
-  json <- parse_json(
+  json <- ts_tree_read_jsonc(
     text = "// comment\n{ \"a\": 1 }",
     options = list(allow_comments = TRUE)
   )
@@ -42,14 +42,14 @@ test_that("parse_json with options", {
   })
 })
 
-test_that("parse_json errors", {
+test_that("ts_tree_read_jsonc errors", {
   expect_snapshot(error = TRUE, {
-    parse_json()
-    parse_json(file = tempfile(), text = "foo")
+    ts_tree_read_jsonc()
+    ts_tree_read_jsonc(file = tempfile(), text = "foo")
   })
 })
 
-test_that("[.tsjson", {
+test_that("[.tsjsonc", {
   # tested above
   expect_true(TRUE)
 })

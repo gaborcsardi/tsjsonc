@@ -3,9 +3,9 @@
 pkgload::load_all()
 ```
 
-### Create a tsjson object
+### Create a tsjsonc object
 
-Create a tsjson object from a string:
+Create a tsjsonc object from a string:
 
 ```{asciicast}
 #| results: hide
@@ -29,60 +29,59 @@ txt <- r"(
   ]
 }
 )"
-json <- parse_json(text = txt)
+json <- ts_tree_read_jsonc(text = txt)
 ```
 
-Pretty print a tsjson object:
+Pretty print a tsjsonc object:
 
 ```{asciicast}
 #| label: print-json
 json
 ```
 
-### Select elements in a tsjson object
+### Select elements in a tsjsonc object
 
 Select element by objects key:
 
 ```{asciicast}
 #| label: select-key
-select(json, "a")
+ts_tree_select(json, "a")
 ```
 
 Select element inside element:
 
 ```{asciicast}
 #| label: select-select
-select(json, "a", "a1")
+ts_tree_select(json, "a", "a1")
 ```
 
 Select element(s) of an array:
 
 ```{asciicast}
 #| label: select-array
-select(json, "a", "a1", 1:2)
+ts_tree_select(json, "a", "a1", 1:2)
 ```
 
 Select multiple keys from an object:
 
 ```{asciicast}
 #| label: select-multiple
-select(json, "a", c("a1", "a2"))
+ts_tree_select(json, "a", c("a1", "a2"))
 ```
 
 Select nodes that match a tree-sitter query:
 
 ```{asciicast}
 #| label: select-query
-json |> select_query("((pair value: (false) @val))")
+json |> ts_tree_select_query("((pair value: (false) @val))")
 ```
-
 ### Delete elements
 
 Delete selected elements:
 
 ```{asciicast}
 #| label: delete
-select(json, "a", "a1") |> delete_selected()
+ts_tree_select(json, "a", "a1") |> ts_tree_delete()
 ```
 
 ### Insert elements
@@ -91,7 +90,7 @@ Insert element into an array:
 
 ```{asciicast}
 #| label: insert-array
-select(json, "a", "a1") |> insert_into_selected(at = 2, "new")
+ts_tree_select(json, "a", "a1") |> ts_tree_insert(at = 2, "new")
 ```
 
 Inserting into an array reformats the array.
@@ -100,8 +99,8 @@ Insert element into an object, at the specified key:
 
 ```{asciicast}
 #| label: insert-object
-select(json, "a") |>
-  insert_into_selected(key = "a0", at = 0, list("new", "element"))
+ts_tree_select(json, "a") |>
+  ts_tree_insert(key = "a0", at = 0, list("new", "element"))
 ```
 
 ### Update elements
@@ -110,18 +109,18 @@ Update existing element:
 
 ```{asciicast}
 #| label: update
-select(json, "a", c("a1", "a2")) |> update_selected("new value")
+ts_tree_select(json, "a", c("a1", "a2")) |> ts_tree_update("new value")
 ```
 
 Inserts the element if some parents are missing:
 
 ```{asciicast}
 #| label: update-insert
-json <- parse_json(text = "{ \"a\": { \"b\": true } }")
+json <- ts_tree_read_jsonc(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 
 ```{asciicast}
 #| label: update-insert-2
-select(json, "a", "x", "y") |> update_selected(list(1,2,3))
+ts_tree_select(json, "a", "x", "y") |> ts_tree_update(list(1,2,3))
 ```

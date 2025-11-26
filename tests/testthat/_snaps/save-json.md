@@ -1,9 +1,9 @@
 # save_json
 
     Code
-      parse_json(tmp)
+      ts_tree_read_jsonc(tmp)
     Output
-      # json (test.json, 10 lines)
+      # jsonc (test.json, 10 lines)
        1 | {
        2 |   "a": [
        3 |     1,
@@ -18,17 +18,17 @@
 ---
 
     Code
-      save_json(json)
+      ts_tree_write(json)
     Condition
-      Error in `save_json()`:
-      ! Don't know which file to save JSON document to. You need to specify the `file` argument.
+      Error in `ts_tree_write.default()`:
+      ! Don't know which file to save JSONC document to. You need to specify the `file` argument.
 
 ---
 
     Code
-      parse_json(tmp)
+      ts_tree_read_jsonc(tmp)
     Output
-      # json (test.json, 5 lines)
+      # jsonc (test.json, 5 lines)
       1 | {
       2 |   "b": {
       3 |     "b1": "foo"
@@ -38,7 +38,7 @@
 ---
 
     Code
-      save_json(json, file = stdout())
+      ts_tree_write(json, file = stdout())
     Output
       {
         "a": [
@@ -54,9 +54,9 @@
 ---
 
     Code
-      parse_json(tmp2)
+      ts_tree_read_jsonc(tmp2)
     Output
-      # json (bin.json, 10 lines)
+      # jsonc (bin.json, 10 lines)
        1 | {
        2 |   "a": [
        3 |     1,

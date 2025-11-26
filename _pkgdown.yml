@@ -13,11 +13,11 @@ reference:
     * See [quickstart](quickstart.html) for a quick demonstration of tsjson.
     * See `serialize_json()` to create JSON from R.
     * See `unserialize_json()` to parse JSON into R.
-    * See `parse_json()`, `select()`, and `unserialize_selected()` to parse
+    * See `ts_tree_read_jsonc()`, `select()`, and `unserialize_selected()` to parse
       parts of JSON into R.
-    * See `parse_json()`, `select()`, `format_selected()`, and `save_json()`
+    * See `ts_tree_read_jsonc()`, `select()`, `format_selected()`, and `save_json()`
       to format parts of a JSON file or string and save it to a file.
-    * See `parse_json()`, `select()`, `delete_selected()`,
+    * See `ts_tree_read_jsonc()`, `select()`, `delete_selected()`,
       `insert_into_selected()`, `update_selected()`, and `save_json()` to
       edit a JSON file or string and save it to a file.
 
@@ -33,7 +33,7 @@ reference:
 
 - title: Extraction
 - contents:
-  - parse_json
+  - ts_tree_read_jsonc
   - select
   - select_query
 

@@ -1,33 +1,37 @@
 #' Replace selected JSON elements with a new element
 #'
-#' Replace all selected elements with a new element. If `json` has no
-#' selection then the whole document is replaced. If `json` has an empty
+#' Replace all selected elements with a new element. If `tree` has no
+#' selection then the whole document is replaced. If `tree` has an empty
 #' selection, then nothing happens.
 #'
-#' @param json tsjson object.
+#' @param tree tsjsonc object.
 #' @param new R object that will be serialized to JSON (using
-#'   [serialize_json()]) and inserted in place of the selected JSON
+#'   [ts_serialize_jsonc()]) and inserted in place of the selected JSON
 #'   elements.
-#' @inheritParams token_table
-#' @return The updated tsjson object
+#' @param options Named list of formatting options, see
+#'   [tsjsonc options][tsjsonc_options].
+#' @param ... Reserved for future use.
+#' @return The updated tsjsonc object
 #'
 #' @export
 #' @examples
-#' json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
-#' json
+#' tree <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+#' tree
 #'
-#' json |> select("a") |> update_selected(list("new", "element"))
+#' tree |> ts_tree_select("a") |> ts_tree_update(list("new", "element"))
 
-update_selected <- function(
-  json,
+ts_tree_update.ts_tree_jsonc <- function(
+  tree,
   new,
-  options = NULL
+  options = NULL,
+  ...
 ) {
   if (!missing(options)) {
     check_named_arg(options)
   }
-  options <- as_tsjson_options(options)
-  selection <- get_selection(json)
+  options <- as_tsjsonc_options(options)
+  # TODO: check that ... is empty
+  selection <- ts_tree_selection(tree)
   ptr <- length(selection)
   select <- selection[[ptr]]$nodes
 
@@ -36,8 +40,8 @@ update_selected <- function(
     while (length(selection[[ptr]]$nodes) == 0) {
       slt <- selection[[ptr]]$selector
       # only if characters
-      if (inherits(slt, "ts_selector") || !is.character(slt)) {
-        return(json)
+      if (inherits(slt, "ts_tree_selector") || !is.character(slt)) {
+        return(tree)
       }
       ptr <- ptr - 1L
       new <- structure(
@@ -45,48 +49,48 @@ update_selected <- function(
         names = slt
       )
     }
-    attr(json, "selection") <- selection[1:ptr]
-    return(insert_into_selected(json, new[[1]], key = names(new)))
+    attr(tree, "selection") <- selection[1:ptr]
+    return(ts_tree_insert(tree, new[[1]], key = names(new)))
   }
 
   fmt <- replicate(
     length(select),
-    serialize_json(new, collapse = FALSE, options = options),
+    ts_serialize_jsonc(new, collapse = FALSE, options = options),
     simplify = FALSE
   )
 
   # keep original indentation at the start row
   for (i in seq_along(select)) {
     sel1 <- select[i]
-    prevline <- rev(which(json$end_row == json$start_row[sel1] - 1))[1]
-    ind0 <- sub("^.*\n", "", json$tws[prevline])
+    prevline <- rev(which(tree$end_row == tree$start_row[sel1] - 1))[1]
+    ind0 <- sub("^.*\n", "", tree$tws[prevline])
     if (!is.na(prevline)) {
       fmt[[i]] <- paste0(c("", rep(ind0, length(fmt[[i]]) - 1L)), fmt[[i]])
     }
   }
 
-  subtrees <- lapply(select, get_subtree, json = json, with_root = FALSE)
+  subtrees <- lapply(select, get_subtree, tree = tree, with_root = FALSE)
   deleted <- unique(unlist(subtrees))
 
   # need to keep the trailing ws of the last element
   lasts <- map_int(subtrees, max_or_na)
-  tws <- json$tws[lasts]
-  json$code[deleted] <- NA_character_
-  json$tws[deleted] <- NA_character_
+  tws <- tree$tws[lasts]
+  tree$code[deleted] <- NA_character_
+  tree$tws[deleted] <- NA_character_
 
   # keep select nodes to inject the new elements
-  json$code[select] <- paste0(
+  tree$code[select] <- paste0(
     map_chr(fmt, paste, collapse = "\n"),
     ifelse(is.na(tws), "", tws)
   )
-  json$tws[select] <- NA_character_
+  tree$tws[select] <- NA_character_
 
-  parts <- c(rbind(json$code, json$tws))
+  parts <- c(rbind(tree$code, tree$tws))
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- parse_json(text = text)
-  attr(new, "file") <- attr(json, "file")
+  new <- ts_tree_read_jsonc(text = text)
+  attr(new, "file") <- attr(tree, "file")
 
   new
 }

@@ -1,10 +1,10 @@
 # error messaging is reasonably helpful
 
     Code
-      unserialize_json(text = text)
+      ts_unserialize_jsonc(text = text)
     Condition
-      Error in `token_table()`:
-      ! JSON parse error `<text>`:2:3
+      Error in `ts::ts_tree_read()`:
+      ! JSONC parse error `<text>`:2:3
       1| {
       2|   "a" 1
            ^^^^^
@@ -13,10 +13,10 @@
 ---
 
     Code
-      unserialize_json(text = text)
+      ts_unserialize_jsonc(text = text)
     Condition
-      Error in `token_table()`:
-      ! JSON parse error `<text>`:2:3
+      Error in `ts::ts_tree_read()`:
+      ! JSONC parse error `<text>`:2:3
       1| {
       2|   "a": ]
            ^^^^^^
@@ -25,10 +25,10 @@
 ---
 
     Code
-      unserialize_json(text = text)
+      ts_unserialize_jsonc(text = text)
     Condition
-      Error in `token_table()`:
-      ! JSON parse error `<text>`:5:5
+      Error in `ts::ts_tree_read()`:
+      ! JSONC parse error `<text>`:5:5
       4|     2,
       5|     b"
              ^^
@@ -37,10 +37,10 @@
 ---
 
     Code
-      unserialize_json(text = text)
+      ts_unserialize_jsonc(text = text)
     Condition
-      Error in `token_table()`:
-      ! JSON parse error `<text>`:3:5
+      Error in `ts::ts_tree_read()`:
+      ! JSONC parse error `<text>`:3:5
       2|   "a": [
       3|     b",
              ^^^
@@ -49,24 +49,24 @@
 # `allow_comments` works
 
     Code
-      unserialize_json(text = text, options = list(allow_comments = FALSE))
+      ts_unserialize_jsonc(text = text, options = list(allow_comments = FALSE))
     Condition
-      Error in `token_table()`:
+      Error in `ts_tree_read_jsonc()`:
       ! The JSON document contains comments, and this is not allowed. To allow comments, set the `allow_comments` option to `TRUE`.
 
 # `allow_trailing_comma` works
 
     Code
-      unserialize_json(text = text, options = list(allow_trailing_comma = FALSE))
+      ts_unserialize_jsonc(text = text, options = list(allow_trailing_comma = FALSE))
     Condition
-      Error in `token_table()`:
+      Error in `ts_tree_read_jsonc()`:
       ! The JSON document contains trailing commas, and this is not allowed. To allow trailing commas, set the `allow_trailing_comma` option to `TRUE`.
 
 # `allow_empty_content` works
 
     Code
-      unserialize_json(text = "", options = options)
+      ts_unserialize_jsonc(text = "", options = options)
     Condition
-      Error in `token_table()`:
+      Error in `ts_tree_read_jsonc()`:
       ! The JSON document is empty, and this is not allowed. To allow this, set the `allow_empty_content` option to `TRUE`.
 

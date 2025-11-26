@@ -1,26 +1,26 @@
-test_that("update_selected", {
-  json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+test_that("ts_tree_update", {
+  json <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
   expect_snapshot({
-    json |> select("a") |> update_selected(list("new", "element"))
+    json |> ts_tree_select("a") |> ts_tree_update(list("new", "element"))
   })
 })
 
-test_that("update_selected with empty selection can be an insert", {
-  json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+test_that("ts_tree_update with empty selection can be an insert", {
+  json <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
   expect_snapshot({
     upd <- json |>
-      select("new", "element") |>
-      update_selected(list("new", "value"), options = list(format = "pretty"))
+      ts_tree_select("new", "element") |>
+      ts_tree_update(list("new", "value"), options = list(format = "pretty"))
     print(upd, n = Inf)
   })
 })
 
 test_that("updated_selected with empry non-character selection is noop", {
-  json <- parse_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+  json <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
   expect_snapshot({
     upd <- json |>
-      select("b", 10) |>
-      update_selected(list("new", "value"))
+      ts_tree_select("b", 10) |>
+      ts_tree_update(list("new", "value"))
     print(upd, n = Inf)
   })
 })

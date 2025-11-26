@@ -1,4 +1,4 @@
-Package: tsjson
+Package: tsjsonc
 Title: Edit JSON Files
 Version: 0.0.0.9000
 Authors@R: c(
@@ -12,7 +12,6 @@ Description: Extract and manipulate parts of JSON files without touching
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
 Imports:
-    cli,
     ts
 Suggests:
     pillar,

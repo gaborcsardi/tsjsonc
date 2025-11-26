@@ -1,9 +1,9 @@
-# print.tsjson
+# print.tsjsonc
 
     Code
       json
     Output
-      # json (10 lines)
+      # jsonc (10 lines)
        1 | {
        2 |   "a": [
        3 |     1,
@@ -15,12 +15,12 @@
        9 |   }
       10 | }
 
-# format_tsjson_noselection
+# format_ts_tree_noselection
 
     Code
-      select(json, "no-such-element")
+      ts_tree_select(json, "no-such-element")
     Output
-      # json (10 lines, 0 selected elements)
+      # jsonc (10 lines, 0 selected elements)
        1 | {
        2 |   "a": [
        3 |     1,
@@ -32,12 +32,12 @@
        9 |   }
       10 | }
 
-# format_tsjson_noselection long document
+# format_ts_tree_noselection long document
 
     Code
       json
     Output
-      # json (30 lines)
+      # jsonc (30 lines)
        1 | {
        2 |   "a": [
        3 |     "a",
@@ -51,12 +51,12 @@
       i 20 more lines
       i Use `print(n = ...)` to see more lines
 
-# format_tsjson_selection
+# format_ts_tree_selection
 
     Code
-      select(json, "a")
+      ts_tree_select(json, "a")
     Output
-      # json (10 lines, 1 selected element)
+      # jsonc (10 lines, 1 selected element)
          1  | {
       >  2  |   "a": [
       >  3  |     1,
@@ -68,9 +68,9 @@
          9  |   }
         ...   
     Code
-      select(json, "a", 1:2)
+      ts_tree_select(json, "a", 1:2)
     Output
-      # json (10 lines, 2 selected elements)
+      # jsonc (10 lines, 2 selected elements)
         1   | {
         2   |   "a": [
       > 3   |     1,
@@ -80,9 +80,9 @@
         7   |   "b": {
         ...   
     Code
-      select(json, "b", "b1")
+      ts_tree_select(json, "b", "b1")
     Output
-      # json (10 lines, 1 selected element)
+      # jsonc (10 lines, 1 selected element)
         ...   
          5  |     3
          6  |   ],
@@ -94,9 +94,9 @@
 # many selections
 
     Code
-      select(json, "a", seq(2, 30, by = 2))
+      ts_tree_select(json, "a", seq(2, 30, by = 2))
     Output
-      # json (104 lines, 15 selected elements)
+      # jsonc (104 lines, 15 selected elements)
          1  | {
          2  |   "a": [
          3  |     1,

@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(tsjson)
+library(tsjsonc)
 
-test_check("tsjson")
+test_check("tsjsonc")

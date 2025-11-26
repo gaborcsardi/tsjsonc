@@ -1,7 +1,7 @@
-# unserialize_selected
+# ts_tree_unserialize
 
     Code
-      unserialize_selected(json)
+      ts_tree_unserialize(json)
     Output
       [[1]]
       [[1]]$a
@@ -20,10 +20,10 @@
       
       
 
-# unserialize_false
+---
 
     Code
-      unserialize_selected(select(json, "a"))
+      ts_tree_unserialize(ts_tree_select(json, "a"))
     Output
       [[1]]
       [1] FALSE

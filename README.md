@@ -55,7 +55,7 @@ txt <- r"(
   ]
 }
 )"
-json <- parse_json(text = txt)
+json <- ts_tree_read_jsonc(text = txt)
 ```
 
 Pretty print a tsjson object:
@@ -172,7 +172,7 @@ select(json, "a", c("a1", "a2")) |> update_selected("new value")
 Inserts the element if some parents are missing:
 
 ``` r
-json <- parse_json(text = "{ \"a\": { \"b\": true } }")
+json <- ts_tree_read_jsonc(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 

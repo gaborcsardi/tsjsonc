@@ -137,9 +137,9 @@ opt_indent_style_default <- function() {
   "space"
 }
 
-#' tsjson options
+#' tsjsonc options
 #'
-#' Options that control the behavior of tsjson functions.
+#' Options that control the behavior of tsjsonc functions.
 #'
 #' ## Parsing options:
 #'
@@ -165,10 +165,10 @@ opt_indent_style_default <- function() {
 #' * `indent_style`: string, either `"space"` or `"tab"`, the type of
 #'   indentation to use. Default is `r opt_indent_style_default()`.
 #'
-#' @name tsjson_options
+#' @name tsjsonc_options
 NULL
 
-as_tsjson_options <- function(
+as_tsjsonc_options <- function(
   x,
   auto_format = FALSE,
   arg = caller_arg(x),
@@ -247,16 +247,16 @@ as_tsjson_options <- function(
   if (!is.list(x) && !is.null(x)) {
     stop(cnd(
       call = call,
-      "Invalid argument: `{arg}` must be a named list of tsjson options \\
-       (see `?tsjson_options`), but it is {typename(options)}."
+      "Invalid argument: `{arg}` must be a named list of tsjsonc options \\
+       (see `?tsjsonc_options`), but it is {typename(options)}."
     ))
   }
 
   if (!is_named(x)) {
     stop(cnd(
       call = call,
-      "Invalid argument: `{arg}` must be a named list of tsjson options \\
-       (see `?tsjson_options`), but not all of its entries are named."
+      "Invalid argument: `{arg}` must be a named list of tsjsonc options \\
+       (see `?tsjsonc_options`), but not all of its entries are named."
     ))
   }
 
@@ -264,8 +264,8 @@ as_tsjson_options <- function(
   good <- paste0("`", nms, "`")
   stop(cnd(
     call = call,
-    "Invalid argument: `{arg}` contains unknown tsjson \\
-    option{plural(length(bad))}: {collapse(bad)}. Known tsjson options \\
+    "Invalid argument: `{arg}` contains unknown tsjsonc \\
+    option{plural(length(bad))}: {collapse(bad)}. Known tsjsonc options \\
     are: {collapse(good)}."
   ))
 }

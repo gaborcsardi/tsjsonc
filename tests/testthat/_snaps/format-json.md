@@ -20,9 +20,9 @@
 # format_selected
 
     Code
-      format_selected(json)
+      ts_tree_format(json)
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |     "a": 1,
        3 |     "b": {
@@ -36,14 +36,14 @@
       i 3 more lines
       i Use `print(n = ...)` to see more lines
     Code
-      format_selected(select(json, "a"))
+      ts_tree_format(ts_tree_select(json, "a"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | {"a":1,"b":{"b1":21,"b2":22},"c":3,"d":[1,2,3]}
     Code
-      format_selected(select(json, "b"))
+      ts_tree_format(ts_tree_select(json, "b"))
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | {"a":1,"b":{
       2 |     "b1": 21,
       3 |     "b2": 22
@@ -52,9 +52,9 @@
 ---
 
     Code
-      format_selected(select(json, "b"))
+      ts_tree_format(ts_tree_select(json, "b"))
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |     "a": 1,
        3 |     "b": {
@@ -71,9 +71,9 @@
 # format_selected null, true, false, string, comment
 
     Code
-      format_selected(json)
+      ts_tree_format(json)
     Output
-      # json (10 lines)
+      # jsonc (10 lines)
        1 | {
        2 |     "a": null,
        3 |     "b": true,
@@ -88,9 +88,9 @@
 ---
 
     Code
-      format_selected(json)
+      ts_tree_format(json)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | {
       2 |     // comment
       3 |     "a":
@@ -101,9 +101,9 @@
 # format_selected empty array
 
     Code
-      format_selected(json)
+      ts_tree_format(json)
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | {
       2 |     "a": [],
       3 |     "b": true
@@ -114,7 +114,7 @@
     Code
       json
     Output
-      # json (8 lines)
+      # jsonc (8 lines)
       1 | {
       2 |   "a": [
       3 |     1,
@@ -124,9 +124,9 @@
       7 |   "b": true
       8 | }
     Code
-      format_selected(json, options = list(format = "compact"))
+      ts_tree_format(json, options = list(format = "compact"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | {"a":[1,2,3],"b":true}
 
 # format_selected oneline arrays
@@ -134,7 +134,7 @@
     Code
       json
     Output
-      # json (8 lines)
+      # jsonc (8 lines)
       1 | {
       2 |   "a": [
       3 |     1,
@@ -144,17 +144,17 @@
       7 |   "b": true
       8 | }
     Code
-      format_selected(json, options = list(format = "oneline"))
+      ts_tree_format(json, options = list(format = "oneline"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": [ 1, 2, 3 ], "b": true }
 
 # format_selected empty object
 
     Code
-      format_selected(json)
+      ts_tree_format(json)
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | {
       2 |     "a": {},
       3 |     "b": true
@@ -165,20 +165,20 @@
     Code
       json
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | { // comment
       2 |   "a": // comment
       3 |     null
       4 | }
     Code
-      format_selected(json, options = list(format = "compact"))
+      ts_tree_format(json, options = list(format = "compact"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | {"a":null}
     Code
-      format_selected(json, options = list(format = "oneline"))
+      ts_tree_format(json, options = list(format = "oneline"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": null }
 
 # format_selected comments before commas in array
@@ -186,7 +186,7 @@
     Code
       json
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | [
       2 |   1
       3 | // comment
@@ -194,9 +194,9 @@
       5 | ,  2
       6 | ]
     Code
-      format_selected(json, options = list(format = "pretty"))
+      ts_tree_format(json, options = list(format = "pretty"))
     Output
-      # json (7 lines)
+      # jsonc (7 lines)
       1 | [
       2 |     1
       3 |     // comment

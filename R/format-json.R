@@ -7,86 +7,90 @@ format_json <- function(
   if (!missing(options)) {
     check_named_arg(options)
   }
-  options <- as_tsjson_options(options)
+  options <- as_tsjsonc_options(options)
   format <- match.arg(format)
 
   # parse file/text
   # TODO: error on error, get error position
-  json <- token_table(file = file, text = text, options = options)
-  format_element(json, 1L, options = options)
+  tree <- ts_tree_read_jsonc(file = file, text = text, options = options)
+  format_element(tree, 1L, options = options)
 }
 
 #' Format the selected JSON elements
 #'
 #' @details
-#' If `json` does not have a selection, then all of it is formatted.
-#' If `json` has an empty selection, then nothing happens.
+#' If `tree` does not have a selection, then all of it is formatted.
+#' If `tree` has an empty selection, then nothing happens.
 #'
-#' @inheritParams token_table
-#' @param json tsjson object.
-#' @return The updated tsjson object.
+#' @param tree tsjsonc object.
+#' @param options Named list of formatting options, see
+#'   [tsjsonc options][tsjsonc_options].
+#' @param ... Reserved for future use.
+#' @return The updated tsjsonc object.
 #'
 #' @export
 #' @examples
-#' json <- parse_json(text = "{ \"a\": [1,2,3] }")
-#' json
+#' tree <- ts_tree_read_jsonc(text = "{ \"a\": [1,2,3] }")
+#' tree
 #'
-#' json |> format_selected()
+#' tree |> ts_tree_format()
 #'
-#' json |> select("a") |> format_selected()
+#' tree |> ts_tree_select("a") |> ts_tree_format()
 
-format_selected <- function(
-  json,
-  options = NULL
+ts_tree_format.ts_tree_jsonc <- function(
+  tree,
+  options = NULL,
+  ...
 ) {
   if (!missing(options)) {
     check_named_arg(options)
   }
-  options <- as_tsjson_options(options)
-  select <- get_selected_nodes(json)
+  options <- as_tsjsonc_options(options)
+  # TODO: check that ... is empty
+  select <- ts_tree_selected_nodes(tree)
   fmt <- lapply(
     select,
     format_element,
-    json = json,
+    tree = tree,
     options = options
   )
   for (i in seq_along(select)) {
     sel1 <- select[i]
-    prevline <- rev(which(json$end_row == json$start_row[sel1] - 1))[1]
-    ind0 <- sub("^.*\n", "", json$tws[prevline])
+    prevline <- rev(which(tree$end_row == tree$start_row[sel1] - 1))[1]
+    ind0 <- sub("^.*\n", "", tree$tws[prevline])
     if (!is.na(prevline)) {
       fmt[[i]] <- paste0(c("", rep(ind0, length(fmt[[i]]) - 1L)), fmt[[i]])
     }
   }
 
-  subtrees <- lapply(select, get_subtree, json = json, with_root = FALSE)
+  subtrees <- lapply(select, get_subtree, tree = tree, with_root = FALSE)
   deleted <- unique(unlist(subtrees))
 
   # need to keep the trailing ws of the last element
   lasts <- map_int(subtrees, max_or_na)
-  tws <- json$tws[lasts]
-  json$code[deleted] <- NA_character_
-  json$tws[deleted] <- NA_character_
-  json$code[select] <- paste0(
+  tws <- tree$tws[lasts]
+  tree$code[deleted] <- NA_character_
+  tree$tws[deleted] <- NA_character_
+  tree$code[select] <- paste0(
     map_chr(fmt, paste, collapse = "\n"),
     ifelse(is.na(tws), "", tws)
   )
-  json$tws[select] <- NA_character_
+  tree$tws[select] <- NA_character_
 
-  parts <- c(rbind(json$code, json$tws))
+  parts <- c(rbind(tree$code, tree$tws))
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- parse_json(text = text)
-  attr(new, "file") <- attr(json, "file")
+  new <- ts_tree_read_jsonc(text = text)
+  attr(new, "file") <- attr(tree, "file")
 
   new
 }
 
-get_subtree <- function(json, id, with_root = FALSE) {
-  sel <- c(if (with_root) id, json$children[[id]])
+get_subtree <- function(tree, id, with_root = FALSE) {
+  sel <- c(if (with_root) id, tree$children[[id]])
   while (TRUE) {
-    sel2 <- unique(c(sel, unlist(json$children[sel])))
+    sel2 <- unique(c(sel, unlist(tree$children[sel])))
     if (length(sel2) == length(sel)) {
       return(sel)
     }
@@ -94,59 +98,59 @@ get_subtree <- function(json, id, with_root = FALSE) {
   }
 }
 
-format_element <- function(json, id, options) {
+format_element <- function(tree, id, options) {
   switch(
-    json$type[id],
+    tree$type[id],
     null = {
-      format_null(json, id, options = options)
+      format_null(tree, id, options = options)
     },
     true = {
-      format_true(json, id, options = options)
+      format_true(tree, id, options = options)
     },
     false = {
-      format_false(json, id, options = options)
+      format_false(tree, id, options = options)
     },
     string = {
-      format_string(json, id, options = options)
+      format_string(tree, id, options = options)
     },
     number = {
-      format_number(json, id, options = options)
+      format_number(tree, id, options = options)
     },
     array = {
-      format_array(json, id, options = options)
+      format_array(tree, id, options = options)
     },
     object = {
-      format_object(json, id, options = options)
+      format_object(tree, id, options = options)
     },
     comment = {
-      format_comment(json, id, options = options)
+      format_comment(tree, id, options = options)
     },
     pair = {
-      format_pair(json, id, options = options)
+      format_pair(tree, id, options = options)
     },
     document = {
-      format_document(json, id, options = options)
+      format_document(tree, id, options = options)
     },
     "," = {
-      format_comma(json, id, options = options)
+      format_comma(tree, id, options = options)
     },
     stop(cnd(
-      "Internal tsjson error, unknown JSON node type: '{json$type[id]}'"
+      "Internal tsjsonc error, unknown JSON node type: '{tree$type[id]}'"
     ))
   )
 }
 
-which_line_comments <- function(json, ids) {
+which_line_comments <- function(tree, ids) {
   # this only works because `start_row` is sorted
   which(
-    json$type[ids] == "comment" &
-      json$end_row[ids - 1] == json$start_row[ids]
+    tree$type[ids] == "comment" &
+      tree$end_row[ids - 1] == tree$start_row[ids]
   )
 }
 
-format_line_comments <- function(json, elts, ids, format) {
+format_line_comments <- function(tree, elts, ids, format) {
   if (format == "pretty") {
-    cmts <- which_line_comments(json, ids)
+    cmts <- which_line_comments(tree, ids)
     for (i in cmts) {
       # may happen if an array or object starts with a comment
       if (i == 1L) {
@@ -162,46 +166,46 @@ format_line_comments <- function(json, elts, ids, format) {
   elts
 }
 
-format_document <- function(json, id, options) {
-  stopifnot(json$type[id] == "document")
-  chdn <- json$children[[id]]
+format_document <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "document")
+  chdn <- tree$children[[id]]
   elts <- lapply(
     chdn,
     format_element,
-    json = json,
+    tree = tree,
     options = options
   )
-  elts <- format_line_comments(json, elts, chdn, options[["format"]])
+  elts <- format_line_comments(tree, elts, chdn, options[["format"]])
   unlist(elts)
 }
 
-format_null <- function(json, id, options) {
-  stopifnot(json$type[id] == "null")
+format_null <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "null")
   "null"
 }
 
-format_true <- function(json, id, options) {
-  stopifnot(json$type[id] == "true")
+format_true <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "true")
   "true"
 }
 
-format_false <- function(json, id, options) {
-  stopifnot(json$type[id] == "false")
+format_false <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "false")
   "false"
 }
 
-format_string <- function(json, id, options) {
-  stopifnot(json$type[id] == "string")
-  chdn <- json$children[[id]]
-  paste0(json$code[chdn], collapse = "")
+format_string <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "string")
+  chdn <- tree$children[[id]]
+  paste0(tree$code[chdn], collapse = "")
 }
 
-format_number <- function(json, id, options) {
-  stopifnot(json$type[id] == "number")
-  json$code[id]
+format_number <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "number")
+  tree$code[id]
 }
 
-format_post_process_commas <- function(json, elts, ids, format) {
+format_post_process_commas <- function(tree, elts, ids, format) {
   if (format != "pretty") {
     return(elts)
   }
@@ -209,7 +213,7 @@ format_post_process_commas <- function(json, elts, ids, format) {
     length(x) == 1 && startsWith(x, ",")
   })
   for (i in which(commas)) {
-    if (json$type[ids[i - 1]] == "comment") {
+    if (tree$type[ids[i - 1]] == "comment") {
       next
     }
     elts[[i - 1]][length(elts[[i - 1]])] <- paste0(
@@ -229,9 +233,9 @@ format_create_indent <- function(options) {
   }
 }
 
-format_array <- function(json, id, options) {
-  stopifnot(json$type[id] == "array")
-  chdn <- json$children[[id]]
+format_array <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "array")
+  chdn <- tree$children[[id]]
 
   if (length(chdn) == 2) {
     return("[]")
@@ -241,12 +245,12 @@ format_array <- function(json, id, options) {
   elts <- lapply(
     chdn,
     format_element,
-    json = json,
+    tree = tree,
     options = options
   )
 
-  elts <- format_line_comments(json, elts, chdn, options[["format"]])
-  elts <- format_post_process_commas(json, elts, chdn, options[["format"]])
+  elts <- format_line_comments(tree, elts, chdn, options[["format"]])
+  elts <- format_post_process_commas(tree, elts, chdn, options[["format"]])
 
   indent <- format_create_indent(options)
 
@@ -264,9 +268,9 @@ format_array <- function(json, id, options) {
   )
 }
 
-format_object <- function(json, id, options) {
-  stopifnot(json$type[id] == "object")
-  chdn <- json$children[[id]]
+format_object <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "object")
+  chdn <- tree$children[[id]]
 
   if (length(chdn) == 2) {
     return("{}")
@@ -276,11 +280,11 @@ format_object <- function(json, id, options) {
   elts <- lapply(
     chdn,
     format_element,
-    json = json,
+    tree = tree,
     options = options
   )
-  elts <- format_line_comments(json, elts, chdn, options[["format"]])
-  elts <- format_post_process_commas(json, elts, chdn, options[["format"]])
+  elts <- format_line_comments(tree, elts, chdn, options[["format"]])
+  elts <- format_post_process_commas(tree, elts, chdn, options[["format"]])
 
   indent <- format_create_indent(options)
 
@@ -309,14 +313,14 @@ format_object <- function(json, id, options) {
 # - We put all comments _after_ the `:`, because we put the `:` on the
 #   same line as the key.
 
-format_pair <- function(json, id, options) {
-  stopifnot(json$type[id] == "pair")
-  chdn <- json$children[[id]]
-  key <- na_omit(chdn[json$field_name[chdn] == "key"])
-  keystr <- unserialize_string(json, key)
-  value <- na_omit(chdn[json$field_name[chdn] == "value"])
-  cmts <- chdn[json$type[chdn] == "comment"]
-  fvalue <- format_element(json, value, options)
+format_pair <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "pair")
+  chdn <- tree$children[[id]]
+  key <- na_omit(chdn[tree$field_name[chdn] == "key"])
+  keystr <- unserialize_string(tree, key)
+  value <- na_omit(chdn[tree$field_name[chdn] == "value"])
+  cmts <- chdn[tree$type[chdn] == "comment"]
+  fvalue <- format_element(tree, value, options)
 
   indent <- format_create_indent(options)
 
@@ -336,7 +340,7 @@ format_pair <- function(json, id, options) {
         fcmts <- lapply(
           cmts,
           format_element,
-          json = json,
+          tree = tree,
           options = options
         )
         c(
@@ -349,17 +353,17 @@ format_pair <- function(json, id, options) {
   )
 }
 
-format_comment <- function(json, id, options) {
-  stopifnot(json$type[id] == "comment")
+format_comment <- function(tree, id, options) {
+  stopifnot(tree$type[id] == "comment")
   if (options[["format"]] == "pretty") {
-    json$code[id]
+    tree$code[id]
   } else {
     NULL
   }
 }
 
-format_comma <- function(json, id, options) {
-  stopifnot(json$type[id] == ",")
+format_comma <- function(tree, id, options) {
+  stopifnot(tree$type[id] == ",")
   if (options[["format"]] == "oneline") {
     ", "
   } else {
