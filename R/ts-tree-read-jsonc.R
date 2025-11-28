@@ -58,7 +58,7 @@
 #' # arrays are involved
 #' ts_tree_read_jsonc(text = text) |>
 #'   ts_tree_select("b", 2) |>
-#'   ts_tree_unserialize()
+#'    gts_tree_unserialize()
 ts_tree_read_jsonc <- function(
   file = NULL,
   text = NULL,
@@ -125,10 +125,23 @@ ts_tree_read_jsonc <- function(
   tree
 }
 
+dom_types <- c(
+  "null",
+  "true",
+  "false",
+  "string",
+  "number",
+  "array",
+  "object",
+  "document"
+)
+
+
 add_dom <- function(tree) {
   tree$dom_children <- vector("list", nrow(tree))
   tree$dom_parent <- rep(NA_integer_, nrow(tree))
   tree$dom_name <- rep(NA_character_, nrow(tree))
+  tree$dom_type <- ifelse(tree$type %in% dom_types, tree$type, NA_character_)
 
   for (i in seq_len(nrow(tree))) {
     if (!tree$type[i] %in% c("document", "object", "array")) {

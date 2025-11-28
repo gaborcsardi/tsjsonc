@@ -76,7 +76,7 @@ ts_tree_read_jsonc(text = text) |>
 # arrays are involved
 ts_tree_read_jsonc(text = text) |>
   ts_tree_select("b", 2) |>
-  ts_tree_unserialize()
+   gts_tree_unserialize()
 }
 \seealso{
 \code{\link[=ts_tree_select]{ts_tree_select()}} to select part(s) of a tsjsonc

@@ -39,7 +39,7 @@ Pretty print a tsjsonc object:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># json (19 lines)</span>                                                               
+#> <span style="color: #6F7783;"># jsonc (19 lines)</span>                                                              
 #> <span style="color: #6F7783;"> 1 | </span>                                                                           
 #> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
 #> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
@@ -64,8 +64,19 @@ Select element by objects key:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_select(json, "a") :                                            
-#>   could not find function "ts_tree_select"                                      
+#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>                                          
+#>   <span style="color: #6F7783;"> 1  | </span>                                                                        
+#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;"> 3  | </span>\{                                                                       
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span>  "a": <span style="color: #66C2CD;">\{</span>                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">    "a1": [1, 2, 3],</span>                                                    
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">    // comment</span>                                                          
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    "a2": "string"</span>                                                      
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 8  | </span><span style="color: #66C2CD;">  \}</span>,                                                                    
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": [                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">11  | </span>      "b11": true,                                                      
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -75,8 +86,15 @@ Select element inside element:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_select(json, "a", "a1") :                                      
-#>   could not find function "ts_tree_select"                                      
+#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>                                          
+#>   <span style="color: #6F7783;">2   | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;">3   | </span>\{                                                                       
+#>   <span style="color: #6F7783;">4   | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": <span style="color: #66C2CD;">[1, 2, 3]</span>,                                                    
+#>   <span style="color: #6F7783;">6   | </span>    // comment                                                          
+#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"                                                      
+#>   <span style="color: #6F7783;">8   | </span>  \},                                                                    
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -86,8 +104,15 @@ Select element(s) of an array:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1", 1:2)
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_select(json, "a", "a1", 1:2) :                                 
-#>   could not find function "ts_tree_select"                                      
+#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>                                         
+#>   <span style="color: #6F7783;">2   | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;">3   | </span>\{                                                                       
+#>   <span style="color: #6F7783;">4   | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": [<span style="color: #66C2CD;">1</span>, <span style="color: #66C2CD;">2</span>, 3],                                                    
+#>   <span style="color: #6F7783;">6   | </span>    // comment                                                          
+#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"                                                      
+#>   <span style="color: #6F7783;">8   | </span>  \},                                                                    
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -97,8 +122,17 @@ Select multiple keys from an object:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", c("a1", "a2"))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_select(json, "a", c("a1", "a2")) :                             
-#>   could not find function "ts_tree_select"                                      
+#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>                                         
+#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;"> 3  | </span>\{                                                                       
+#>   <span style="color: #6F7783;"> 4  | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span>    "a1": <span style="color: #66C2CD;">[1, 2, 3]</span>,                                                    
+#>   <span style="color: #6F7783;"> 6  | </span>    // comment                                                          
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span>    "a2": <span style="color: #66C2CD;">"string"</span>                                                      
+#>   <span style="color: #6F7783;"> 8  | </span>  \},                                                                    
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": [                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -108,8 +142,19 @@ Select nodes that match a tree-sitter query:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select_query("((pair value: (false) @val))")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_select_query(json, "((pair value: (false) @val))") :           
-#>   could not find function "ts_tree_select_query"                                
+#> <span style="color: #6F7783;"># jsonc (19 lines, 3 selected elements)</span>                                         
+#>   <span style="color: #6F7783;">...</span>                                                                           
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": [                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">11  | </span>      "b11": true,                                                      
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">12  | </span>      "b12": <span style="color: #66C2CD;">false</span>                                                      
+#>   <span style="color: #6F7783;">13  | </span>    \},                                                                  
+#>   <span style="color: #6F7783;">14  | </span>    \{                                                                   
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">15  | </span>      "b21": <span style="color: #66C2CD;">false</span>,                                                     
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">16  | </span>      "b22": <span style="color: #66C2CD;">false</span>                                                      
+#>   <span style="color: #6F7783;">17  | </span>    \}                                                                   
+#>   <span style="color: #6F7783;">18  | </span>  ]                                                                     
+#>   <span style="color: #6F7783;">19  | </span>\}                                                                       
 </pre></div>
 ### Delete elements
 }}
@@ -120,8 +165,19 @@ Delete selected elements:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1") |> ts_tree_delete()
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_delete(ts_tree_select(json, "a", "a1")) :                      
-#>   could not find function "ts_tree_delete"                                      
+#> <span style="color: #6F7783;"># jsonc (18 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    // comment                                                             
+#> <span style="color: #6F7783;"> 6 | </span>    "a2": "string"                                                         
+#> <span style="color: #6F7783;"> 7 | </span>  \},                                                                       
+#> <span style="color: #6F7783;"> 8 | </span>  "b": [                                                                   
+#> <span style="color: #6F7783;"> 9 | </span>    \{                                                                      
+#> <span style="color: #6F7783;">10 | </span>      "b11": true,                                                         
+#> <span style="color: #6F7783;">ℹ 8 more lines</span>                                                                  
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -134,8 +190,19 @@ Insert element into an array:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1") |> ts_tree_insert(at = 2, "new")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_insert(ts_tree_select(json, "a", "a1"), at = 2, "new") :       
-#>   could not find function "ts_tree_insert"                                      
+#> <span style="color: #6F7783;"># jsonc (24 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    "a1": [                                                                
+#> <span style="color: #6F7783;"> 6 | </span>        1,                                                                 
+#> <span style="color: #6F7783;"> 7 | </span>        2,                                                                 
+#> <span style="color: #6F7783;"> 8 | </span>        "new",                                                             
+#> <span style="color: #6F7783;"> 9 | </span>        3                                                                  
+#> <span style="color: #6F7783;">10 | </span>    ],                                                                     
+#> <span style="color: #6F7783;">ℹ 14 more lines</span>                                                                 
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -148,8 +215,19 @@ Insert element into an object, at the specified key:
   ts_tree_insert(key = "a0", at = 0, list("new", "element"))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_insert(ts_tree_select(json, "a"), key = "a0", at = 0,  :       
-#>   could not find function "ts_tree_insert"                                      
+#> <span style="color: #6F7783;"># jsonc (27 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>      "a0": [                                                              
+#> <span style="color: #6F7783;"> 6 | </span>          "new",                                                           
+#> <span style="color: #6F7783;"> 7 | </span>          "element"                                                        
+#> <span style="color: #6F7783;"> 8 | </span>      ],                                                                   
+#> <span style="color: #6F7783;"> 9 | </span>      "a1": [                                                              
+#> <span style="color: #6F7783;">10 | </span>          1,                                                               
+#> <span style="color: #6F7783;">ℹ 17 more lines</span>                                                                 
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -162,8 +240,19 @@ Update existing element:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", c("a1", "a2")) |> ts_tree_update("new value")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#>                                                                                 
-#>   could not find function "ts_tree_update"                                      
+#> <span style="color: #6F7783;"># jsonc (19 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    "a1": "new value",                                                     
+#> <span style="color: #6F7783;"> 6 | </span>    // comment                                                             
+#> <span style="color: #6F7783;"> 7 | </span>    "a2": "new value"                                                      
+#> <span style="color: #6F7783;"> 8 | </span>  \},                                                                       
+#> <span style="color: #6F7783;"> 9 | </span>  "b": [                                                                   
+#> <span style="color: #6F7783;">10 | </span>    \{                                                                      
+#> <span style="color: #6F7783;">ℹ 9 more lines</span>                                                                  
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -174,9 +263,8 @@ Inserts the element if some parents are missing:
 json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_read_jsonc(text = "\{ \\"a\\": \{ \\"b\\": true \} \}") :              
-#>   could not find function "ts_tree_read_jsonc"                                  
-#> Error: object 'json' not found                                                  
+#> <span style="color: #6F7783;"># jsonc (1 line)</span>                                                                
+#> <span style="color: #6F7783;">1 | </span>\{ "a": \{ "b": true \} \}                                                      
 </pre></div>
 }}
 
@@ -184,10 +272,45 @@ json
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "x", "y") |> ts_tree_update(list(1,2,3))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> Error in ts_tree_update(ts_tree_select(json, "a", "x", "y"), list(1, 2,  :      
-#>   could not find function "ts_tree_update"                                      
+#> <span style="color: #6F7783;"># jsonc (10 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>\{ "a": \{                                                                   
+#> <span style="color: #6F7783;"> 2 | </span>    "b": true,                                                             
+#> <span style="color: #6F7783;"> 3 | </span>    "x": \{                                                                 
+#> <span style="color: #6F7783;"> 4 | </span>        "y": [                                                             
+#> <span style="color: #6F7783;"> 5 | </span>            1,                                                             
+#> <span style="color: #6F7783;"> 6 | </span>            2,                                                             
+#> <span style="color: #6F7783;"> 7 | </span>            3                                                              
+#> <span style="color: #6F7783;"> 8 | </span>        ]                                                                  
+#> <span style="color: #6F7783;"> 9 | </span>    \}                                                                      
+#> <span style="color: #6F7783;">10 | </span>\} \}                                                                        
 </pre></div>
 }}
 
+
+[
+#>   \if{html}{\out{<span style="color: #6F7783;">}}10  | \if{html}{\out{</span>}}    {
+#>   \if{html}{\out{<span style="color: #6F7783;">}}11  | \if{html}{\out{</span>}}      "b11": true,
+#> \if{html}{\out{<span style="background-color: #66C2CD;">}}>\if{html}{\out{</span>}} \if{html}{\out{<span style="color: #6F7783;">}}12  | \if{html}{\out{</span>}}      "b12": \if{html}{\out{<span style="color: #66C2CD;">}}false\if{html}{\out{</span>}}
+#>   \if{html}{\out{<span style="color: #6F7783;">}}13  | \if{html}{\out{</span>}}    },
+#>   \if{html}{\out{<span style="color: #6F7783;">}}14  | \if{html}{\out{</span>}}    {
+#> \if{html}{\out{<span style="background-color: #66C2CD;">}}>\if{html}{\out{</span>}} \if{html}{\out{<span style="color: #6F7783;">}}15  | \if{html}{\out{</span>}}      "b21": \if{html}{\out{<span style="color: #66C2CD;">}}false\if{html}{\out{</span>}},
+#> \if{html}{\out{<span style="background-color: #66C2CD;">}}>\if{html}{\out{</span>}} \if{html}{\out{<span style="color: #6F7783;">}}16  | \if{html}{\out{</span>}}      "b22": \if{html}{\out{<span style="color: #66C2CD;">}}false\if{html}{\out{</span>}}
+#>   \if{html}{\out{<span style="color: #6F7783;">}}17  | \if{html}{\out{</span>}}    }
+#>   \if{html}{\out{<span style="color: #6F7783;">}}18  | \if{html}{\out{</span>}}  ]: R:\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E10\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%7B\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E11\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%22b11\%22:\%20true,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22background-color:\%20#66C2CD;\%22\%3E>\%3C/span\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E12\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%22b12\%22:\%20\%3Cspan\%20style=\%22color:\%20#66C2CD;\%22\%3Efalse\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E13\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%7D,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E14\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%7B\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22background-color:\%20#66C2CD;\%22\%3E>\%3C/span\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E15\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%22b21\%22:\%20\%3Cspan\%20style=\%22color:\%20#66C2CD;\%22\%3Efalse\%3C/span\%3E,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22background-color:\%20#66C2CD;\%22\%3E>\%3C/span\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E16\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%22b22\%22:\%20\%3Cspan\%20style=\%22color:\%20#66C2CD;\%22\%3Efalse\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E17\%20\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%7D\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%20\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E18\%20\%20\%7C\%20\%3C/span\%3E\%20\%20
+[
+#> \if{html}{\out{<span style="color: #6F7783;">}} 6 | \if{html}{\out{</span>}}        1,
+#> \if{html}{\out{<span style="color: #6F7783;">}} 7 | \if{html}{\out{</span>}}        2,
+#> \if{html}{\out{<span style="color: #6F7783;">}} 8 | \if{html}{\out{</span>}}        "new",
+#> \if{html}{\out{<span style="color: #6F7783;">}} 9 | \if{html}{\out{</span>}}        3
+#> \if{html}{\out{<span style="color: #6F7783;">}}10 | \if{html}{\out{</span>}}    ]: R:\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%206\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%201,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%207\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%202,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%208\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%22new\%22,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%209\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%203\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E10\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20
+[
+#> \if{html}{\out{<span style="color: #6F7783;">}} 6 | \if{html}{\out{</span>}}          "new",
+#> \if{html}{\out{<span style="color: #6F7783;">}} 7 | \if{html}{\out{</span>}}          "element"
+#> \if{html}{\out{<span style="color: #6F7783;">}} 8 | \if{html}{\out{</span>}}      ]: R:\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%206\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%22new\%22,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%207\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%22element\%22\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%208\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20
+[
+#> \if{html}{\out{<span style="color: #6F7783;">}} 5 | \if{html}{\out{</span>}}            1,
+#> \if{html}{\out{<span style="color: #6F7783;">}} 6 | \if{html}{\out{</span>}}            2,
+#> \if{html}{\out{<span style="color: #6F7783;">}} 7 | \if{html}{\out{</span>}}            3
+#> \if{html}{\out{<span style="color: #6F7783;">}} 8 | \if{html}{\out{</span>}}        ]: R:\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%205\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%201,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%206\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%202,\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%207\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%203\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%20\%0A#\%3E\%20\%3Cspan\%20style=\%22color:\%20#6F7783;\%22\%3E\%208\%20\%7C\%20\%3C/span\%3E\%20\%20\%20\%20\%20\%20\%20\%20
 }
 }
