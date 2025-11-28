@@ -25,7 +25,7 @@ If \code{tree} does not have a selection, then all of it is formatted.
 If \code{tree} has an empty selection, then nothing happens.
 }
 \examples{
-tree <- ts_tree_read_jsonc(text = "{ \"a\": [1,2,3] }")
+tree <- ts_parse_jsonc("{ \"a\": [1,2,3] }")
 tree
 
 tree |> ts_tree_format()

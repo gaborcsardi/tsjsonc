@@ -1,4 +1,4 @@
-# ts_tree_read_jsonc
+# ts_parse_json
 
     Code
       json
@@ -72,7 +72,7 @@
       8     8      2 <NA>       number   3             10       11         2            8       2          9 FALSE      FALSE     <NULL>   <int [0]> ""        <NULL>                2 <NA>     number  
       9     9      2 <NA>       ]        ]             11       12         2            9       2         10 FALSE      FALSE     <NULL>   <int [0]> "\n"      <NULL>               NA <NA>     <NA>    
 
-# ts_tree_read_jsonc with options
+# ts_parse_json with options
 
     Code
       json
@@ -81,16 +81,16 @@
       1 | // comment
       2 | { "a": 1 }
 
-# ts_tree_read_jsonc errors
+# ts_read_json errors
 
     Code
-      ts_tree_read_jsonc()
+      ts_tree_new(ts_language_jsonc())
     Condition
-      Error in `ts::ts_tree_read()`:
-      ! Invalid arguments in `ts_tree_read()`: exactly one of `file` and `text` must be given.
+      Error in `ts_tree_new.ts_language()`:
+      ! Invalid arguments in `ts_tree_new()`: exactly one of `file` and `text` must be given.
     Code
-      ts_tree_read_jsonc(file = tempfile(), text = "foo")
+      ts_tree_new(ts_language_jsonc(), file = tempfile(), text = "foo")
     Condition
-      Error in `ts::ts_tree_read()`:
-      ! Invalid arguments in `ts_tree_read()`: exactly one of `file` and `text` must be given.
+      Error in `ts_tree_new.ts_language()`:
+      ! Invalid arguments in `ts_tree_new()`: exactly one of `file` and `text` must be given.
 

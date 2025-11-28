@@ -16,7 +16,7 @@ Nothing.
 Write a tsjsonc object to a file
 }
 \seealso{
-\code{\link[=ts_tree_read_jsonc]{ts_tree_read_jsonc()}} to create a tsjsonc object from a JSON
+\code{\link[=ts_read_jsonc]{ts_read_jsonc()}} to create a tsjsonc object from a JSON
 file or string. \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} obtain a JSON string for a
 tsjsonc object.
 }

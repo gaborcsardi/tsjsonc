@@ -1,7 +1,7 @@
 test_that("empty file parsing works", {
   expect_identical(ts_unserialize_jsonc(text = ""), NULL)
   expect_identical(
-    ts_tree_read_jsonc(text = "") |>
+    ts_parse_jsonc(text = "") |>
       ts_tree_select("a") |>
       ts_tree_unserialize(),
     list(NULL)
@@ -12,7 +12,7 @@ test_that("Output is always returned visibly", {
   expect_identical(withVisible(ts_unserialize_jsonc(text = "{}"))$visible, TRUE)
   expect_identical(
     withVisible(
-      ts_tree_read_jsonc(text = '{ "a": 1 }') |>
+      ts_parse_jsonc(text = '{ "a": 1 }') |>
         ts_tree_select("a") |>
         ts_tree_unserialize()
     )$visible,
@@ -23,7 +23,7 @@ test_that("Output is always returned visibly", {
   expect_identical(withVisible(ts_unserialize_jsonc(text = ""))$visible, TRUE)
   expect_identical(
     withVisible(
-      ts_tree_read_jsonc(text = '{ "a": 1 }') |>
+      ts_parse_jsonc(text = '{ "a": 1 }') |>
         ts_tree_select("a") |>
         ts_tree_unserialize()
     )$visible,
@@ -37,7 +37,7 @@ test_that("Output is always returned visibly", {
   )
   expect_identical(
     withVisible(
-      ts_tree_read_jsonc(text = '{ "a": null }') |>
+      ts_parse_jsonc(text = '{ "a": null }') |>
         ts_tree_select("a") |>
         ts_tree_unserialize()
     )$visible,

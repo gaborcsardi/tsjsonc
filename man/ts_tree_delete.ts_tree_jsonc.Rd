@@ -24,7 +24,7 @@ If \code{tree} has no selection then the the whole document is deleted.
 If \code{tree} has an empty selection, then nothing is delted.
 }
 \examples{
-tree <- ts_tree_read_jsonc(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
+tree <- ts_parse_jsonc("{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
 tree
 
 tree |> ts_tree_select("a")

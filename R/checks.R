@@ -88,6 +88,16 @@ as_count <- function(
   }
 }
 
+as_character <- function(x) {
+  # TODO
+  x
+}
+
+as_existing_file <- function(x) {
+  # TODO
+  x
+}
+
 as_choice <- function(
   x,
   choices,

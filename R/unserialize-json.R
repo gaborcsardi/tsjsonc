@@ -6,13 +6,15 @@
 #' See examples below on how the different JSON elements are mapped to
 #' R objects.
 #'
-#' @inheritParams ts_tree_read_jsonc
+#' @inheritParams ts::ts_tree_new
+#' @param options Named list of parsing options, see
+#'   [tsjsonc options][tsjsonc_options].
 #' @return R object.
 #'
 #' @export
 #' @seealso [ts_serialize_jsonc()] for the opposite, [ts_tree_select()] and
 #' [ts_tree_unserialize()] to unserialize part(s) of a JSON document.
-#' [ts_tree_read_jsonc()] to load a JSON document and then manipulate it.
+#' [ts::ts_tree_new()] to load a JSON document and then manipulate it.
 #' @examples
 #' # null -> NULL
 #' ts_unserialize_jsonc(text = "null")
@@ -45,7 +47,8 @@ ts_unserialize_jsonc <- function(
   options <- as_tsjsonc_options(options)
   # parse file/text
   # TODO: error on error, get error position
-  tree <- ts_tree_read_jsonc(
+  tree <- ts_tree_new(
+    language = ts_language_jsonc(),
     file = file,
     text = text,
     ranges = ranges,
@@ -83,7 +86,7 @@ ts_unserialize_jsonc <- function(
 #' @seealso [ts_tree_unserialize()] to unserialize a JSON document from a
 #'   file or string. [ts_serialize_jsonc()] to create JSON from R objects.
 #' @examples
-#' json <- ts_tree_read_jsonc(text = ts_serialize_jsonc(list(
+#' json <- ts_parse_jsonc(ts_serialize_jsonc(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
 #'   c = list(c1 = list("a", "b"))

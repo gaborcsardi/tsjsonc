@@ -502,7 +502,7 @@
 # ts_tree_select_query
 
     Code
-      ts_tree_update(ts_tree_select_query(ts_tree_read_jsonc(text = txt),
+      ts_tree_update(ts_tree_select_query(ts_parse_jsonc(text = txt),
       "((pair value: (number) @num))"), 100)
     Output
       # jsonc (1 line)

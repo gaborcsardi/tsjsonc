@@ -1,5 +1,5 @@
 test_that("ts_tree_selection, ts_tree_selected_nodes", {
-  json <- ts_tree_read_jsonc(text = "")
+  json <- ts_parse_jsonc(text = "")
   expect_snapshot({
     ts_tree_selection(json)
     ts_tree_selection(json, default = FALSE)
@@ -7,7 +7,7 @@ test_that("ts_tree_selection, ts_tree_selected_nodes", {
     ts_tree_selected_nodes(json, default = FALSE)
   })
 
-  json <- ts_tree_read_jsonc(text = "[]")
+  json <- ts_parse_jsonc(text = "[]")
   expect_snapshot({
     ts_tree_selection(json)
     ts_tree_selection(json, default = FALSE)
@@ -17,7 +17,7 @@ test_that("ts_tree_selection, ts_tree_selected_nodes", {
 })
 
 test_that("ts_tree_select", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -41,7 +41,7 @@ test_that("ts_tree_select", {
 })
 
 test_that("deselect with NULL", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(a = 1, c = 3))
   )
   expect_snapshot({
@@ -51,7 +51,7 @@ test_that("deselect with NULL", {
 })
 
 test_that("[[.tdjson", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -76,7 +76,7 @@ test_that("[[.tdjson", {
 })
 
 test_that("[[<-.tsjsonc", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -102,17 +102,17 @@ test_that("[[<-.tsjsonc", {
 })
 
 test_that("[[<-.tsjsonc empty doc", {
-  json <- ts_tree_read_jsonc(text = "")
+  json <- ts_parse_jsonc(text = "")
   json[[]] <- list()
   expect_snapshot(json)
 
-  json <- ts_tree_read_jsonc(text = "")
+  json <- ts_parse_jsonc(text = "")
   json[[]] <- structure(list(), names = character())
   expect_snapshot(json)
 })
 
 test_that("[[<-.tsjsonc deletion", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -128,7 +128,7 @@ test_that("[[<-.tsjsonc deletion", {
 })
 
 test_that("select regex", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a1 = 1,
       a2 = list(b1 = 21, b2 = 22),
@@ -143,7 +143,7 @@ test_that("select regex", {
   })
 
   # regex in array selects nothing
-  json2 <- ts_tree_read_jsonc(
+  json2 <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(1, 2, 3))
   )
   expect_snapshot(
@@ -152,7 +152,7 @@ test_that("select regex", {
 })
 
 test_that("select from the back", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -168,7 +168,7 @@ test_that("select from the back", {
 })
 
 test_that("ts::ts_tree_selector_ids", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -183,7 +183,7 @@ test_that("ts::ts_tree_selector_ids", {
 })
 
 test_that("ts_tree_select<-", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -209,7 +209,7 @@ test_that("ts_tree_select<-", {
 })
 
 test_that("[[<-.tsjsonc", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -224,7 +224,7 @@ test_that("[[<-.tsjsonc", {
 })
 
 test_that("select character selector on array selects nothing", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -239,7 +239,7 @@ test_that("select character selector on array selects nothing", {
 })
 
 test_that("select zero indices error", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
@@ -257,7 +257,7 @@ test_that("ts_tree_select_query", {
 
   # Select all pairs where the value is a number and change them to 100
   expect_snapshot({
-    ts_tree_read_jsonc(text = txt) |>
+    ts_parse_jsonc(text = txt) |>
       ts_tree_select_query("((pair value: (number) @num))") |>
       ts_tree_update(100)
   })

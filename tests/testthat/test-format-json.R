@@ -24,7 +24,7 @@ test_that("format_selected", {
       d = list(1, 2, 3)
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
 
   expect_snapshot({
     ts_tree_format(json)
@@ -47,11 +47,11 @@ test_that("format_selected null, true, false, string, comment", {
       d = list("a", "b", "c")
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
   expect_snapshot({
     ts_tree_format(json)
   })
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = "{ // comment\n  \"a\": // comment\n    null\n}"
   )
   expect_snapshot({
@@ -67,7 +67,7 @@ test_that("format_selected empty array", {
       b = TRUE
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
   expect_snapshot({
     ts_tree_format(json)
   })
@@ -80,7 +80,7 @@ test_that("format_selected compact arrays", {
       b = TRUE
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
   expect_snapshot({
     json
     ts_tree_format(json, options = list(format = "compact"))
@@ -94,7 +94,7 @@ test_that("format_selected oneline arrays", {
       b = TRUE
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
   expect_snapshot({
     json
     ts_tree_format(json, options = list(format = "oneline"))
@@ -109,14 +109,14 @@ test_that("format_selected empty object", {
       b = TRUE
     )
   )
-  json <- ts_tree_read_jsonc(text = text)
+  json <- ts_parse_jsonc(text = text)
   expect_snapshot({
     ts_tree_format(json)
   })
 })
 
 test_that("format_selected drop comments in compact, oneline modes", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = "{ // comment\n  \"a\": // comment\n    null\n}"
   )
   expect_snapshot({
@@ -127,7 +127,7 @@ test_that("format_selected drop comments in compact, oneline modes", {
 })
 
 test_that("format_selected comments before commas in array", {
-  json <- ts_tree_read_jsonc(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
+  json <- ts_parse_jsonc(text = "[\n  1\n// comment\n// comment2\n,  2\n]")
   expect_snapshot({
     json
     ts_tree_format(json, options = list(format = "pretty"))

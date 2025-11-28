@@ -49,14 +49,14 @@ ts_serialize_jsonc(42.25)
 
 # array, use an unnamed list, i.e. _not_ an atomic vector
 txt <- ts_serialize_jsonc(list(1, 2, 3,"x", "y"))
-ts_tree_read_jsonc(text = txt)
+ts_parse_jsonc(txt)
 
 # empty array
 ts_serialize_jsonc(list())
 
 # object, use a named (or partially named) list, i.e. _not_ an atomic vector
 txt <- ts_serialize_jsonc(list(a = 1, b = 2))
-ts_tree_read_jsonc(text = txt)
+ts_parse_jsonc(txt)
 
 # empty object, use a named empty list
 ts_serialize_jsonc(structure(list(), names = character()))

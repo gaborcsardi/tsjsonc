@@ -12,7 +12,7 @@
 #' [single bracket][ts::ts_tree-brackets] operator.
 #'
 # TODO: do not inherit from other package
-#' @inheritParams ts::ts_tree_read
+#' @inheritParams ts::ts_tree_new
 #' @param options Named list of parsing options, see
 #'   [tsjsonc options][tsjsonc_options].
 #' @return A tsjsonc object.
@@ -38,47 +38,83 @@
 #' '
 #'
 #' # Parse the JSON, allowing comments (i.e. JSONC)
-#' ts_tree_read_jsonc(text = text)
+#' ts_parse_jsonc(text)
 #'
 #' # Try to parse the JSON, but comments aren't allowed!
-#' try(ts_tree_read_jsonc(text = text, options = list(allow_comments = FALSE)))
+#' try(ts_parse_jsonc(text, options = list(allow_comments = FALSE)))
 #'
 #' # Extract parts of the JSON
-#' ts_tree_read_jsonc(text = text) |>
+#' ts_parse_jsonc(text) |>
 #'   ts_tree_select("b") |>
 #'   ts_tree_unserialize()
-#' ts_tree_read_jsonc(text = text) |>
+#' ts_parse_jsonc(text) |>
 #'   ts_tree_select("[r]") |>
 #'   ts_tree_unserialize()
-#' ts_tree_read_jsonc(text = text) |>
+#' ts_parse_jsonc(text) |>
 #'   ts_tree_select("[r]", "that") |>
 #'   ts_tree_unserialize()
 #'
 #' # Use a `list()` combining strings and positional indices when
 #' # arrays are involved
-#' ts_tree_read_jsonc(text = text) |>
+#' ts_parse_jsonc(text) |>
 #'   ts_tree_select("b", 2) |>
-#'    gts_tree_unserialize()
-ts_tree_read_jsonc <- function(
+#'   ts_tree_unserialize()
+
+ts_parse_jsonc <- function(
+  text,
+  ranges = NULL,
+  fail_on_parse_error = TRUE,
+  options = NULL
+) {
+  text <- as_character(text)
+  ts_tree_new(
+    language = ts_language_jsonc(),
+    file = NULL,
+    text = text,
+    ranges = ranges,
+    fail_on_parse_error = fail_on_parse_error,
+    options = options
+  )
+}
+
+#' @rdname ts_parse_jsonc
+#' @export
+
+ts_read_jsonc <- function(
+  file,
+  ranges = NULL,
+  fail_on_parse_error = TRUE,
+  options = NULL
+) {
+  file <- as_existing_file(file)
+  ts_tree_new(
+    language = ts_language_jsonc(),
+    text = NULL,
+    file = file,
+    ranges = ranges,
+    fail_on_parse_error = fail_on_parse_error,
+    options = options
+  )
+}
+
+#' @export
+
+ts_tree_new.ts_language_jsonc <- function(
+  language,
   file = NULL,
   text = NULL,
   ranges = NULL,
+  fail_on_parse_error = TRUE,
   options = NULL,
-  fail_on_parse_error = TRUE
+  ...
 ) {
   if (!missing(options)) {
     check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
+  # TODO check empty dots
 
-  tree <- ts::ts_tree_read(
-    ts_language_json(),
-    file,
-    text,
-    ranges = ranges,
-    fail_on_parse_error = fail_on_parse_error
-  )
-  class(tree) <- c("tsjsonc", class(tree))
+  tree <- NextMethod()
 
   # to work around a TS bug, these are not terminal nodes
   tree$code[tree$type %in% c("object", "array")] <- NA_character_

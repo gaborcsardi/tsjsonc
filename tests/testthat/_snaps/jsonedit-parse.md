@@ -3,7 +3,7 @@
     Code
       ts_unserialize_jsonc(text = text)
     Condition
-      Error in `ts::ts_tree_read()`:
+      Error in `ts_tree_new.ts_language()`:
       ! JSONC parse error `<text>`:2:3
       1| {
       2|   "a" 1
@@ -15,7 +15,7 @@
     Code
       ts_unserialize_jsonc(text = text)
     Condition
-      Error in `ts::ts_tree_read()`:
+      Error in `ts_tree_new.ts_language()`:
       ! JSONC parse error `<text>`:2:3
       1| {
       2|   "a": ]
@@ -27,7 +27,7 @@
     Code
       ts_unserialize_jsonc(text = text)
     Condition
-      Error in `ts::ts_tree_read()`:
+      Error in `ts_tree_new.ts_language()`:
       ! JSONC parse error `<text>`:5:5
       4|     2,
       5|     b"
@@ -39,7 +39,7 @@
     Code
       ts_unserialize_jsonc(text = text)
     Condition
-      Error in `ts::ts_tree_read()`:
+      Error in `ts_tree_new.ts_language()`:
       ! JSONC parse error `<text>`:3:5
       2|   "a": [
       3|     b",
@@ -51,7 +51,7 @@
     Code
       ts_unserialize_jsonc(text = text, options = list(allow_comments = FALSE))
     Condition
-      Error in `ts_tree_read_jsonc()`:
+      Error in `ts_tree_new.ts_language_jsonc()`:
       ! The JSON document contains comments, and this is not allowed. To allow comments, set the `allow_comments` option to `TRUE`.
 
 # `allow_trailing_comma` works
@@ -59,7 +59,7 @@
     Code
       ts_unserialize_jsonc(text = text, options = list(allow_trailing_comma = FALSE))
     Condition
-      Error in `ts_tree_read_jsonc()`:
+      Error in `ts_tree_new.ts_language_jsonc()`:
       ! The JSON document contains trailing commas, and this is not allowed. To allow trailing commas, set the `allow_trailing_comma` option to `TRUE`.
 
 # `allow_empty_content` works
@@ -67,6 +67,6 @@
     Code
       ts_unserialize_jsonc(text = "", options = options)
     Condition
-      Error in `ts_tree_read_jsonc()`:
+      Error in `ts_tree_new.ts_language_jsonc()`:
       ! The JSON document is empty, and this is not allowed. To allow this, set the `allow_empty_content` option to `TRUE`.
 

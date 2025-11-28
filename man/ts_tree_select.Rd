@@ -158,7 +158,7 @@ commas are allowed,
 }
 
 \examples{
-json <- ts_tree_read_jsonc(text = ts_serialize_jsonc(list(
+json <- ts_parse_jsonc(ts_serialize_jsonc(list(
   a = list(a1 = list(1,2,3), a2 = "string"),
   b = list(4, 5, 6),
   c = list(c1 = list("a", "b"))
@@ -184,10 +184,10 @@ json |> ts_tree_select(c("a", "c"), c(regex = "1$"))
 txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 
 # Take a look at it
-ts_tree_read_jsonc(text = txt) |> ts_tree_format()
+ts_parse_jsonc(txt) |> ts_tree_format()
 
 # Select all pairs where the value is a number and change them to 100
-ts_tree_read_jsonc(text = txt) |>
+ts_parse_jsonc(txt) |>
   ts_tree_select_query("((pair value: (number) @num))") |>
   ts_tree_update(100)
 }

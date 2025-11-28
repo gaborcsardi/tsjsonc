@@ -30,7 +30,7 @@
 #'
 #' @export
 #' @examples
-#' json <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json
 #'
 #' json |> ts_tree_select("b") |> ts_tree_insert("foo", at = 1)
@@ -97,7 +97,7 @@ ts_tree_insert.ts_tree_jsonc <- function(
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- ts_tree_read_jsonc(text = text)
+  new <- ts_parse_jsonc(text = text)
   attr(new, "file") <- attr(tree, "file")
 
   # now reformat the new parts, or the newly non-empty arrays/objects

@@ -52,5 +52,5 @@ ts_unserialize_jsonc(text = "{\"a\": 1, \"b\": 2 }")
 \seealso{
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}} for the opposite, \code{\link[=ts_tree_select]{ts_tree_select()}} and
 \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} to unserialize part(s) of a JSON document.
-\code{\link[=ts_tree_read_jsonc]{ts_tree_read_jsonc()}} to load a JSON document and then manipulate it.
+\code{\link[ts:ts_tree_read]{ts::ts_tree_new()}} to load a JSON document and then manipulate it.
 }

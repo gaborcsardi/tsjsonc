@@ -29,7 +29,7 @@ txt <- r"(
   ]
 }
 )"
-json <- ts_tree_read_jsonc(text = txt)
+json <- ts_parse_jsonc(text = txt)
 ```
 
 Pretty print a tsjsonc object:
@@ -75,6 +75,7 @@ Select nodes that match a tree-sitter query:
 #| label: select-query
 json |> ts_tree_select_query("((pair value: (false) @val))")
 ```
+
 ### Delete elements
 
 Delete selected elements:
@@ -116,7 +117,7 @@ Inserts the element if some parents are missing:
 
 ```{asciicast}
 #| label: update-insert
-json <- ts_tree_read_jsonc(text = "{ \"a\": { \"b\": true } }")
+json <- ts_parse_jsonc(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 

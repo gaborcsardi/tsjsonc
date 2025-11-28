@@ -40,7 +40,7 @@ It is an error trying to insert into an element that is not an array and
 not an object.
 }
 \examples{
-json <- ts_tree_read_jsonc(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 json
 
 json |> ts_tree_select("b") |> ts_tree_insert("foo", at = 1)

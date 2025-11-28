@@ -5,7 +5,7 @@
 #'   connections are supported. Use `stdout()` to output to the screen.
 #' @return Nothing.
 #'
-#' @seealso [ts_tree_read_jsonc()] to create a tsjsonc object from a JSON
+#' @seealso [ts_read_jsonc()] to create a tsjsonc object from a JSON
 #'   file or string. [ts::ts_tree_unserialize()] obtain a JSON string for a
 #'   tsjsonc object.
 #' @name ts_tree_write

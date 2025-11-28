@@ -1,7 +1,7 @@
 # save_json
 
     Code
-      ts_tree_read_jsonc(tmp)
+      ts_read_jsonc(tmp)
     Output
       # jsonc (test.json, 10 lines)
        1 | {
@@ -26,7 +26,7 @@
 ---
 
     Code
-      ts_tree_read_jsonc(tmp)
+      ts_read_jsonc(tmp)
     Output
       # jsonc (test.json, 5 lines)
       1 | {
@@ -54,7 +54,7 @@
 ---
 
     Code
-      ts_tree_read_jsonc(tmp2)
+      ts_read_jsonc(tmp2)
     Output
       # jsonc (bin.json, 10 lines)
        1 | {

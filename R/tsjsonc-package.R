@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 #' @importFrom utils head tail
-# #' @import ts
+#' @import ts
 # #' @export ts_tree_ast
 # #' @export ts_tree_delete
 # #' @export ts_tree_deleted
@@ -32,6 +32,6 @@ NULL
 ## usethis namespace: end
 NULL
 
-ts_language_json <- function() {
+ts_language_jsonc <- function() {
   .Call(c_ts_language_jsonc)
 }

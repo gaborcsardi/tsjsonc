@@ -46,7 +46,7 @@
 #' @return A tsjsonc object, potentially with some elements selected.
 #'
 #' @examples
-#' json <- ts_tree_read_jsonc(text = ts_serialize_jsonc(list(
+#' json <- ts_parse_jsonc(ts_serialize_jsonc(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
 #'   c = list(c1 = list("a", "b"))
@@ -149,10 +149,10 @@ NULL
 #' txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 #'
 #' # Take a look at it
-#' ts_tree_read_jsonc(text = txt) |> ts_tree_format()
+#' ts_parse_jsonc(txt) |> ts_tree_format()
 #'
 #' # Select all pairs where the value is a number and change them to 100
-#' ts_tree_read_jsonc(text = txt) |>
+#' ts_parse_jsonc(txt) |>
 #'   ts_tree_select_query("((pair value: (number) @num))") |>
 #'   ts_tree_update(100)
 # TODO
@@ -169,7 +169,7 @@ NULL
 #' function syntax.
 #'
 #' @param x,json tsjsonc object. Create a tsjsonc object with
-#'   [ts_tree_read_jsonc()].
+#'   [ts::ts_tree_new()].
 #' @param i,... Selectors, see [ts_tree_select()].
 #' @param value New value. Will be serialized to JSON with
 #'   [ts_serialize_jsonc()].
@@ -179,7 +179,7 @@ NULL
 #'
 #' @rdname select-set
 #' @examples
-#' json <- ts_tree_read_jsonc(text = "{}")
+#' json <- ts_parse_jsonc("{}")
 #'
 #' json <- json |>
 #'   ts_tree_select("r", "editor.formatOnSave") |>
@@ -207,7 +207,7 @@ NULL
 #' json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 #'
 #' # Only the modified elements are reformatted
-#' json <- ts_tree_read_jsonc(text = '{"foo":[1,2],\n"bar":1}')
+#' json <- ts_parse_jsonc('{"foo":[1,2],\n"bar":1}')
 #' json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 #'
 #' # You can control how those elements are formatted

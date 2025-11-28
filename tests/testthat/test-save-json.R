@@ -1,5 +1,5 @@
 test_that("save_json", {
-  json <- ts_tree_read_jsonc(
+  json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
 
@@ -10,7 +10,7 @@ test_that("save_json", {
   ts_tree_write(json, file = tmp)
 
   expect_snapshot({
-    ts_tree_read_jsonc(tmp)
+    ts_read_jsonc(tmp)
   })
 
   expect_snapshot(error = TRUE, {
@@ -18,11 +18,11 @@ test_that("save_json", {
   })
 
   ts_tree_write(ts_tree_delete(ts_tree_select(
-    ts_tree_read_jsonc(tmp),
+    ts_read_jsonc(tmp),
     "a"
   )))
   expect_snapshot({
-    ts_tree_read_jsonc(tmp)
+    ts_read_jsonc(tmp)
   })
 
   expect_snapshot({
@@ -35,6 +35,6 @@ test_that("save_json", {
   ts_tree_write(json, file = out)
   close(out)
   expect_snapshot({
-    ts_tree_read_jsonc(tmp2)
+    ts_read_jsonc(tmp2)
   })
 })

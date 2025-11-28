@@ -5,7 +5,7 @@
 \title{Update selected elements in a tsjsonc object}
 \arguments{
 \item{x, json}{tsjsonc object. Create a tsjsonc object with
-\code{\link[=ts_tree_read_jsonc]{ts_tree_read_jsonc()}}.}
+\code{\link[ts:ts_tree_read]{ts::ts_tree_new()}}.}
 
 \item{i, ...}{Selectors, see \code{\link[=ts_tree_select]{ts_tree_select()}}.}
 
@@ -20,7 +20,7 @@ Update the selected elements of a JSON document, using the replacement
 function syntax.
 }
 \examples{
-json <- ts_tree_read_jsonc(text = "{}")
+json <- ts_parse_jsonc("{}")
 
 json <- json |>
   ts_tree_select("r", "editor.formatOnSave") |>
@@ -48,7 +48,7 @@ json |> ts_tree_select("foo") |> ts_tree_insert(0, at = 2)
 json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 
 # Only the modified elements are reformatted
-json <- ts_tree_read_jsonc(text = '{"foo":[1,2],\n"bar":1}')
+json <- ts_parse_jsonc('{"foo":[1,2],\n"bar":1}')
 json |> ts_tree_select("foo") |> ts_tree_insert(0, at = Inf)
 
 # You can control how those elements are formatted

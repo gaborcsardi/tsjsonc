@@ -12,7 +12,12 @@ format_json <- function(
 
   # parse file/text
   # TODO: error on error, get error position
-  tree <- ts_tree_read_jsonc(file = file, text = text, options = options)
+  tree <- ts_tree_new(
+    ts_language_jsonc(),
+    file = file,
+    text = text,
+    options = options
+  )
   format_element(tree, 1L, options = options)
 }
 
@@ -30,7 +35,7 @@ format_json <- function(
 #'
 #' @export
 #' @examples
-#' tree <- ts_tree_read_jsonc(text = "{ \"a\": [1,2,3] }")
+#' tree <- ts_parse_jsonc("{ \"a\": [1,2,3] }")
 #' tree
 #'
 #' tree |> ts_tree_format()
@@ -81,7 +86,7 @@ ts_tree_format.ts_tree_jsonc <- function(
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- ts_tree_read_jsonc(text = text)
+  new <- ts_parse_jsonc(text = text)
   attr(new, "file") <- attr(tree, "file")
 
   new
