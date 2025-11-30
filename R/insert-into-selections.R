@@ -44,7 +44,7 @@ ts_tree_insert.ts_tree_jsonc <- function(
   ...
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options, auto_format = TRUE)
   select <- ts_tree_selected_nodes(tree)
@@ -66,7 +66,7 @@ ts_tree_insert.ts_tree_jsonc <- function(
     } else if (type == "object") {
       insert_into_object(tree, sel1, new, key, at, options)
     } else {
-      stop(cnd(
+      stop(ts_cnd(
         "Cannot insert into a '{type}' JSON element. Can only insert \\
          into 'array' and 'object' elements and empty JSON documents."
       ))
@@ -155,7 +155,7 @@ insert_into_document <- function(json, new, options) {
   notcmt <- top[json$type[top] != "comment"]
   # TODO: can this ever happen?
   if (length(notcmt) != 0) {
-    stop(cnd(
+    stop(ts_cnd(
       "Cannot insert JSON element at the document root if the document \\
        already has other non-comment elements."
     ))
@@ -181,7 +181,7 @@ insert_into_document <- function(json, new, options) {
 
 insert_into_array <- function(json, sel1, new, at, format) {
   if (!is.numeric(at)) {
-    stop(cnd(
+    stop(ts_cnd(
       "Invalid `at` value for inserting JSON element into array. \\
            It must be an integer scalar or `Inf`."
     ))

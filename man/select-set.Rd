@@ -5,7 +5,7 @@
 \title{Update selected elements in a tsjsonc object}
 \arguments{
 \item{x, json}{tsjsonc object. Create a tsjsonc object with
-\code{\link[ts:ts_tree_read]{ts::ts_tree_new()}}.}
+\code{\link[ts:ts_tree_new]{ts::ts_tree_new()}}.}
 
 \item{i, ...}{Selectors, see \code{\link[=ts_tree_select]{ts_tree_select()}}.}
 

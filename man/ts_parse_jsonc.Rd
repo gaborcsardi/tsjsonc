@@ -22,7 +22,7 @@ parse errors in the document. Default is \code{TRUE}.}
 \item{options}{Named list of parsing options, see
 \link[=tsjsonc_options]{tsjsonc options}.}
 
-\item{file}{Path of a file. Use either \code{file} or \code{text}.}
+\item{file}{Path of a file. Use either \code{file} or \code{text}, but not both.}
 }
 \value{
 A tsjsonc object.

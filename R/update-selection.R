@@ -27,7 +27,7 @@ ts_tree_update.ts_tree_jsonc <- function(
   ...
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   # TODO: check that ... is empty

@@ -42,7 +42,7 @@ ts_unserialize_jsonc <- function(
   options = NULL
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   # parse file/text

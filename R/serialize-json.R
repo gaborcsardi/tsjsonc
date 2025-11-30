@@ -56,7 +56,7 @@ ts_serialize_jsonc <- function(
   options = NULL
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   opts <- list(auto_unbox = TRUE, format = options[["format"]])

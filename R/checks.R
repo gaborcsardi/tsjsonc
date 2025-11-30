@@ -25,7 +25,12 @@ is_named <- function(x) {
   length(x) == length(nms) && !anyNA(nms) && all(nms != "")
 }
 
-as_flag <- function(x, null = FALSE, arg = caller_arg(x), call = caller_env()) {
+as_flag <- function(
+  x,
+  null = FALSE,
+  arg = ts_caller_arg(x),
+  call = ts_caller_env()
+) {
   if (null && is.null(x)) {
     return(x)
   }
@@ -33,7 +38,7 @@ as_flag <- function(x, null = FALSE, arg = caller_arg(x), call = caller_env()) {
     return(x)
   }
 
-  stop(cnd(
+  stop(ts_cnd(
     call = call,
     "Invalid argument: `{arg}` must a flag (logical scalar), but it is \\
      {typename(x)}."
@@ -44,8 +49,8 @@ as_count <- function(
   x,
   positive = FALSE,
   null = FALSE,
-  arg = caller_arg(x),
-  call = caller_env()
+  arg = ts_caller_arg(x),
+  call = ts_caller_env()
 ) {
   if (is.null(x) && null) {
     return(x)
@@ -63,23 +68,23 @@ as_count <- function(
 
   limit <- if (positive) 1L else 0L
   if (is.numeric(x) && length(x) != 1) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be an integer scalar, not a vector."
     ))
   } else if (is.numeric(x) && length(x) == 1 && is.na(x)) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must not be `NA`."
     ))
   } else if (is.numeric(x) && length(x) == 1 && !is.na(x) && x < limit) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be \\
       {if (positive) 'positive' else 'non-negative'}."
     ))
   } else {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be a \\
       {if (positive) 'positive' else 'non-negative'} integer scalar, \\
@@ -101,8 +106,8 @@ as_existing_file <- function(x) {
 as_choice <- function(
   x,
   choices,
-  arg = caller_arg(x),
-  call = caller_env()
+  arg = ts_caller_arg(x),
+  call = ts_caller_env()
 ) {
   if (is_string(x) && tolower(x) %in% choices) {
     return(tolower(x))
@@ -110,12 +115,12 @@ as_choice <- function(
 
   cchoices <- paste0("'", choices, "'", collapse = ", ")
   if (is_string(x)) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be one of {cchoices}, but it is '{x}'."
     ))
   } else {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be a string scalar, one of \\
        {cchoices}, but it is {typename(x)}."
@@ -181,8 +186,8 @@ NULL
 as_tsjsonc_options <- function(
   x,
   auto_format = FALSE,
-  arg = caller_arg(x),
-  call = caller_env()
+  arg = ts_caller_arg(x),
+  call = ts_caller_env()
 ) {
   nms <- c(
     "allow_empty_content",
@@ -197,7 +202,7 @@ as_tsjsonc_options <- function(
 
     x[["allow_empty_content"]] <- as_flag(
       x[["allow_empty_content"]] %||% opt_allow_empty_content_default(),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["allow_empty_content"]],
         list(x = arg[[1]])
       )),
@@ -206,7 +211,7 @@ as_tsjsonc_options <- function(
 
     x[["allow_comments"]] <- as_flag(
       x[["allow_comments"]] %||% opt_allow_comments_default(),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["allow_comments"]],
         list(x = arg[[1]])
       )),
@@ -215,7 +220,7 @@ as_tsjsonc_options <- function(
 
     x[["allow_trailing_comma"]] <- as_flag(
       x[["allow_trailing_comma"]] %||% opt_allow_trailing_comma_default(),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["allow_trailing_comma"]],
         list(x = arg[[1]])
       )),
@@ -225,7 +230,7 @@ as_tsjsonc_options <- function(
     x[["format"]] <- as_choice(
       x[["format"]] %||% opt_format_default(),
       choices = c("pretty", "compact", "oneline", if (auto_format) "auto"),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["format"]],
         list(x = arg[[1]])
       )),
@@ -234,7 +239,7 @@ as_tsjsonc_options <- function(
 
     x[["indent_width"]] <- as_count(
       x[["indent_width"]] %||% opt_indent_width_default(),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["indent_width"]],
         list(x = arg[[1]])
       )),
@@ -244,7 +249,7 @@ as_tsjsonc_options <- function(
     x[["indent_style"]] <- as_choice(
       x[["indent_style"]] %||% opt_indent_style_default(),
       choices = c("space", "tab"),
-      arg = as_caller_arg(substitute(
+      arg = as_ts_caller_arg(substitute(
         x[["indent_style"]],
         list(x = arg[[1]])
       )),
@@ -255,7 +260,7 @@ as_tsjsonc_options <- function(
   }
 
   if (!is.list(x) && !is.null(x)) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be a named list of tsjsonc options \\
        (see `?tsjsonc_options`), but it is {typename(options)}."
@@ -263,7 +268,7 @@ as_tsjsonc_options <- function(
   }
 
   if (!is_named(x)) {
-    stop(cnd(
+    stop(ts_cnd(
       call = call,
       "Invalid argument: `{arg}` must be a named list of tsjsonc options \\
        (see `?tsjsonc_options`), but not all of its entries are named."
@@ -272,10 +277,10 @@ as_tsjsonc_options <- function(
 
   bad <- paste0("`", unique(setdiff(names(x), nms)), "`")
   good <- paste0("`", nms, "`")
-  stop(cnd(
+  stop(ts_cnd(
     call = call,
     "Invalid argument: `{arg}` contains unknown tsjsonc \\
-    option{plural(length(bad))}: {collapse(bad)}. Known tsjsonc options \\
-    are: {collapse(good)}."
+    option{plural(length(bad))}: {ts_collapse(bad)}. Known tsjsonc options \\
+    are: {ts_collapse(good)}."
   ))
 }

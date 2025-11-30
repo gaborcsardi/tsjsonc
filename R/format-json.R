@@ -5,7 +5,7 @@ format_json <- function(
   options = NULL
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   format <- match.arg(format)
@@ -48,7 +48,7 @@ ts_tree_format.ts_tree_jsonc <- function(
   ...
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   # TODO: check that ... is empty
@@ -139,7 +139,7 @@ format_element <- function(tree, id, options) {
     "," = {
       format_comma(tree, id, options = options)
     },
-    stop(cnd(
+    stop(ts_cnd(
       "Internal tsjsonc error, unknown JSON node type: '{tree$type[id]}'"
     ))
   )

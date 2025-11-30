@@ -109,7 +109,7 @@ ts_tree_new.ts_language_jsonc <- function(
   ...
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
   options <- as_tsjsonc_options(options)
   # TODO check empty dots
@@ -123,7 +123,7 @@ ts_tree_new.ts_language_jsonc <- function(
   if (!options[["allow_comments"]]) {
     comments <- which(tree$type == "comment")
     if (length(comments) > 0) {
-      stop(cnd(
+      stop(ts_cnd(
         "The JSON document contains comments, and this is not allowed. \\
          To allow comments, set the `allow_comments` option to `TRUE`."
       ))
@@ -133,7 +133,7 @@ ts_tree_new.ts_language_jsonc <- function(
   top <- tree$children[[1]]
   top <- top[tree$type[top] != "comment"]
   if (!options[["allow_empty_content"]] && length(top) == 0) {
-    stop(cnd(
+    stop(ts_cnd(
       "The JSON document is empty, and this is not allowed. \\
        To allow this, set the `allow_empty_content` option to `TRUE`."
     ))
@@ -147,7 +147,7 @@ ts_tree_new.ts_language_jsonc <- function(
       c == siblings[length(siblings) - 1L]
     })
     if (any(trailing)) {
-      stop(cnd(
+      stop(ts_cnd(
         "The JSON document contains trailing commas, and this is not allowed. \\
          To allow trailing commas, set the `allow_trailing_comma` option to \\
          `TRUE`."
