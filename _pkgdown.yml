@@ -1,4 +1,4 @@
-url: https://gaborcsardi.github.io/tsjson/
+url: https://gaborcsardi.github.io/tsjsonc/
 
 template:
   package: tidytemplate
@@ -10,7 +10,7 @@ development:
 reference:
 - title: Quickstart
   desc: |
-    * See [quickstart](quickstart.html) for a quick demonstration of tsjson.
+    * See [quickstart](quickstart.html) for a quick demonstration of tsjsonc.
     * See `serialize_json()` to create JSON from R.
     * See `unserialize_json()` to parse JSON into R.
     * See `ts_parse_jsonc()`, `select()`, and `unserialize_selected()` to parse
@@ -28,12 +28,12 @@ reference:
 
 - title: Printing
 - contents:
-  - format.tsjson
-  - print.tsjson
+  - format.tsjsonc
+  - print.tsjsonc
 
 - title: Extraction
 - contents:
-  - ts_parse_json
+  - ts_parse_jsonc
   - select
   - select_query
 
@@ -46,16 +46,16 @@ reference:
   - save_json
   - unserialize_selected
   - update_selected
-  - "[[.tsjson"
-  - "[[<-.tsjson"
+  - "[[.tsjsonc"
+  - "[[<-.tsjsonc"
 
 - title: Utilities and Options
 - contents:
   - query_json
   - syntax_tree_json
   - token_table
-  - tsjson_options
-  - "[.tsjson"
+  - tsjsonc_options
+  - "[.tsjsonc"
 
 - title: internal
   contents:

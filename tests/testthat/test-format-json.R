@@ -1,4 +1,4 @@
-test_that("format_json", {
+test_that("ts_format_jsonc", {
   text <- ts_serialize_jsonc(
     options = list(format = "compact"),
     list(
@@ -8,9 +8,13 @@ test_that("format_json", {
       d = list(1, 2, 3)
     )
   )
+  tmp <- tempfile(fileext = ".jsonc")
+  on.exit(unlink(tmp), add = TRUE)
+  writeLines(text, tmp)
 
   expect_snapshot({
-    writeLines(format_json(text = text))
+    ts_format_jsonc(file = tmp)
+    writeLines(readLines(tmp))
   })
 })
 

@@ -11,8 +11,8 @@ Extract and manipulate parts of JSON files without touching the formatting and c
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/gaborcsardi/tsjson}
-  \item Report bugs at \url{https://github.com/gaborcsardi/tsjson/issues}
+  \item \url{https://github.com/gaborcsardi/tsjsonc}
+  \item Report bugs at \url{https://github.com/gaborcsardi/tsjsonc/issues}
 }
 
 }

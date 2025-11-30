@@ -24,5 +24,5 @@ Config/testthat/edition: 3
 Config/Needs/website:
     r-lib/asciicast,
     tidyverse/tidytemplate
-URL: https://github.com/gaborcsardi/tsjson
-BugReports: https://github.com/gaborcsardi/tsjson/issues
+URL: https://github.com/gaborcsardi/tsjsonc
+BugReports: https://github.com/gaborcsardi/tsjsonc/issues

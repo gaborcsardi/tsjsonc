@@ -1,7 +1,8 @@
-# format_json
+# ts_format_jsonc
 
     Code
-      writeLines(format_json(text = text))
+      ts_format_jsonc(file = tmp)
+      writeLines(readLines(tmp))
     Output
       {
           "a": 1,
