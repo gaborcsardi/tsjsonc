@@ -112,12 +112,12 @@ ts_tree_insert.ts_tree_jsonc <- function(
     for (tofmt1 in tofmt2) {
       options[["format"]] <- auto_format(new, tofmt1)
       new <- ts_tree_format(
-        ts_tree_select(new, ts_tree_selector_ids(tofmt1)),
+        ts_tree_select(new, I(tofmt1)),
         options = options
       )
     }
   } else {
-    new <- ts_tree_select(new, ts_tree_selector_ids(tofmt2))
+    new <- ts_tree_select(new, I(tofmt2))
     new <- ts_tree_format(new, options = options)
   }
   new
