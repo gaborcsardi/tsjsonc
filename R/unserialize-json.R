@@ -84,6 +84,8 @@ ts_unserialize_jsonc <- function(
 #'   in tsjsonc.
 #'
 #' @export
+#' @keywords internal
+#'
 #' @seealso [ts_tree_unserialize()] to unserialize a JSON document from a
 #'   file or string. [ts_serialize_jsonc()] to create JSON from R objects.
 #' @examples

@@ -9,4 +9,5 @@
 #'   file or string. [ts::ts_tree_unserialize()] obtain a JSON string for a
 #'   tsjsonc object.
 #' @name ts_tree_write
+#' @keywords internal
 NULL

@@ -33,3 +33,4 @@ json |> ts_tree_select(c("b", "c")) |> ts_tree_unserialize()
 \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} to unserialize a JSON document from a
 file or string. \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}} to create JSON from R objects.
 }
+\keyword{internal}

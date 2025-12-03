@@ -33,3 +33,4 @@ tree
 
 tree |> ts_tree_select("a") |> ts_tree_update(list("new", "element"))
 }
+\keyword{internal}

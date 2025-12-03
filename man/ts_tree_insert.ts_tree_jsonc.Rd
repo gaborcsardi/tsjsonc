@@ -46,3 +46,4 @@ json
 
 json |> ts_tree_select("b") |> ts_tree_insert("foo", at = 1)
 }
+\keyword{internal}

@@ -14,6 +14,8 @@
 #' @return The updated tsjsonc object
 #'
 #' @export
+#' @keywords internal
+#'
 #' @examples
 #' library(ts)
 #' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")

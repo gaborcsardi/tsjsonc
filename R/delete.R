@@ -13,6 +13,8 @@
 #' @return Modified tsjsonc object.
 #'
 #' @export
+#' @keywords internal
+#'
 #' @examples
 #' library(ts)
 #' tree <- ts_parse_jsonc("{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")

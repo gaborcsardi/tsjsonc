@@ -11,11 +11,11 @@ reference:
 - title: Quickstart
   desc: |
     * See [quickstart](quickstart.html) for a quick demonstration of tsjsonc.
-    * See `ts_serialize_json()` to create JSON from R.
-    * See `ts_unserialize_json()` to parse JSON into R.
+    * See `ts_serialize_jsonc()` to create JSON from R.
+    * See `ts_unserialize_jsonc()` to parse JSON into R.
     * See `ts_parse_jsonc()`, `ts_tree_select()`, and
       `ts_tree_unserialize()` to parse parts of JSON into R.
-    * See `ts_parse_jsonc()`, `ts_tree_select()`, `ts_format_selected()`,
+    * See `ts_parse_jsonc()`, `ts_tree_select()`, `ts_tree_format()`,
       and `ts_save_json()` to format parts of a JSON file or string and
       save it to a file.
     * See `ts_parse_jsonc()`, `ts_read_jsonc()`, `ts_tree_select()`,
@@ -36,6 +36,10 @@ reference:
 - title: Formatting
 - contents:
   - ts_format_jsonc
+
+- title: Options
+- contents:
+  - tsjsonc_options
 
 - title: internal
   contents:

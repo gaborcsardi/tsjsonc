@@ -31,3 +31,4 @@ tree
 tree |> ts_tree_select("a")
 tree |> ts_tree_select("a") |> ts_tree_delete()
 }
+\keyword{internal}

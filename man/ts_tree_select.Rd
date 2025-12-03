@@ -193,3 +193,4 @@ ts_parse_jsonc(txt) |>
   ts_tree_select_query("((pair value: (number) @num))") |>
   ts_tree_update(100)
 }
+\keyword{internal}

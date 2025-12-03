@@ -20,3 +20,4 @@ Write a tsjsonc object to a file
 file or string. \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} obtain a JSON string for a
 tsjsonc object.
 }
+\keyword{internal}

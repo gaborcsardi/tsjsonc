@@ -33,3 +33,4 @@ tree |> ts_tree_format()
 
 tree |> ts_tree_select("a") |> ts_tree_format()
 }
+\keyword{internal}

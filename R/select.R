@@ -70,6 +70,7 @@
 #' # Regular expressions
 #' json |> ts_tree_select(c("a", "c"), c(regex = "1$"))
 #' @name ts_tree_select
+#' @keywords internal
 NULL
 
 #' Select the nodes matching a tree-sitter query in a tsjsonc object
@@ -159,6 +160,7 @@ NULL
 #'   ts_tree_update(100)
 # TODO
 #' @name select2
+#' @keywords internal
 
 NULL
 
@@ -217,4 +219,5 @@ NULL
 #' json |> ts_tree_select("foo") |>
 #'   ts_tree_insert(0, at = Inf, options = list(indent_width = 2))
 #' @name ts_tree_select<-
+#' @keywords internal
 NULL

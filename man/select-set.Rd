@@ -59,3 +59,4 @@ json |> ts_tree_select("foo") |>
 \seealso{
 Save the updated tjsonc object to a file with \code{\link[=ts_tree_write]{ts_tree_write()}}.
 }
+\keyword{internal}
