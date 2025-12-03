@@ -10,7 +10,9 @@ Authors@R: c(
 Description: Extract and manipulate parts of JSON files without touching
   the formatting and comments in other parts.
 License: MIT + file LICENSE
-Depends: R (>= 4.1.0), ts
+Depends: R (>= 4.1.0)
+Imports:
+    ts
 Suggests:
     pillar,
     testthat (>= 3.0.0),
