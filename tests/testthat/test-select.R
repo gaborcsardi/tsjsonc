@@ -167,7 +167,7 @@ test_that("select from the back", {
   })
 })
 
-test_that("ts::ts_tree_selector_ids", {
+test_that("select I()", {
   json <- ts_parse_jsonc(
     text = ts_serialize_jsonc(list(
       a = 1,
@@ -178,7 +178,7 @@ test_that("ts::ts_tree_selector_ids", {
   )
 
   expect_snapshot({
-    json[[ts::ts_tree_selector_ids(26)]]
+    json[[I(26)]]
   })
 })
 

@@ -411,10 +411,10 @@
       [1] 2
       
 
-# ts::ts_tree_selector_ids
+# select I()
 
     Code
-      json[[ts::ts_tree_selector_ids(26)]]
+      json[[I(26)]]
     Output
       [[1]]
       [1] 21
