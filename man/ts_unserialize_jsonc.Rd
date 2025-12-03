@@ -30,6 +30,7 @@ See examples below on how the different JSON elements are mapped to
 R objects.
 }
 \examples{
+library(ts)
 # null -> NULL
 ts_unserialize_jsonc(text = "null")
 

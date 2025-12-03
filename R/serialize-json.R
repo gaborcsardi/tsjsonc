@@ -22,6 +22,7 @@
 #' @export
 #' @seealso [ts_unserialize_jsonc()] for the opposite.
 #' @examples
+#' library(ts)
 #' # null
 #' ts_serialize_jsonc(NULL)
 #'

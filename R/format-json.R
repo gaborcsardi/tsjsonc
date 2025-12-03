@@ -47,6 +47,7 @@ ts_format_jsonc <- function(
 #'
 #' @export
 #' @examples
+#' library(ts)
 #' tree <- ts_parse_jsonc("{ \"a\": [1,2,3] }")
 #' tree
 #'

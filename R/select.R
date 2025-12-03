@@ -46,6 +46,7 @@
 #' @return A tsjsonc object, potentially with some elements selected.
 #'
 #' @examples
+#' library(ts)
 #' json <- ts_parse_jsonc(ts_serialize_jsonc(list(
 #'   a = list(a1 = list(1,2,3), a2 = "string"),
 #'   b = list(4, 5, 6),
@@ -146,6 +147,7 @@ NULL
 #' @rdname ts_tree_select
 #' @examples
 #' # A very simple JSON document
+#' library(ts)
 #' txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 #'
 #' # Take a look at it
@@ -179,6 +181,7 @@ NULL
 #'
 #' @rdname select-set
 #' @examples
+#' library(ts)
 #' json <- ts_parse_jsonc("{}")
 #'
 #' json <- json |>

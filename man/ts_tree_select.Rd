@@ -158,6 +158,7 @@ commas are allowed,
 }
 
 \examples{
+library(ts)
 json <- ts_parse_jsonc(ts_serialize_jsonc(list(
   a = list(a1 = list(1,2,3), a2 = "string"),
   b = list(4, 5, 6),
@@ -181,6 +182,7 @@ json |> ts_tree_select("b", c(1, -1))       # first and last elements
 # Regular expressions
 json |> ts_tree_select(c("a", "c"), c(regex = "1$"))
 # A very simple JSON document
+library(ts)
 txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 
 # Take a look at it

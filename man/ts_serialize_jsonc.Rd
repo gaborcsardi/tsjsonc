@@ -34,6 +34,7 @@ See the examples below on how to create all possible JSON elements with
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}}.
 }
 \examples{
+library(ts)
 # null
 ts_serialize_jsonc(NULL)
 

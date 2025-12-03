@@ -21,6 +21,7 @@ If \code{json} does not have a selection, then all of it is unserialized.
 If \code{json} has an empty selection, then an empty list is returned.
 }
 \examples{
+library(ts)
 json <- ts_parse_jsonc(ts_serialize_jsonc(list(
   a = list(a1 = list(1,2,3), a2 = "string"),
   b = list(4, 5, 6),

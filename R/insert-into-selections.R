@@ -30,6 +30,7 @@
 #'
 #' @export
 #' @examples
+#' library(ts)
 #' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json
 #'

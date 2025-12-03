@@ -25,6 +25,7 @@
 #'   the JSON document to a file.
 #' @export
 #' @examples
+#' library(ts)
 #' text <- '
 #' {
 #'   "a": 1,

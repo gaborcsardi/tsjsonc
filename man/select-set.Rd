@@ -20,6 +20,7 @@ Update the selected elements of a JSON document, using the replacement
 function syntax.
 }
 \examples{
+library(ts)
 json <- ts_parse_jsonc("{}")
 
 json <- json |>

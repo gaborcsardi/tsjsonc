@@ -40,6 +40,7 @@ They can be converted to a data frame using the
 \link[ts:ts_tree-brackets]{single bracket} operator.
 }
 \examples{
+library(ts)
 text <- '
 {
   "a": 1,

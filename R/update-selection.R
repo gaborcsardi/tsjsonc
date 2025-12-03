@@ -15,6 +15,7 @@
 #'
 #' @export
 #' @examples
+#' library(ts)
 #' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' tree
 #'

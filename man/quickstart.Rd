@@ -39,19 +39,19 @@ Pretty print a tsjsonc object:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>
-#> <span style="color: #6F7783;"> 2 | </span>// this is a comment
-#> <span style="color: #6F7783;"> 3 | </span>\{
-#> <span style="color: #6F7783;"> 4 | </span>  "a": \{
-#> <span style="color: #6F7783;"> 5 | </span>    "a1": [1, 2, 3],
-#> <span style="color: #6F7783;"> 6 | </span>    // comment
-#> <span style="color: #6F7783;"> 7 | </span>    "a2": "string"
-#> <span style="color: #6F7783;"> 8 | </span>  \},
-#> <span style="color: #6F7783;"> 9 | </span>  "b": [
-#> <span style="color: #6F7783;">10 | </span>    \{
-#> <span style="color: #6F7783;">ℹ 9 more lines</span>
-#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    "a1": &#91;1, 2, 3&#93;,                                                       
+#> <span style="color: #6F7783;"> 6 | </span>    // comment                                                             
+#> <span style="color: #6F7783;"> 7 | </span>    "a2": "string"                                                         
+#> <span style="color: #6F7783;"> 8 | </span>  \},                                                                       
+#> <span style="color: #6F7783;"> 9 | </span>  "b": &#91;                                                                   
+#> <span style="color: #6F7783;">10 | </span>    \{                                                                      
+#> <span style="color: #6F7783;">ℹ 9 more lines</span>                                                                  
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -64,19 +64,19 @@ Select element by objects key:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>
-#>   <span style="color: #6F7783;"> 1  | </span>
-#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment
-#>   <span style="color: #6F7783;"> 3  | </span>\{
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span>  "a": <span style="color: #66C2CD;">\{</span>
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">    "a1": [1, 2, 3],</span>
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">    // comment</span>
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    "a2": "string"</span>
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 8  | </span><span style="color: #66C2CD;">  \}</span>,
-#>   <span style="color: #6F7783;"> 9  | </span>  "b": [
-#>   <span style="color: #6F7783;">10  | </span>    \{
-#>   <span style="color: #6F7783;">11  | </span>      "b11": true,
-#>   <span style="color: #6F7783;">...</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>                                          
+#>   <span style="color: #6F7783;"> 1  | </span>                                                                        
+#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;"> 3  | </span>\{                                                                       
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span>  "a": <span style="color: #66C2CD;">\{</span>                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">    "a1": &#91;1, 2, 3&#93;,</span>                                                    
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">    // comment</span>                                                          
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    "a2": "string"</span>                                                      
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 8  | </span><span style="color: #66C2CD;">  \}</span>,                                                                    
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": &#91;                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">11  | </span>      "b11": true,                                                      
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -86,15 +86,15 @@ Select element inside element:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>
-#>   <span style="color: #6F7783;">2   | </span>// this is a comment
-#>   <span style="color: #6F7783;">3   | </span>\{
-#>   <span style="color: #6F7783;">4   | </span>  "a": \{
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": <span style="color: #66C2CD;">[1, 2, 3]</span>,
-#>   <span style="color: #6F7783;">6   | </span>    // comment
-#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"
-#>   <span style="color: #6F7783;">8   | </span>  \},
-#>   <span style="color: #6F7783;">...</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines, 1 selected element)</span>                                          
+#>   <span style="color: #6F7783;">2   | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;">3   | </span>\{                                                                       
+#>   <span style="color: #6F7783;">4   | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": <span style="color: #66C2CD;">&#91;1, 2, 3&#93;</span>,                                                    
+#>   <span style="color: #6F7783;">6   | </span>    // comment                                                          
+#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"                                                      
+#>   <span style="color: #6F7783;">8   | </span>  \},                                                                    
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -104,15 +104,15 @@ Select element(s) of an array:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1", 1:2)
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>
-#>   <span style="color: #6F7783;">2   | </span>// this is a comment
-#>   <span style="color: #6F7783;">3   | </span>\{
-#>   <span style="color: #6F7783;">4   | </span>  "a": \{
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": [<span style="color: #66C2CD;">1</span>, <span style="color: #66C2CD;">2</span>, 3],
-#>   <span style="color: #6F7783;">6   | </span>    // comment
-#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"
-#>   <span style="color: #6F7783;">8   | </span>  \},
-#>   <span style="color: #6F7783;">...</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>                                         
+#>   <span style="color: #6F7783;">2   | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;">3   | </span>\{                                                                       
+#>   <span style="color: #6F7783;">4   | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">5   | </span>    "a1": &#91;<span style="color: #66C2CD;">1</span>, <span style="color: #66C2CD;">2</span>, 3&#93;,                                                    
+#>   <span style="color: #6F7783;">6   | </span>    // comment                                                          
+#>   <span style="color: #6F7783;">7   | </span>    "a2": "string"                                                      
+#>   <span style="color: #6F7783;">8   | </span>  \},                                                                    
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -122,17 +122,17 @@ Select multiple keys from an object:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", c("a1", "a2"))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>
-#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment
-#>   <span style="color: #6F7783;"> 3  | </span>\{
-#>   <span style="color: #6F7783;"> 4  | </span>  "a": \{
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span>    "a1": <span style="color: #66C2CD;">[1, 2, 3]</span>,
-#>   <span style="color: #6F7783;"> 6  | </span>    // comment
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span>    "a2": <span style="color: #66C2CD;">"string"</span>
-#>   <span style="color: #6F7783;"> 8  | </span>  \},
-#>   <span style="color: #6F7783;"> 9  | </span>  "b": [
-#>   <span style="color: #6F7783;">10  | </span>    \{
-#>   <span style="color: #6F7783;">...</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines, 2 selected elements)</span>                                         
+#>   <span style="color: #6F7783;"> 2  | </span>// this is a comment                                                    
+#>   <span style="color: #6F7783;"> 3  | </span>\{                                                                       
+#>   <span style="color: #6F7783;"> 4  | </span>  "a": \{                                                                
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span>    "a1": <span style="color: #66C2CD;">&#91;1, 2, 3&#93;</span>,                                                    
+#>   <span style="color: #6F7783;"> 6  | </span>    // comment                                                          
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span>    "a2": <span style="color: #66C2CD;">"string"</span>                                                      
+#>   <span style="color: #6F7783;"> 8  | </span>  \},                                                                    
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": &#91;                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">...</span>                                                                           
 </pre></div>
 }}
 
@@ -142,19 +142,19 @@ Select nodes that match a tree-sitter query:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select_query("((pair value: (false) @val))")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines, 3 selected elements)</span>
-#>   <span style="color: #6F7783;">...</span>
-#>   <span style="color: #6F7783;"> 9  | </span>  "b": [
-#>   <span style="color: #6F7783;">10  | </span>    \{
-#>   <span style="color: #6F7783;">11  | </span>      "b11": true,
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">12  | </span>      "b12": <span style="color: #66C2CD;">false</span>
-#>   <span style="color: #6F7783;">13  | </span>    \},
-#>   <span style="color: #6F7783;">14  | </span>    \{
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">15  | </span>      "b21": <span style="color: #66C2CD;">false</span>,
-#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">16  | </span>      "b22": <span style="color: #66C2CD;">false</span>
-#>   <span style="color: #6F7783;">17  | </span>    \}
-#>   <span style="color: #6F7783;">18  | </span>  ]
-#>   <span style="color: #6F7783;">19  | </span>\}
+#> <span style="color: #6F7783;"># jsonc (19 lines, 3 selected elements)</span>                                         
+#>   <span style="color: #6F7783;">...</span>                                                                           
+#>   <span style="color: #6F7783;"> 9  | </span>  "b": &#91;                                                                
+#>   <span style="color: #6F7783;">10  | </span>    \{                                                                   
+#>   <span style="color: #6F7783;">11  | </span>      "b11": true,                                                      
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">12  | </span>      "b12": <span style="color: #66C2CD;">false</span>                                                      
+#>   <span style="color: #6F7783;">13  | </span>    \},                                                                  
+#>   <span style="color: #6F7783;">14  | </span>    \{                                                                   
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">15  | </span>      "b21": <span style="color: #66C2CD;">false</span>,                                                     
+#> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">16  | </span>      "b22": <span style="color: #66C2CD;">false</span>                                                      
+#>   <span style="color: #6F7783;">17  | </span>    \}                                                                   
+#>   <span style="color: #6F7783;">18  | </span>  &#93;                                                                     
+#>   <span style="color: #6F7783;">19  | </span>\}                                                                       
 </pre></div>
 }}
 
@@ -167,19 +167,19 @@ Delete selected elements:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1") |> ts_tree_delete()
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (18 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>
-#> <span style="color: #6F7783;"> 2 | </span>// this is a comment
-#> <span style="color: #6F7783;"> 3 | </span>\{
-#> <span style="color: #6F7783;"> 4 | </span>  "a": \{
-#> <span style="color: #6F7783;"> 5 | </span>    // comment
-#> <span style="color: #6F7783;"> 6 | </span>    "a2": "string"
-#> <span style="color: #6F7783;"> 7 | </span>  \},
-#> <span style="color: #6F7783;"> 8 | </span>  "b": [
-#> <span style="color: #6F7783;"> 9 | </span>    \{
-#> <span style="color: #6F7783;">10 | </span>      "b11": true,
-#> <span style="color: #6F7783;">ℹ 8 more lines</span>
-#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+#> <span style="color: #6F7783;"># jsonc (18 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    // comment                                                             
+#> <span style="color: #6F7783;"> 6 | </span>    "a2": "string"                                                         
+#> <span style="color: #6F7783;"> 7 | </span>  \},                                                                       
+#> <span style="color: #6F7783;"> 8 | </span>  "b": &#91;                                                                   
+#> <span style="color: #6F7783;"> 9 | </span>    \{                                                                      
+#> <span style="color: #6F7783;">10 | </span>      "b11": true,                                                         
+#> <span style="color: #6F7783;">ℹ 8 more lines</span>                                                                  
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -192,19 +192,19 @@ Insert element into an array:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "a1") |> ts_tree_insert(at = 2, "new")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (24 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>
-#> <span style="color: #6F7783;"> 2 | </span>// this is a comment
-#> <span style="color: #6F7783;"> 3 | </span>\{
-#> <span style="color: #6F7783;"> 4 | </span>  "a": \{
-#> <span style="color: #6F7783;"> 5 | </span>    "a1": [
-#> <span style="color: #6F7783;"> 6 | </span>        1,
-#> <span style="color: #6F7783;"> 7 | </span>        2,
-#> <span style="color: #6F7783;"> 8 | </span>        "new",
-#> <span style="color: #6F7783;"> 9 | </span>        3
-#> <span style="color: #6F7783;">10 | </span>    ],
-#> <span style="color: #6F7783;">ℹ 14 more lines</span>
-#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+#> <span style="color: #6F7783;"># jsonc (24 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    "a1": &#91;                                                                
+#> <span style="color: #6F7783;"> 6 | </span>        1,                                                                 
+#> <span style="color: #6F7783;"> 7 | </span>        2,                                                                 
+#> <span style="color: #6F7783;"> 8 | </span>        "new",                                                             
+#> <span style="color: #6F7783;"> 9 | </span>        3                                                                  
+#> <span style="color: #6F7783;">10 | </span>    &#93;,                                                                     
+#> <span style="color: #6F7783;">ℹ 14 more lines</span>                                                                 
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -217,19 +217,19 @@ Insert element into an object, at the specified key:
   ts_tree_insert(key = "a0", at = 0, list("new", "element"))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (27 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>
-#> <span style="color: #6F7783;"> 2 | </span>// this is a comment
-#> <span style="color: #6F7783;"> 3 | </span>\{
-#> <span style="color: #6F7783;"> 4 | </span>  "a": \{
-#> <span style="color: #6F7783;"> 5 | </span>      "a0": [
-#> <span style="color: #6F7783;"> 6 | </span>          "new",
-#> <span style="color: #6F7783;"> 7 | </span>          "element"
-#> <span style="color: #6F7783;"> 8 | </span>      ],
-#> <span style="color: #6F7783;"> 9 | </span>      "a1": [
-#> <span style="color: #6F7783;">10 | </span>          1,
-#> <span style="color: #6F7783;">ℹ 17 more lines</span>
-#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+#> <span style="color: #6F7783;"># jsonc (27 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>      "a0": &#91;                                                              
+#> <span style="color: #6F7783;"> 6 | </span>          "new",                                                           
+#> <span style="color: #6F7783;"> 7 | </span>          "element"                                                        
+#> <span style="color: #6F7783;"> 8 | </span>      &#93;,                                                                   
+#> <span style="color: #6F7783;"> 9 | </span>      "a1": &#91;                                                              
+#> <span style="color: #6F7783;">10 | </span>          1,                                                               
+#> <span style="color: #6F7783;">ℹ 17 more lines</span>                                                                 
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -242,19 +242,19 @@ Update existing element:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", c("a1", "a2")) |> ts_tree_update("new value")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (19 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>
-#> <span style="color: #6F7783;"> 2 | </span>// this is a comment
-#> <span style="color: #6F7783;"> 3 | </span>\{
-#> <span style="color: #6F7783;"> 4 | </span>  "a": \{
-#> <span style="color: #6F7783;"> 5 | </span>    "a1": "new value",
-#> <span style="color: #6F7783;"> 6 | </span>    // comment
-#> <span style="color: #6F7783;"> 7 | </span>    "a2": "new value"
-#> <span style="color: #6F7783;"> 8 | </span>  \},
-#> <span style="color: #6F7783;"> 9 | </span>  "b": [
-#> <span style="color: #6F7783;">10 | </span>    \{
-#> <span style="color: #6F7783;">ℹ 9 more lines</span>
-#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+#> <span style="color: #6F7783;"># jsonc (19 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>                                                                           
+#> <span style="color: #6F7783;"> 2 | </span>// this is a comment                                                       
+#> <span style="color: #6F7783;"> 3 | </span>\{                                                                          
+#> <span style="color: #6F7783;"> 4 | </span>  "a": \{                                                                   
+#> <span style="color: #6F7783;"> 5 | </span>    "a1": "new value",                                                     
+#> <span style="color: #6F7783;"> 6 | </span>    // comment                                                             
+#> <span style="color: #6F7783;"> 7 | </span>    "a2": "new value"                                                      
+#> <span style="color: #6F7783;"> 8 | </span>  \},                                                                       
+#> <span style="color: #6F7783;"> 9 | </span>  "b": &#91;                                                                   
+#> <span style="color: #6F7783;">10 | </span>    \{                                                                      
+#> <span style="color: #6F7783;">ℹ 9 more lines</span>                                                                  
+#> <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>                                        
 </pre></div>
 }}
 
@@ -265,8 +265,8 @@ Inserts the element if some parents are missing:
 json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (1 line)</span>
-#> <span style="color: #6F7783;">1 | </span>\{ "a": \{ "b": true \} \}
+#> <span style="color: #6F7783;"># jsonc (1 line)</span>                                                                
+#> <span style="color: #6F7783;">1 | </span>\{ "a": \{ "b": true \} \}                                                      
 </pre></div>
 }}
 
@@ -274,20 +274,19 @@ json
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_select(json, "a", "x", "y") |> ts_tree_update(list(1,2,3))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #6F7783;"># jsonc (10 lines)</span>
-#> <span style="color: #6F7783;"> 1 | </span>\{ "a": \{
-#> <span style="color: #6F7783;"> 2 | </span>    "b": true,
-#> <span style="color: #6F7783;"> 3 | </span>    "x": \{
-#> <span style="color: #6F7783;"> 4 | </span>        "y": [
-#> <span style="color: #6F7783;"> 5 | </span>            1,
-#> <span style="color: #6F7783;"> 6 | </span>            2,
-#> <span style="color: #6F7783;"> 7 | </span>            3
-#> <span style="color: #6F7783;"> 8 | </span>        ]
-#> <span style="color: #6F7783;"> 9 | </span>    \}
-#> <span style="color: #6F7783;">10 | </span>\} \}
+#> <span style="color: #6F7783;"># jsonc (10 lines)</span>                                                              
+#> <span style="color: #6F7783;"> 1 | </span>\{ "a": \{                                                                   
+#> <span style="color: #6F7783;"> 2 | </span>    "b": true,                                                             
+#> <span style="color: #6F7783;"> 3 | </span>    "x": \{                                                                 
+#> <span style="color: #6F7783;"> 4 | </span>        "y": &#91;                                                             
+#> <span style="color: #6F7783;"> 5 | </span>            1,                                                             
+#> <span style="color: #6F7783;"> 6 | </span>            2,                                                             
+#> <span style="color: #6F7783;"> 7 | </span>            3                                                              
+#> <span style="color: #6F7783;"> 8 | </span>        &#93;                                                                  
+#> <span style="color: #6F7783;"> 9 | </span>    \}                                                                      
+#> <span style="color: #6F7783;">10 | </span>\} \}                                                                        
 </pre></div>
 }}
-
 
 }
 }

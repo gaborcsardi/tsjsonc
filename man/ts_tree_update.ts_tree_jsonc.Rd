@@ -27,6 +27,7 @@ selection then the whole document is replaced. If \code{tree} has an empty
 selection, then nothing happens.
 }
 \examples{
+library(ts)
 tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 tree
 
