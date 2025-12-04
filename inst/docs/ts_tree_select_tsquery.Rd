@@ -1,4 +1,4 @@
-\subsection{JSONC}{\if{html}{\out{
+\strong{JSONC}\if{html}{\out{
 <p/>
 }}
 
@@ -7,9 +7,8 @@ See \code{\link[=ts_language_jsonc]{ts_language_jsonc()}} for details on the JSO
 <p/>
 }}
 
-}
 
-\subsection{JSONC example}{\if{html}{\out{
+\strong{JSONC example}\if{html}{\out{
 <p/>
 }}
 
@@ -29,5 +28,3 @@ json |> ts_tree_select(query = "(number) @number")
 #> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>\{ "a": <span style="color: #66C2CD;">1</span>, "b": &#91;<span style="color: #66C2CD;">10</span>, <span style="color: #66C2CD;">20</span>, <span style="color: #66C2CD;">30</span>&#93;, "c": \{ "c1": true, "c2": <span style="color: #66C2CD;">100</span> \} \}             
 </pre></div>
 }}
-
-}

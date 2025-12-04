@@ -1,4 +1,4 @@
-\subsection{JSONC example}{\if{html}{\out{
+\strong{JSONC example}\if{html}{\out{
 <p/>
 }}
 
@@ -30,5 +30,3 @@ ts_tree_dom(json)
 #> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>\{ "a": 1, "b": <span style="color: #66C2CD;">&#91;10, 20, 30&#93;</span>, "c": \{ "c1": true, "c2": null \} \}            
 </pre></div>
 }}
-
-}

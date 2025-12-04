@@ -1,4 +1,7 @@
-\subsection{JSONC example}{
+\strong{JSONC example}\if{html}{\out{
+<p/>
+}}
+
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
  '\{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 \}'
@@ -10,5 +13,3 @@ json |> ts_tree_select(regex = "^a")
 #> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>\{ "apple": <span style="color: #66C2CD;">1</span>, "almond": <span style="color: #66C2CD;">2</span>, "banana": 3, "cherry": 4 \}                     
 </pre></div>
 }}
-
-}

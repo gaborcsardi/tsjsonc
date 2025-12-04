@@ -1,6 +1,6 @@
 #' @ts ts_tree_select_true
 #'
-#' ## JSONC example
+#' **JSONC example**
 #' <p/>
 #'
 #' ```{asciicast}
@@ -12,7 +12,7 @@
 #'
 #' @ts ts_tree_select_character
 #'
-#' ## JSONC example
+#' **JSONC example**
 #' <p/>
 #'
 #' ```{asciicast}
@@ -24,14 +24,14 @@
 #'
 #' @ts ts_tree_select_integer
 #'
-#' ## JSONC
+#' **JSONC**
 #' <p/>
 #'
 #' For JSONC positional indices can be used both for arrays and objects.
 #' For other nodes nothing is selected.
 #' <p/>
 #'
-#' ## JSONC example
+#' **JSONC example**
 #' <p/>
 #'
 #' ```{asciicast}
@@ -43,7 +43,8 @@
 #'
 #' @ts ts_tree_select_regex
 #'
-#' ## JSONC example
+#' **JSONC example**
+#' <p/>
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -54,13 +55,13 @@
 #'
 #' @ts ts_tree_select_tsquery
 #'
-#' ## JSONC
+#' **JSONC**
 #' <p/>
 #'
 #' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
 #' <p/>
 #'
-#' ## JSONC example
+#' **JSONC example**
 #' <p/>
 #'
 #' This example selects all numbers in the JSON document.
@@ -75,7 +76,7 @@
 #'
 #' @ts ts_tree_select_ids
 #'
-#' ## JSONC example
+#' **JSONC example**
 #' <p/>
 #'
 #' ```{asciicast}
@@ -141,7 +142,6 @@
 #' ```{asciicast}
 #' json |> ts_tree_select(c("a", "c"), regex = "1$")
 #' ```
-#' }
 NULL
 
 # TODO: keep the parse tree as an external pointer and reuse it.

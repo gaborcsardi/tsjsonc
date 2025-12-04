@@ -179,7 +179,6 @@ Regular expressions:
 #>   <span style="color: #6F7783;">20  | </span>  \}                                                                     
 #>   <span style="color: #6F7783;">21  | </span>\}                                                                       
 </pre></div>
-\}
 }}
 
 }
