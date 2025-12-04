@@ -70,7 +70,7 @@
 #' json <- tsjsonc::ts_parse_jsonc(
 #'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
 #' )
-#' json |> ts_tree_select_query("(number) @number")
+#' json |> ts_tree_select(query = "(number) @number")
 #' ```
 #'
 #' @ts ts_tree_select_ids
@@ -246,7 +246,7 @@ NULL
 #'
 #' # Select all pairs where the value is a number and change them to 100
 #' ts_parse_jsonc(txt) |>
-#'   ts_tree_select_query("((pair value: (number) @num))") |>
+#'   ts_tree_select(query = "((pair value: (number) @num))") |>
 #'   ts_tree_update(100)
 # TODO
 #' @name select2

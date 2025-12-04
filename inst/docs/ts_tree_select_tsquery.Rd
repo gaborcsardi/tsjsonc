@@ -21,7 +21,7 @@ This example selects all numbers in the JSON document.\if{html}{\out{
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
   '\{ "a": 1, "b": [10, 20, 30], "c": \{ "c1": true, "c2": 100 \} \}'
 )
-json |> ts_tree_select_query("(number) @number")
+json |> ts_tree_select(query = "(number) @number")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (1 line, 5 selected elements)</span>                                           

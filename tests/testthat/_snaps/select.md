@@ -499,11 +499,11 @@
       Error in `ts_tree_select1.ts_tree.integer()`:
       ! Zero indices are not allowed in ts selectors.
 
-# ts_tree_select_query
+# TS query
 
     Code
-      ts_tree_update(ts_tree_select_query(ts_parse_jsonc(text = txt),
-      "((pair value: (number) @num))"), 100)
+      ts_tree_update(ts_tree_select(ts_parse_jsonc(text = txt), query = "((pair value: (number) @num))"),
+      100)
     Output
       # jsonc (1 line)
       1 | { "a": 100, "b": "foo", "c": 100}

@@ -252,13 +252,13 @@ test_that("select zero indices error", {
   })
 })
 
-test_that("ts_tree_select_query", {
+test_that("TS query", {
   txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 
   # Select all pairs where the value is a number and change them to 100
   expect_snapshot({
     ts_parse_jsonc(text = txt) |>
-      ts_tree_select_query("((pair value: (number) @num))") |>
+      ts_tree_select(query = "((pair value: (number) @num))") |>
       ts_tree_update(100)
   })
 })

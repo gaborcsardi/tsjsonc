@@ -113,7 +113,7 @@ ts_tree_select(json, "a", c("a1", "a2"))
 Select nodes that match a tree-sitter query:
 
 ``` r
-json |> ts_tree_select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
 <picture>
