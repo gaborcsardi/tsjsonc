@@ -1,3 +1,93 @@
+#' @ts ts_tree_select_true
+#'
+#' *JSONC example*
+#' <p/>
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json |> ts_tree_select(c("b", "c"), TRUE)
+#' ```
+#'
+#' @ts ts_tree_select_character
+#'
+#' *JSONC example*
+#' <p/>
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json |> ts_tree_select(c("a", "c"), c("c1"))
+#' ```
+#'
+#' @ts ts_tree_select_integer
+#'
+#' *JSONC*
+#' <p/>
+#'
+#' For JSONC positional indices can be used both for arrays and objects.
+#' For other nodes nothing is selected.
+#' <p/>
+#'
+#' *JSONC example*
+#' <p/>
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json |> ts_tree_select(c("b", "c"), -1)
+#' ```
+#'
+#' @ts ts_tree_select_regex
+#'
+#' *JSONC example*
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'  '{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 }'
+#' )
+#' json |> ts_tree_select(regex = "^a")
+#' ```
+#'
+#' @ts ts_tree_select_tsquery
+#'
+#' *JSONC*
+#' <p/>
+#'
+#' TODO: details of the JSONC grammar.
+#' <p/>
+#'
+#' *JSONC example*
+#' <p/>
+#'
+#' This example selects all numbers in the JSON document.
+#' <p/>
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+#' )
+#' json |> ts_tree_select_query("(number) @number")
+#' ```
+#'
+#' @ts ts_tree_select_ids
+#'
+#' *JSONC example*
+#' <p/>
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' ts_tree_dom(json)
+#' json |> ts_tree_select(I(18))
+#' ```
+#'
+NULL
+
 #' Select elements in a tsjsonc object
 #'
 #' @details
