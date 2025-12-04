@@ -23,9 +23,8 @@
   [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
   [`ts_read_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
   `ts_tree_select()`, `ts_tree_delete()`, `ts_tree_insert()`,
-  `ts_tree_update()`, and
-  [`ts_tree_write()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_write.md)
-  to edit a JSON file or string and save it to a file.
+  `ts_tree_update()`, and `ts_tree_write()` to edit a JSON file or
+  string and save it to a file.
 
 ## Parsing
 
