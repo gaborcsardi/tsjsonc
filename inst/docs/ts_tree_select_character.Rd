@@ -1,4 +1,4 @@
-\emph{JSONC example}\if{html}{\out{
+\subsection{JSONC example}{\if{html}{\out{
 <p/>
 }}
 
@@ -13,3 +13,5 @@ json |> ts_tree_select(c("a", "c"), c("c1"))
 #> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>\{ "a": 1, "b": &#91;10, 20, 30&#93;, "c": \{ "c1": <span style="color: #66C2CD;">true</span>, "c2": null \} \}            
 </pre></div>
 }}
+
+}

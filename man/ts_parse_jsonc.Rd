@@ -77,7 +77,7 @@ ts_parse_jsonc(text) |>
   ts_tree_unserialize()
 }
 \seealso{
-\code{\link[=ts_tree_select]{ts_tree_select()}} to select part(s) of a tsjsonc
+\code{\link[ts:ts_tree_select]{ts::ts_tree_select()}} to select part(s) of a tsjsonc
 object, \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} to extract the selected part(s),
 \code{\link[ts:ts_tree_format]{ts::ts_tree_format()}} to format the selected part(s),
 \code{\link[ts:ts_tree_delete]{ts::ts_tree_delete()}}, \code{\link[ts:ts_tree_insert]{ts::ts_tree_insert()}} and

@@ -9,6 +9,7 @@ asciicast::init_knitr_engine(
   startup = quote({
     options(cli.num_colors = 256)
     library(ts)
+    library(tsjsonc)
   })
 )
 

@@ -7,7 +7,7 @@
 \item{x, json}{tsjsonc object. Create a tsjsonc object with
 \code{\link[ts:ts_tree_new]{ts::ts_tree_new()}}.}
 
-\item{i, ...}{Selectors, see \code{\link[=ts_tree_select]{ts_tree_select()}}.}
+\item{i, ...}{Selectors, see \code{\link[ts:ts_tree_select]{ts::ts_tree_select()}}.}
 
 \item{value}{New value. Will be serialized to JSON with
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}}.}

@@ -1,4 +1,4 @@
-\emph{JSONC}\if{html}{\out{
+\subsection{JSONC}{\if{html}{\out{
 <p/>
 }}
 
@@ -8,8 +8,9 @@ For other nodes nothing is selected.\if{html}{\out{
 <p/>
 }}
 
+}
 
-\emph{JSONC example}\if{html}{\out{
+\subsection{JSONC example}{\if{html}{\out{
 <p/>
 }}
 
@@ -24,3 +25,5 @@ json |> ts_tree_select(c("b", "c"), -1)
 #> <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>\{ "a": 1, "b": &#91;10, 20, <span style="color: #66C2CD;">30</span>&#93;, "c": \{ "c1": true, "c2": <span style="color: #66C2CD;">null</span> \} \}            
 </pre></div>
 }}
+
+}
