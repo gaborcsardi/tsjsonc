@@ -1,4 +1,4 @@
 # License
 
     YEAR: 2025
-    COPYRIGHT HOLDER: tsjson authors
+    COPYRIGHT HOLDER: tsjsonc authors

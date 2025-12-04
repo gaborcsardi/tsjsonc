@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Edit JSON Files • tsjson</title>
+<title>Edit JSON Files • tsjsonc</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">tsjson</a>
+    <a class="navbar-brand me-2" href="index.html">tsjsonc</a>
 
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
 
@@ -39,7 +39,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/tsjson/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/tsjsonc/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -48,7 +48,7 @@
 </nav><div class="container template-home" id="container">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="tsjson">tsjson<a class="anchor" aria-label="anchor" href="#tsjson"></a>
+<div class="page-header"><h1 id="tsjsonc">tsjsonc<a class="anchor" aria-label="anchor" href="#tsjsonc"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -56,23 +56,23 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of tsjson from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of tsjsonc from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"gaborcsardi/tsjson"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"gaborcsardi/tsjsonc"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
-<p>See at <a href="https://gaborcsardi.github.io/tsjson/reference/index.html/"><code>https://gaborcsardi.github.io/tsjson/</code></a> and also in the installed package: <code><a href="https://rdrr.io/pkg/tsjson/man" class="external-link">help(package = "tsjson")</a></code>.</p>
+<p>See at <a href="https://gaborcsardi.github.io/tsjsonc/reference/index.html/"><code>https://gaborcsardi.github.io/tsjsonc/</code></a> and also in the installed package: <code><a href="https://rdrr.io/pkg/tsjsonc/man" class="external-link">help(package = "tsjsonc")</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="quickstart">Quickstart<a class="anchor" aria-label="anchor" href="#quickstart"></a>
 </h2>
 <div class="section level3">
-<h3 id="create-a-tsjson-object">Create a tsjson object<a class="anchor" aria-label="anchor" href="#create-a-tsjson-object"></a>
+<h3 id="create-a-tsjsonc-object">Create a tsjsonc object<a class="anchor" aria-label="anchor" href="#create-a-tsjsonc-object"></a>
 </h3>
-<p>Create a tsjson object from a string:</p>
+<p>Create a tsjsonc object from a string:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">txt</span> <span class="op">&lt;-</span> <span class="st">r"(</span></span>
 <span><span class="st">// this is a comment</span></span>
@@ -94,13 +94,13 @@
 <span><span class="st">  ]</span></span>
 <span><span class="st">}</span></span>
 <span><span class="st">)"</span></span>
-<span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_json.html">load_json</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">txt</span><span class="op">)</span></span></code></pre></div>
-<p>Pretty print a tsjson object:</p>
+<span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">txt</span><span class="op">)</span></span></code></pre></div>
+<p>Pretty print a tsjsonc object:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">json</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>
 #&gt; <span style="color: #525252;"> 2 | </span>// this is a comment
 #&gt; <span style="color: #525252;"> 3 | </span>{
@@ -117,14 +117,14 @@
 </div>
 </div>
 <div class="section level3">
-<h3 id="select-elements-in-a-tsjson-object">Select elements in a tsjson object<a class="anchor" aria-label="anchor" href="#select-elements-in-a-tsjson-object"></a>
+<h3 id="select-elements-in-a-tsjsonc-object">Select elements in a tsjsonc object<a class="anchor" aria-label="anchor" href="#select-elements-in-a-tsjsonc-object"></a>
 </h3>
 <p>Select element by objects key:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines, 1 selected element)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines, 1 selected element)</span>
 #&gt;   <span style="color: #525252;"> 1  | </span>
 #&gt;   <span style="color: #525252;"> 2  | </span>// this is a comment
 #&gt;   <span style="color: #525252;"> 3  | </span>{
@@ -141,10 +141,10 @@
 </div>
 <p>Select element inside element:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines, 1 selected element)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines, 1 selected element)</span>
 #&gt;   <span style="color: #525252;">2   | </span>// this is a comment
 #&gt;   <span style="color: #525252;">3   | </span>{
 #&gt;   <span style="color: #525252;">4   | </span>  "a": {
@@ -157,10 +157,10 @@
 </div>
 <p>Select element(s) of an array:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines, 2 selected elements)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines, 2 selected elements)</span>
 #&gt;   <span style="color: #525252;">2   | </span>// this is a comment
 #&gt;   <span style="color: #525252;">3   | </span>{
 #&gt;   <span style="color: #525252;">4   | </span>  "a": {
@@ -173,10 +173,10 @@
 </div>
 <p>Select multiple keys from an object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a1"</span>, <span class="st">"a2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a1"</span>, <span class="st">"a2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines, 2 selected elements)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines, 2 selected elements)</span>
 #&gt;   <span style="color: #525252;"> 2  | </span>// this is a comment
 #&gt;   <span style="color: #525252;"> 3  | </span>{
 #&gt;   <span style="color: #525252;"> 4  | </span>  "a": {
@@ -191,10 +191,10 @@
 </div>
 <p>Select nodes that match a tree-sitter query:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/select_query.html">select_query</a></span><span class="op">(</span><span class="st">"((pair value: (false) @val))"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_select</span><span class="op">(</span>query <span class="op">=</span> <span class="st">"((pair value: (false) @val))"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines, 3 selected elements)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines, 3 selected elements)</span>
 #&gt;   <span style="color: #525252;">...</span>
 #&gt;   <span style="color: #525252;"> 9  | </span>  "b": [
 #&gt;   <span style="color: #525252;">10  | </span>    {
@@ -215,10 +215,10 @@
 </h3>
 <p>Delete selected elements:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/delete_selected.html">delete_selected</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_delete</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (18 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (18 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>
 #&gt; <span style="color: #525252;"> 2 | </span>// this is a comment
 #&gt; <span style="color: #525252;"> 3 | </span>{
@@ -239,10 +239,10 @@
 </h3>
 <p>Insert element into an array:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/insert_into_selected.html">insert_into_selected</a></span><span class="op">(</span>at <span class="op">=</span> <span class="fl">2</span>, <span class="st">"new"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_insert</span><span class="op">(</span>at <span class="op">=</span> <span class="fl">2</span>, <span class="st">"new"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (24 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (24 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>
 #&gt; <span style="color: #525252;"> 2 | </span>// this is a comment
 #&gt; <span style="color: #525252;"> 3 | </span>{
@@ -260,11 +260,11 @@
 <p>Inserting into an array reformats the array.</p>
 <p>Insert element into an object, at the specified key:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/insert_into_selected.html">insert_into_selected</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"a0"</span>, at <span class="op">=</span> <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"new"</span>, <span class="st">"element"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ts_tree_insert</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"a0"</span>, at <span class="op">=</span> <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"new"</span>, <span class="st">"element"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (27 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (27 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>
 #&gt; <span style="color: #525252;"> 2 | </span>// this is a comment
 #&gt; <span style="color: #525252;"> 3 | </span>{
@@ -285,10 +285,10 @@
 </h3>
 <p>Update existing element:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a1"</span>, <span class="st">"a2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/update_selected.html">update_selected</a></span><span class="op">(</span><span class="st">"new value"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a1"</span>, <span class="st">"a2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_update</span><span class="op">(</span><span class="st">"new value"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (19 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (19 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>
 #&gt; <span style="color: #525252;"> 2 | </span>// this is a comment
 #&gt; <span style="color: #525252;"> 3 | </span>{
@@ -305,19 +305,19 @@
 </div>
 <p>Inserts the element if some parents are missing:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_json.html">load_json</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"{ \"a\": { \"b\": true } }"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"{ \"a\": { \"b\": true } }"</span><span class="op">)</span></span>
 <span><span class="va">json</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (1 line)</span>
+#&gt; <span style="color: #525252;"># jsonc (1 line)</span>
 #&gt; <span style="color: #525252;">1 | </span>{ "a": { "b": true } }
 </pre>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/update_selected.html">update_selected</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ts_tree_select</span><span class="op">(</span><span class="va">json</span>, <span class="st">"a"</span>, <span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_update</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #172431;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000">
 <pre>
-#&gt; <span style="color: #525252;"># json (10 lines)</span>
+#&gt; <span style="color: #525252;"># jsonc (10 lines)</span>
 #&gt; <span style="color: #525252;"> 1 | </span>{ "a": {
 #&gt; <span style="color: #525252;"> 2 | </span>    "b": true,
 #&gt; <span style="color: #525252;"> 3 | </span>    "x": {
@@ -342,8 +342,8 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/gaborcsardi/tsjson/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/gaborcsardi/tsjson/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/gaborcsardi/tsjsonc/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/gaborcsardi/tsjsonc/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -359,7 +359,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing tsjson</a></li>
+<li><a href="authors.html#citation">Citing tsjsonc</a></li>
 </ul>
 </div>
 
@@ -377,7 +377,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/gaborcsardi/tsjson/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/gaborcsardi/tsjson/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

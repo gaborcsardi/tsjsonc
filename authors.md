@@ -14,15 +14,15 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/gaborcsardi/tsjson/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/gaborcsardi/tsjsonc/blob/main/DESCRIPTION)
 
-Csárdi G (2025). *tsjson: Edit JSON Files*. R package version
-0.0.0.9000, <https://github.com/gaborcsardi/tsjson>.
+Csárdi G (2025). *tsjsonc: Edit JSON Files*. R package version
+0.0.0.9000, <https://github.com/gaborcsardi/tsjsonc>.
 
     @Manual{,
-      title = {tsjson: Edit JSON Files},
+      title = {tsjsonc: Edit JSON Files},
       author = {Gábor Csárdi},
       year = {2025},
       note = {R package version 0.0.0.9000},
-      url = {https://github.com/gaborcsardi/tsjson},
+      url = {https://github.com/gaborcsardi/tsjsonc},
     }

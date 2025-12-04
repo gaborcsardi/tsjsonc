@@ -1,30 +1,30 @@
-# tsjson
+# tsjsonc
 
 Extract and manipulate parts of JSON files without touching the
 formatting and comments in other parts.
 
 ## Installation
 
-You can install the development version of tsjson from
+You can install the development version of tsjsonc from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("gaborcsardi/tsjson")
+pak::pak("gaborcsardi/tsjsonc")
 ```
 
 ## Documentation
 
 See at
-[`https://gaborcsardi.github.io/tsjson/`](https://gaborcsardi.github.io/tsjson/reference/index.html/)
+[`https://gaborcsardi.github.io/tsjsonc/`](https://gaborcsardi.github.io/tsjsonc/reference/index.html/)
 and also in the installed package:
-[`help(package = "tsjson")`](https://rdrr.io/pkg/tsjson/man).
+[`help(package = "tsjsonc")`](https://rdrr.io/pkg/tsjsonc/man).
 
 ## Quickstart
 
-### Create a tsjson object
+### Create a tsjsonc object
 
-Create a tsjson object from a string:
+Create a tsjsonc object from a string:
 
 ``` r
 txt <- r"(
@@ -47,16 +47,16 @@ txt <- r"(
   ]
 }
 )"
-json <- load_json(text = txt)
+json <- ts_parse_jsonc(text = txt)
 ```
 
-Pretty print a tsjson object:
+Pretty print a tsjsonc object:
 
 ``` r
 json
 ```
 
-    #> # json (19 lines)
+    #> # jsonc (19 lines)
     #>  1 | 
     #>  2 | // this is a comment
     #>  3 | {
@@ -70,15 +70,15 @@ json
     #> ℹ 9 more lines
     #> ℹ Use `print(n = ...)` to see more lines
 
-### Select elements in a tsjson object
+### Select elements in a tsjsonc object
 
 Select element by objects key:
 
 ``` r
-select(json, "a")
+ts_tree_select(json, "a")
 ```
 
-    #> # json (19 lines, 1 selected element)
+    #> # jsonc (19 lines, 1 selected element)
     #>    1  | 
     #>    2  | // this is a comment
     #>    3  | {
@@ -95,10 +95,10 @@ select(json, "a")
 Select element inside element:
 
 ``` r
-select(json, "a", "a1")
+ts_tree_select(json, "a", "a1")
 ```
 
-    #> # json (19 lines, 1 selected element)
+    #> # jsonc (19 lines, 1 selected element)
     #>   2   | // this is a comment
     #>   3   | {
     #>   4   |   "a": {
@@ -111,10 +111,10 @@ select(json, "a", "a1")
 Select element(s) of an array:
 
 ``` r
-select(json, "a", "a1", 1:2)
+ts_tree_select(json, "a", "a1", 1:2)
 ```
 
-    #> # json (19 lines, 2 selected elements)
+    #> # jsonc (19 lines, 2 selected elements)
     #>   2   | // this is a comment
     #>   3   | {
     #>   4   |   "a": {
@@ -127,10 +127,10 @@ select(json, "a", "a1", 1:2)
 Select multiple keys from an object:
 
 ``` r
-select(json, "a", c("a1", "a2"))
+ts_tree_select(json, "a", c("a1", "a2"))
 ```
 
-    #> # json (19 lines, 2 selected elements)
+    #> # jsonc (19 lines, 2 selected elements)
     #>    2  | // this is a comment
     #>    3  | {
     #>    4  |   "a": {
@@ -145,10 +145,10 @@ select(json, "a", c("a1", "a2"))
 Select nodes that match a tree-sitter query:
 
 ``` r
-json |> select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
-    #> # json (19 lines, 3 selected elements)
+    #> # jsonc (19 lines, 3 selected elements)
     #>   ...
     #>    9  |   "b": [
     #>   10  |     {
@@ -167,10 +167,10 @@ json |> select_query("((pair value: (false) @val))")
 Delete selected elements:
 
 ``` r
-select(json, "a", "a1") |> delete_selected()
+ts_tree_select(json, "a", "a1") |> ts_tree_delete()
 ```
 
-    #> # json (18 lines)
+    #> # jsonc (18 lines)
     #>  1 | 
     #>  2 | // this is a comment
     #>  3 | {
@@ -189,10 +189,10 @@ select(json, "a", "a1") |> delete_selected()
 Insert element into an array:
 
 ``` r
-select(json, "a", "a1") |> insert_into_selected(at = 2, "new")
+ts_tree_select(json, "a", "a1") |> ts_tree_insert(at = 2, "new")
 ```
 
-    #> # json (24 lines)
+    #> # jsonc (24 lines)
     #>  1 | 
     #>  2 | // this is a comment
     #>  3 | {
@@ -211,11 +211,11 @@ Inserting into an array reformats the array.
 Insert element into an object, at the specified key:
 
 ``` r
-select(json, "a") |>
-  insert_into_selected(key = "a0", at = 0, list("new", "element"))
+ts_tree_select(json, "a") |>
+  ts_tree_insert(key = "a0", at = 0, list("new", "element"))
 ```
 
-    #> # json (27 lines)
+    #> # jsonc (27 lines)
     #>  1 | 
     #>  2 | // this is a comment
     #>  3 | {
@@ -234,10 +234,10 @@ select(json, "a") |>
 Update existing element:
 
 ``` r
-select(json, "a", c("a1", "a2")) |> update_selected("new value")
+ts_tree_select(json, "a", c("a1", "a2")) |> ts_tree_update("new value")
 ```
 
-    #> # json (19 lines)
+    #> # jsonc (19 lines)
     #>  1 | 
     #>  2 | // this is a comment
     #>  3 | {
@@ -254,18 +254,18 @@ select(json, "a", c("a1", "a2")) |> update_selected("new value")
 Inserts the element if some parents are missing:
 
 ``` r
-json <- load_json(text = "{ \"a\": { \"b\": true } }")
+json <- ts_parse_jsonc(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 
-    #> # json (1 line)
+    #> # jsonc (1 line)
     #> 1 | { "a": { "b": true } }
 
 ``` r
-select(json, "a", "x", "y") |> update_selected(list(1,2,3))
+ts_tree_select(json, "a", "x", "y") |> ts_tree_update(list(1,2,3))
 ```
 
-    #> # json (10 lines)
+    #> # jsonc (10 lines)
     #>  1 | { "a": {
     #>  2 |     "b": true,
     #>  3 |     "x": {
