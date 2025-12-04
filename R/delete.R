@@ -1,44 +1,49 @@
-#' Delete selected elements from a tsjson object
+#' Delete selected elements from a tsjsonc object
 #'
 #' The formatting of the rest of JSON document is kept as is. Comments
 #' appearing inside the deleted elements are also deleted. Other comments
 #' are left as is.
 #'
 #' @details
-#' If `json` has no selection then the the whole document is deleted.
-#' If `json` has an empty selection, then nothing is delted.
+#' If `tree` has no selection then the the whole document is deleted.
+#' If `tree` has an empty selection, then nothing is delted.
 #'
-#' @param json tsjson object.
-#' @return Modified tsjson object.
+#' @param tree tsjsonc object.
+#' @param ... Reserved for future use.
+#' @return Modified tsjsonc object.
 #'
 #' @export
-#' @examples
-#' json <- load_json(text = "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
-#' json
+#' @keywords internal
 #'
-#' json |> select("a")
-#' json |> select("a") |> delete_selected()
+#' @examples
+#' library(ts)
+#' tree <- ts_parse_jsonc("{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }")
+#' tree
+#'
+#' tree |> ts_tree_select("a")
+#' tree |> ts_tree_select("a") |> ts_tree_delete()
 
-delete_selected <- function(json) {
-  select <- get_selected_nodes(json)
+ts_tree_delete.ts_tree_jsonc <- function(tree, ...) {
+  # TODO: check that ... is empty
+  select <- ts_tree_selected_nodes(tree)
 
   if (length(select) == 0) {
-    attr(json, "selection") <- NULL
-    return(json)
+    attr(tree, "selection") <- NULL
+    return(tree)
   }
 
   # if deleting from an array, then we need to look at the array and
   # remove some commas, probably
-  pares <- json$parent[select]
-  ptypes <- json$type[pares]
+  pares <- tree$parent[select]
+  ptypes <- tree$type[pares]
   trimmed_arrays <- unique(pares[ptypes == "array"])
   trimmed_pairs <- pares[ptypes == "pair"]
   select <- c(select, trimmed_pairs)
-  trimmed_objects <- unique(json$parent[trimmed_pairs])
+  trimmed_objects <- unique(tree$parent[trimmed_pairs])
 
   deleted <- select
   while (TRUE) {
-    deleted2 <- unique(c(deleted, unlist(json$children[deleted])))
+    deleted2 <- unique(c(deleted, unlist(tree$children[deleted])))
     if (length(deleted2) == length(deleted)) {
       break
     }
@@ -49,14 +54,14 @@ delete_selected <- function(json) {
   # a trailing comma?
   trim_commas <- function(id, open, close) {
     # remove deleted children and see what is left
-    allchld <- json$children[[id]]
+    allchld <- tree$children[[id]]
     chld <- setdiff(allchld, deleted)
     nc <- length(chld)
     # if nothing left, then nothing to do
     if (nc == 2) {
       return()
     }
-    ctypes <- json$type[chld]
+    ctypes <- tree$type[chld]
     todel <- rep(FALSE, length(chld))
     # this is hard to write in a vectorized form, it is easier iteratively
     # leading commas
@@ -87,13 +92,13 @@ delete_selected <- function(json) {
     last_deld <- chdeld[length(chdeld)]
     last_kept <- chkept[length(chkept) - 1L]
     if (last_deld > last_kept) {
-      while (is.na(json$code[last_deld])) {
-        last_deld <- tail(json$children[[last_deld]], 1)
+      while (is.na(tree$code[last_deld])) {
+        last_deld <- tail(tree$children[[last_deld]], 1)
       }
-      while (is.na(json$code[last_kept])) {
-        last_kept <- tail(json$children[[last_kept]], 1)
+      while (is.na(tree$code[last_kept])) {
+        last_kept <- tail(tree$children[[last_kept]], 1)
       }
-      json$tws[last_kept] <<- json$tws[last_deld]
+      tree$tws[last_kept] <<- tree$tws[last_deld]
     }
   }
 
@@ -109,15 +114,15 @@ delete_selected <- function(json) {
     trim_commas(obj, "{", "}")
   }
 
-  json2 <- json[-deleted, ]
+  tree2 <- tree[-deleted, ]
 
   # update text
-  parts <- c(rbind(json2$code, json2$tws))
+  parts <- c(rbind(tree2$code, tree2$tws))
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
-  attr(new, "file") <- attr(json, "file")
+  new <- ts_parse_jsonc(text = text)
+  attr(new, "file") <- attr(tree, "file")
 
   new
 }

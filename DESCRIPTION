@@ -1,4 +1,4 @@
-Package: tsjson
+Package: tsjsonc
 Title: Edit JSON Files
 Version: 0.0.0.9000
 Authors@R: c(
@@ -12,17 +12,18 @@ Description: Extract and manipulate parts of JSON files without touching
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
 Imports:
-    cli
+    ts
 Suggests:
     pillar,
     testthat (>= 3.0.0),
     withr
+Remotes:
+    gaborcsardi/ts
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Config/testthat/edition: 3
 Config/Needs/website:
     r-lib/asciicast,
     tidyverse/tidytemplate
-URL: https://github.com/gaborcsardi/tsjson
-BugReports: https://github.com/gaborcsardi/tsjson/issues
+URL: https://github.com/gaborcsardi/tsjsonc
+BugReports: https://github.com/gaborcsardi/tsjsonc/issues

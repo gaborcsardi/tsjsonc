@@ -1,45 +1,45 @@
-test_that("print.tsjson", {
-  json <- load_json(
-    text = serialize_json(list(a = list(1, 2, 3), b = list(b1 = "foo")))
+test_that("print.tsjsonc", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
   expect_snapshot(json)
 })
 
-test_that("format_tsjson_noselection", {
-  json <- load_json(
-    text = serialize_json(list(a = list(1, 2, 3), b = list(b1 = "foo")))
+test_that("format_ts_tree_noselection", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
   expect_snapshot({
-    select(json, "no-such-element")
+    ts_tree_select(json, "no-such-element")
   })
 })
 
-test_that("format_tsjson_noselection long document", {
-  json <- load_json(
-    text = serialize_json(list(a = as.list(letters)))
+test_that("format_ts_tree_noselection long document", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = as.list(letters)))
   )
   expect_snapshot({
     json
   })
 })
 
-test_that("format_tsjson_selection", {
-  json <- load_json(
-    text = serialize_json(list(a = list(1, 2, 3), b = list(b1 = "foo")))
+test_that("format_ts_tree_selection", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
   expect_snapshot({
-    select(json, "a")
-    select(json, "a", 1:2)
-    select(json, "b", "b1")
+    ts_tree_select(json, "a")
+    ts_tree_select(json, "a", 1:2)
+    ts_tree_select(json, "b", "b1")
   })
 })
 
 test_that("many selections", {
-  json <- load_json(
-    text = serialize_json(list(a = as.list(1:100)))
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = as.list(1:100)))
   )
   expect_snapshot({
-    select(json, "a", seq(2, 30, by = 2))
+    ts_tree_select(json, "a", seq(2, 30, by = 2))
   })
 })
 

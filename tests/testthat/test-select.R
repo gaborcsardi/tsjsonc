@@ -1,24 +1,24 @@
-test_that("get_selection, get_selected_nodes", {
-  json <- load_json(text = "")
+test_that("ts_tree_selection, ts_tree_selected_nodes", {
+  json <- ts_parse_jsonc(text = "")
   expect_snapshot({
-    get_selection(json)
-    get_selection(json, default = FALSE)
-    get_selected_nodes(json)
-    get_selected_nodes(json, default = FALSE)
+    ts_tree_selection(json)
+    ts_tree_selection(json, default = FALSE)
+    ts_tree_selected_nodes(json)
+    ts_tree_selected_nodes(json, default = FALSE)
   })
 
-  json <- load_json(text = "[]")
+  json <- ts_parse_jsonc(text = "[]")
   expect_snapshot({
-    get_selection(json)
-    get_selection(json, default = FALSE)
-    get_selected_nodes(json)
-    get_selected_nodes(json, default = FALSE)
+    ts_tree_selection(json)
+    ts_tree_selection(json, default = FALSE)
+    ts_tree_selected_nodes(json)
+    ts_tree_selected_nodes(json, default = FALSE)
   })
 })
 
-test_that("select", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("ts_tree_select", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -26,33 +26,33 @@ test_that("select", {
     ))
   )
   expect_snapshot({
-    select(json)
-    select(json, "a")
-    select(json, c("a", "b"))
-    select(json, "b", "b1")
-    select(json, list("b", "b1"))
-    select(json, "d", 1)
-    select(json, "d", TRUE)
+    ts_tree_select(json)
+    ts_tree_select(json, "a")
+    ts_tree_select(json, c("a", "b"))
+    ts_tree_select(json, "b", "b1")
+    ts_tree_select(json, list("b", "b1"))
+    ts_tree_select(json, "d", 1)
+    ts_tree_select(json, "d", TRUE)
   })
 
   expect_snapshot(error = TRUE, {
-    select(json, raw(0))
+    ts_tree_select(json, raw(0))
   })
 })
 
 test_that("deselect with NULL", {
-  json <- load_json(
-    text = serialize_json(list(a = 1, c = 3))
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = 1, c = 3))
   )
   expect_snapshot({
-    select(json, "a")
-    select(select(json, "a"), NULL)
+    ts_tree_select(json, "a")
+    ts_tree_select(ts_tree_select(json, "a"), NULL)
   })
 })
 
 test_that("[[.tdjson", {
-  json <- load_json(
-    text = serialize_json(list(
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -75,9 +75,9 @@ test_that("[[.tdjson", {
   })
 })
 
-test_that("[[<-.tsjson", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("[[<-.tsjsonc", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -101,19 +101,19 @@ test_that("[[<-.tsjson", {
   })
 })
 
-test_that("[[<-.tsjson empty doc", {
-  json <- load_json(text = "")
+test_that("[[<-.tsjsonc empty doc", {
+  json <- ts_parse_jsonc(text = "")
   json[[]] <- list()
   expect_snapshot(json)
 
-  json <- load_json(text = "")
+  json <- ts_parse_jsonc(text = "")
   json[[]] <- structure(list(), names = character())
   expect_snapshot(json)
 })
 
-test_that("[[<-.tsjson deletion", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("[[<-.tsjsonc deletion", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -122,14 +122,14 @@ test_that("[[<-.tsjson deletion", {
   )
 
   expect_snapshot({
-    json[[c("a", "b")]] <- deleted()
+    json[[c("a", "b")]] <- ts_tree_deleted()
     json
   })
 })
 
 test_that("select regex", {
-  json <- load_json(
-    text = serialize_json(list(
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a1 = 1,
       a2 = list(b1 = 21, b2 = 22),
       c = 3,
@@ -137,13 +137,14 @@ test_that("select regex", {
     ))
   )
 
+  # TODO
   expect_snapshot({
     json[[c(regex = "^a")]]
   })
 
   # regex in array selects nothing
-  json2 <- load_json(
-    text = serialize_json(list(1, 2, 3))
+  json2 <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(1, 2, 3))
   )
   expect_snapshot(
     json2[[c(regex = ".")]]
@@ -151,8 +152,8 @@ test_that("select regex", {
 })
 
 test_that("select from the back", {
-  json <- load_json(
-    text = serialize_json(list(
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -166,9 +167,9 @@ test_that("select from the back", {
   })
 })
 
-test_that("sel_ids", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("select I()", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -177,13 +178,13 @@ test_that("sel_ids", {
   )
 
   expect_snapshot({
-    json[[sel_ids(26)]]
+    json[[I(26)]]
   })
 })
 
-test_that("select<-", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("ts_tree_select<-", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -192,24 +193,24 @@ test_that("select<-", {
   )
 
   expect_snapshot({
-    select(json, "a") <- 2
+    ts_tree_select(json, "a") <- 2
     json
   })
 
   expect_snapshot({
-    select(json, c("a")) <- deleted()
+    ts_tree_select(json, c("a")) <- ts_tree_deleted()
     json
   })
 
   expect_snapshot({
-    select(json, list("b", "b1")) <- 100
+    ts_tree_select(json, list("b", "b1")) <- 100
     json
   })
 })
 
-test_that("[[<-.tsjson", {
-  json <- load_json(
-    text = serialize_json(list(
+test_that("[[<-.tsjsonc", {
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -223,8 +224,8 @@ test_that("[[<-.tsjson", {
 })
 
 test_that("select character selector on array selects nothing", {
-  json <- load_json(
-    text = serialize_json(list(
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -238,8 +239,8 @@ test_that("select character selector on array selects nothing", {
 })
 
 test_that("select zero indices error", {
-  json <- load_json(
-    text = serialize_json(list(
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(
       a = 1,
       b = list(b1 = 21, b2 = 22),
       c = 3,
@@ -251,13 +252,13 @@ test_that("select zero indices error", {
   })
 })
 
-test_that("select_query", {
+test_that("TS query", {
   txt <- "{ \"a\": 1, \"b\": \"foo\", \"c\": 20 }"
 
   # Select all pairs where the value is a number and change them to 100
   expect_snapshot({
-    load_json(text = txt) |>
-      select_query("((pair value: (number) @num))") |>
-      update_selected(100)
+    ts_parse_jsonc(text = txt) |>
+      ts_tree_select(query = "((pair value: (number) @num))") |>
+      ts_tree_update(100)
   })
 })

@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tsjson
+# tsjsonc
 
 <!-- badges: start -->
 
 ![lifecycle](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
-[![R-CMD-check](https://github.com/gaborcsardi/tsjson/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/tsjson/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Extract and manipulate parts of JSON files without touching the
@@ -14,25 +14,25 @@ formatting and comments in other parts.
 
 ## Installation
 
-You can install the development version of tsjson from
+You can install the development version of tsjsonc from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("gaborcsardi/tsjson")
+pak::pak("gaborcsardi/tsjsonc")
 ```
 
 ## Documentation
 
 See at
-[`https://gaborcsardi.github.io/tsjson/`](https://gaborcsardi.github.io/tsjson/reference/index.html/)
-and also in the installed package: `help(package = "tsjson")`.
+[`https://gaborcsardi.github.io/tsjsonc/`](https://gaborcsardi.github.io/tsjsonc/reference/index.html/)
+and also in the installed package: `help(package = "tsjsonc")`.
 
 ## Quickstart
 
-### Create a tsjson object
+### Create a tsjsonc object
 
-Create a tsjson object from a string:
+Create a tsjsonc object from a string:
 
 ``` r
 txt <- r"(
@@ -55,10 +55,10 @@ txt <- r"(
   ]
 }
 )"
-json <- load_json(text = txt)
+json <- ts_parse_jsonc(text = txt)
 ```
 
-Pretty print a tsjson object:
+Pretty print a tsjsonc object:
 
 ``` r
 json
@@ -68,12 +68,12 @@ json
 <source media="(prefers-color-scheme: dark)" srcset="man/figures/print-json-dark.svg">
 <img src="man/figures/print-json.svg" /> </picture>
 
-### Select elements in a tsjson object
+### Select elements in a tsjsonc object
 
 Select element by objects key:
 
 ``` r
-select(json, "a")
+ts_tree_select(json, "a")
 ```
 
 <picture>
@@ -83,7 +83,7 @@ select(json, "a")
 Select element inside element:
 
 ``` r
-select(json, "a", "a1")
+ts_tree_select(json, "a", "a1")
 ```
 
 <picture>
@@ -93,7 +93,7 @@ select(json, "a", "a1")
 Select element(s) of an array:
 
 ``` r
-select(json, "a", "a1", 1:2)
+ts_tree_select(json, "a", "a1", 1:2)
 ```
 
 <picture>
@@ -103,7 +103,7 @@ select(json, "a", "a1", 1:2)
 Select multiple keys from an object:
 
 ``` r
-select(json, "a", c("a1", "a2"))
+ts_tree_select(json, "a", c("a1", "a2"))
 ```
 
 <picture>
@@ -113,7 +113,7 @@ select(json, "a", c("a1", "a2"))
 Select nodes that match a tree-sitter query:
 
 ``` r
-json |> select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
 <picture>
@@ -125,7 +125,7 @@ json |> select_query("((pair value: (false) @val))")
 Delete selected elements:
 
 ``` r
-select(json, "a", "a1") |> delete_selected()
+ts_tree_select(json, "a", "a1") |> ts_tree_delete()
 ```
 
 <picture>
@@ -137,7 +137,7 @@ select(json, "a", "a1") |> delete_selected()
 Insert element into an array:
 
 ``` r
-select(json, "a", "a1") |> insert_into_selected(at = 2, "new")
+ts_tree_select(json, "a", "a1") |> ts_tree_insert(at = 2, "new")
 ```
 
 <picture>
@@ -149,8 +149,8 @@ Inserting into an array reformats the array.
 Insert element into an object, at the specified key:
 
 ``` r
-select(json, "a") |>
-  insert_into_selected(key = "a0", at = 0, list("new", "element"))
+ts_tree_select(json, "a") |>
+  ts_tree_insert(key = "a0", at = 0, list("new", "element"))
 ```
 
 <picture>
@@ -162,7 +162,7 @@ select(json, "a") |>
 Update existing element:
 
 ``` r
-select(json, "a", c("a1", "a2")) |> update_selected("new value")
+ts_tree_select(json, "a", c("a1", "a2")) |> ts_tree_update("new value")
 ```
 
 <picture>
@@ -172,7 +172,7 @@ select(json, "a", c("a1", "a2")) |> update_selected("new value")
 Inserts the element if some parents are missing:
 
 ``` r
-json <- load_json(text = "{ \"a\": { \"b\": true } }")
+json <- ts_parse_jsonc(text = "{ \"a\": { \"b\": true } }")
 json
 ```
 
@@ -181,7 +181,7 @@ json
 <img src="man/figures/update-insert.svg" /> </picture>
 
 ``` r
-select(json, "a", "x", "y") |> update_selected(list(1,2,3))
+ts_tree_select(json, "a", "x", "y") |> ts_tree_update(list(1,2,3))
 ```
 
 <picture>

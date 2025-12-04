@@ -1,56 +1,70 @@
 test_that("empty file parsing works", {
-  expect_identical(unserialize_json(text = ""), NULL)
+  expect_identical(ts_unserialize_jsonc(text = ""), NULL)
   expect_identical(
-    load_json(text = "") |> select("a") |> unserialize_selected(),
+    ts_parse_jsonc(text = "") |>
+      ts_tree_select("a") |>
+      ts_tree_unserialize(),
     list(NULL)
   )
 })
 
 test_that("Output is always returned visibly", {
-  expect_identical(withVisible(unserialize_json(text = "{}"))$visible, TRUE)
+  expect_identical(withVisible(ts_unserialize_jsonc(text = "{}"))$visible, TRUE)
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
+      ts_parse_jsonc(text = '{ "a": 1 }') |>
+        ts_tree_select("a") |>
+        ts_tree_unserialize()
     )$visible,
     TRUE
   )
 
   # These must return visible `NULL`
-  expect_identical(withVisible(unserialize_json(text = ""))$visible, TRUE)
+  expect_identical(withVisible(ts_unserialize_jsonc(text = ""))$visible, TRUE)
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": 1 }') |> select("a") |> unserialize_selected()
+      ts_parse_jsonc(text = '{ "a": 1 }') |>
+        ts_tree_select("a") |>
+        ts_tree_unserialize()
     )$visible,
     TRUE
   )
 
   # These must return visible `NULL`
-  expect_identical(withVisible(unserialize_json(text = "null"))$visible, TRUE)
+  expect_identical(
+    withVisible(ts_unserialize_jsonc(text = "null"))$visible,
+    TRUE
+  )
   expect_identical(
     withVisible(
-      load_json(text = '{ "a": null }') |> select("a") |> unserialize_selected()
+      ts_parse_jsonc(text = '{ "a": null }') |>
+        ts_tree_select("a") |>
+        ts_tree_unserialize()
     )$visible,
     TRUE
   )
 })
 
 test_that("works outside of a base object `{`", {
-  expect_identical(unserialize_json(text = "1"), 1L)
-  expect_identical(unserialize_json(text = "1.5"), 1.5)
-  expect_identical(unserialize_json(text = "true"), TRUE)
-  expect_identical(unserialize_json(text = "[1,2]"), list(1L, 2L))
-  expect_identical(unserialize_json(text = "[1,true]"), list(1L, TRUE))
+  expect_identical(ts_unserialize_jsonc(text = "1"), 1L)
+  expect_identical(ts_unserialize_jsonc(text = "1.5"), 1.5)
+  expect_identical(ts_unserialize_jsonc(text = "true"), TRUE)
+  expect_identical(ts_unserialize_jsonc(text = "[1,2]"), list(1L, 2L))
+  expect_identical(ts_unserialize_jsonc(text = "[1,true]"), list(1L, TRUE))
 })
 
 test_that("`null` converts correctly", {
-  expect_identical(unserialize_json(text = "null"), NULL)
-  expect_identical(unserialize_json(text = '[null]'), list(NULL))
-  expect_identical(unserialize_json(text = '[null, null]'), list(NULL, NULL))
+  expect_identical(ts_unserialize_jsonc(text = "null"), NULL)
+  expect_identical(ts_unserialize_jsonc(text = '[null]'), list(NULL))
   expect_identical(
-    unserialize_json(text = '[null, 1, null]'),
+    ts_unserialize_jsonc(text = '[null, null]'),
+    list(NULL, NULL)
+  )
+  expect_identical(
+    ts_unserialize_jsonc(text = '[null, 1, null]'),
     list(NULL, 1L, NULL)
   )
-  expect_identical(unserialize_json(text = '{"a": null}'), list(a = NULL))
+  expect_identical(ts_unserialize_jsonc(text = '{"a": null}'), list(a = NULL))
 })
 
 test_that("works with objects", {
@@ -63,7 +77,7 @@ test_that("works with objects", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = 1L, b = list(c = 2L))
   )
 })
@@ -76,7 +90,7 @@ test_that("works with array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(1L, 2L))
   )
 
@@ -87,7 +101,7 @@ test_that("works with array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(1L, "2"))
   )
 })
@@ -99,7 +113,7 @@ test_that("works with array of array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(list(1L), list(2L)))
   )
 
@@ -109,7 +123,7 @@ test_that("works with array of array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(list(1L, 2L), list(3L, 4L)))
   )
 
@@ -121,7 +135,7 @@ test_that("works with array of array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(list(1L, "2"), list(TRUE, 4L)))
   )
 
@@ -131,7 +145,7 @@ test_that("works with array of array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(list("a"), list(1L)))
   )
 
@@ -144,7 +158,7 @@ test_that("works with array of array as property value", {
   }
   '
   expect_identical(
-    unserialize_json(text = text),
+    ts_unserialize_jsonc(text = text),
     list(a = list(list(1L), list(2L, 3L)))
   )
 })
@@ -157,7 +171,7 @@ test_that("error messaging is reasonably helpful", {
 }
     '
   )
-  expect_snapshot(error = TRUE, unserialize_json(text = text))
+  expect_snapshot(error = TRUE, ts_unserialize_jsonc(text = text))
 
   text <- trimws(
     '
@@ -166,7 +180,7 @@ test_that("error messaging is reasonably helpful", {
 }
     '
   )
-  expect_snapshot(error = TRUE, unserialize_json(text = text))
+  expect_snapshot(error = TRUE, ts_unserialize_jsonc(text = text))
 
   text <- trimws(
     '
@@ -179,7 +193,7 @@ test_that("error messaging is reasonably helpful", {
 }
     '
   )
-  expect_snapshot(error = TRUE, unserialize_json(text = text))
+  expect_snapshot(error = TRUE, ts_unserialize_jsonc(text = text))
 
   text <- trimws(
     '
@@ -192,7 +206,7 @@ test_that("error messaging is reasonably helpful", {
 }
     '
   )
-  expect_snapshot(error = TRUE, unserialize_json(text = text))
+  expect_snapshot(error = TRUE, ts_unserialize_jsonc(text = text))
 })
 
 test_that("`allow_comments` works", {
@@ -204,7 +218,7 @@ test_that("`allow_comments` works", {
   '
 
   expect_snapshot(error = TRUE, {
-    unserialize_json(text = text, options = list(allow_comments = FALSE))
+    ts_unserialize_jsonc(text = text, options = list(allow_comments = FALSE))
   })
 })
 
@@ -216,7 +230,10 @@ test_that("`allow_trailing_comma` works", {
   '
 
   expect_snapshot(error = TRUE, {
-    unserialize_json(text = text, options = list(allow_trailing_comma = FALSE))
+    ts_unserialize_jsonc(
+      text = text,
+      options = list(allow_trailing_comma = FALSE)
+    )
   })
 })
 
@@ -224,11 +241,11 @@ test_that("`allow_empty_content` works", {
   options <- list(allow_empty_content = FALSE)
 
   expect_identical(
-    unserialize_json(text = '"a"', options = options),
+    ts_unserialize_jsonc(text = '"a"', options = options),
     "a"
   )
 
   expect_snapshot(error = TRUE, {
-    unserialize_json(text = "", options = options)
+    ts_unserialize_jsonc(text = "", options = options)
   })
 })

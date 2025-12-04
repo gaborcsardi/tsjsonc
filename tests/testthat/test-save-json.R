@@ -1,37 +1,40 @@
 test_that("save_json", {
-  json <- load_json(
-    text = serialize_json(list(a = list(1, 2, 3), b = list(b1 = "foo")))
+  json <- ts_parse_jsonc(
+    text = ts_serialize_jsonc(list(a = list(1, 2, 3), b = list(b1 = "foo")))
   )
 
   tmpdir <- tempfile()
   on.exit(unlink(tmpdir, recursive = TRUE), add = TRUE)
   mkdirp(tmpdir)
   tmp <- file.path(tmpdir, "test.json")
-  save_json(json, file = tmp)
+  ts_tree_write(json, file = tmp)
 
   expect_snapshot({
-    load_json(tmp)
+    ts_read_jsonc(tmp)
   })
 
   expect_snapshot(error = TRUE, {
-    save_json(json)
+    ts_tree_write(json)
   })
 
-  save_json(delete_selected(select(load_json(tmp), "a")))
+  ts_tree_write(ts_tree_delete(ts_tree_select(
+    ts_read_jsonc(tmp),
+    "a"
+  )))
   expect_snapshot({
-    load_json(tmp)
+    ts_read_jsonc(tmp)
   })
 
   expect_snapshot({
-    save_json(json, file = stdout())
+    ts_tree_write(json, file = stdout())
   })
 
   tmp2 <- file.path(tmpdir, "bin.json")
   out <- file(tmp2, open = "wb")
   on.exit(try(close(out), silent = TRUE), add = TRUE)
-  save_json(json, file = out)
+  ts_tree_write(json, file = out)
   close(out)
   expect_snapshot({
-    load_json(tmp2)
+    ts_read_jsonc(tmp2)
   })
 })

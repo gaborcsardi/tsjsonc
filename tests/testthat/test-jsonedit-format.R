@@ -9,7 +9,7 @@ test_that("formatting retains comments", {
     }
   } // trailing
   '
-  expect_snapshot(writeLines(format_json(text = text)))
+  expect_snapshot(writeLines(ts_format_jsonc(text = text)))
 })
 
 # test_that("`eol` only applies when we don't know the eol in `text`", {
@@ -18,13 +18,13 @@ test_that("formatting retains comments", {
 
 #   text <- '{"a":1}\n'
 #   expect_identical(
-#     format_json(text = text, options = options),
+#     ts_format_jsonc(text = text, options = options),
 #     strsplit('{\n    "a": 1\n}\n', "\n")[[1]]
 #   )
 
 #   text <- '{"a":1}'
 #   expect_identical(
-#     format_json(text = text, options = options),
+#     ts_format_jsonc(text = text, options = options),
 #     strsplit('{\r\n    "a": 1\r\n}\r\n', "\n")[[1]]
 #   )
 # })
@@ -34,7 +34,7 @@ test_that("`indent_width` works", {
 
   text <- '{"a":1}\n'
   expect_identical(
-    format_json(text = text, options = options),
+    ts_format_jsonc(text = text, options = options),
     strsplit('{\n  "a": 1\n}\n', "\n")[[1]]
   )
 })
@@ -44,7 +44,7 @@ test_that("`indent_style` works", {
 
   text <- '{"a":1}\n'
   expect_identical(
-    format_json(text = text, options = options),
+    ts_format_jsonc(text = text, options = options),
     strsplit('{\n\t"a": 1\n}\n', "\n")[[1]]
   )
 })
@@ -55,7 +55,7 @@ test_that("`indent_style` works", {
 
 #   text <- '{"a":1}\n'
 #   expect_identical(
-#     format_json(text = text, options = options),
+#     ts_format_jsonc(text = text, options = options),
 #     strsplit('{\n    "a": 1\n}', "\n")[[1]]
 #   )
 # })
@@ -66,7 +66,7 @@ test_that("`indent_style` works", {
 #   text <- '{"a":1}\n'
 #   options <- list(insert_final_newline = FALSE)
 #   expect_identical(
-#     format_json(text = text, options = options),
+#     ts_format_jsonc(text = text, options = options),
 #     strsplit('{\n    "a": 1\n}', "\n")[[1]]
 #   )
 
@@ -74,7 +74,7 @@ test_that("`indent_style` works", {
 #   text <- '{"a":1}'
 #   options <- list(insert_final_newline = TRUE)
 #   expect_identical(
-#     format_json(text = text, options = options),
+#     ts_format_jsonc(text = text, options = options),
 #     strsplit('{\n    "a": 1\n}\n', "\n")[[1]]
 #   )
 # })

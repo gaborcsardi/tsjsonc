@@ -5,16 +5,16 @@
 # If no selection then insert into the root element or at top level if
 # none
 
-#' Insert a new element into the selected ones in a tsjson object
+#' Insert a new element into the selected ones in a tsjsonc object
 #'
 #' Insert a new element into each selected array or object.
 #'
 #' It is an error trying to insert into an element that is not an array and
 #' not an object.
 #'
-#' @param json tsjson object
+#' @param tree tsjsonc object
 #' @param new New element to insert. Will be serialized with
-#'   [serialize_json()].
+#'   [ts_serialize_jsonc()].
 #' @param key Key of the new element, when inserting into an object.
 #' @param at What position to insert the new element at:
 #'   - `0`: at the beginning,
@@ -23,46 +23,53 @@
 #'   - a character scalar, the key after which the new element is inserted,
 #'     if that key exists, when inserting into an object. If this key does
 #'     not exist, then the new element is inserted at the end of the object.
-#' @inheritParams token_table
-#' @return The modified tsjson object.
+#' @param options Named list of formatting options, see
+#'   [tsjsonc options][tsjsonc_options].
+#' @param ... Must be empty currently, reserved for future use.
+#' @return The modified tsjsonc object.
 #'
 #' @export
+#' @keywords internal
+#'
 #' @examples
-#' json <- load_json(text = "{ \"a\": true, \"b\": [1, 2, 3] }")
+#' library(ts)
+#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json
 #'
-#' json |> select("b") |> insert_into_selected("foo", at = 1)
+#' json |> ts_tree_select("b") |> ts_tree_insert("foo", at = 1)
 
-insert_into_selected <- function(
-  json,
+ts_tree_insert.ts_tree_jsonc <- function(
+  tree,
   new,
   key = NULL,
   at = Inf,
-  options = NULL
+  options = NULL,
+  ...
 ) {
   if (!missing(options)) {
-    check_named_arg(options)
+    ts_check_named_arg(options)
   }
-  options <- as_tsjson_options(options, auto_format = TRUE)
-  select <- get_selected_nodes(json)
+  options <- as_tsjsonc_options(options, auto_format = TRUE)
+  select <- ts_tree_selected_nodes(tree)
+  # TODO: check that ... is empty
 
   if (length(select) == 0) {
-    return(json)
+    return(tree)
   }
 
   insertions <- lapply(select, function(sel1) {
     if (options[["format"]] == "auto") {
-      options[["format"]] <- auto_format(json, sel1)
+      options[["format"]] <- auto_format(tree, sel1)
     }
-    type <- json$type[sel1]
+    type <- tree$type[sel1]
     if (type == "document") {
-      insert_into_document(json, new, options)
+      insert_into_document(tree, new, options)
     } else if (type == "array") {
-      insert_into_array(json, sel1, new, at, options)
+      insert_into_array(tree, sel1, new, at, options)
     } else if (type == "object") {
-      insert_into_object(json, sel1, new, key, at, options)
+      insert_into_object(tree, sel1, new, key, at, options)
     } else {
-      stop(cnd(
+      stop(ts_cnd(
         "Cannot insert into a '{type}' JSON element. Can only insert \\
          into 'array' and 'object' elements and empty JSON documents."
       ))
@@ -73,28 +80,28 @@ insert_into_selected <- function(
 
   for (ins in insertions) {
     if (!isFALSE(ins$leading_comma)) {
-      aft <- last_descendant(json, ins$leading_comma)
-      json$tws[aft] <- paste0(",", json$tws[aft])
+      aft <- last_descendant(tree, ins$leading_comma)
+      tree$tws[aft] <- paste0(",", tree$tws[aft])
     }
 
-    aft <- last_descendant(json, ins$after)
-    firstchld <- json$children[[ins$select]][1]
+    aft <- last_descendant(tree, ins$after)
+    firstchld <- tree$children[[ins$select]][1]
     # mark first child for reformatting the whole array
-    json$tws[firstchld] <- paste0(reformat_mark, json$tws[firstchld])
-    json$tws[aft] <- paste0(
-      json$tws[aft],
+    tree$tws[firstchld] <- paste0(reformat_mark, tree$tws[firstchld])
+    tree$tws[aft] <- paste0(
+      tree$tws[aft],
       ins$code,
       if (ins$trailing_comma) ",",
       if (ins$trailing_newline) "\n"
     )
   }
 
-  parts <- c(rbind(json$code, json$tws))
+  parts <- c(rbind(tree$code, tree$tws))
   text <- unlist(lapply(na_omit(parts), charToRaw))
 
   # TODO: update coordinates without reparsing
-  new <- load_json(text = text)
-  attr(new, "file") <- attr(json, "file")
+  new <- ts_parse_jsonc(text = text)
+  attr(new, "file") <- attr(tree, "file")
 
   # now reformat the new parts, or the newly non-empty arrays/objects
   fws <- grepl(reformat_mark, new$tws, fixed = TRUE)
@@ -107,36 +114,36 @@ insert_into_selected <- function(
   if (options[["format"]] == "auto") {
     for (tofmt1 in tofmt2) {
       options[["format"]] <- auto_format(new, tofmt1)
-      new <- format_selected(
-        select(new, sel_ids(tofmt1)),
+      new <- ts_tree_format(
+        ts_tree_select(new, I(tofmt1)),
         options = options
       )
     }
   } else {
-    new <- select(new, sel_ids(tofmt2))
-    new <- format_selected(new, options = options)
+    new <- ts_tree_select(new, I(tofmt2))
+    new <- ts_tree_format(new, options = options)
   }
   new
 }
 
-last_descendant <- function(json, node) {
-  while (node != 1 && is.na(json$code[node])) {
-    node <- tail(json$children[[node]], 1)
+last_descendant <- function(tree, node) {
+  while (node != 1 && is.na(tree$code[node])) {
+    node <- tail(tree$children[[node]], 1)
   }
   node
 }
 
-auto_format <- function(json, sel) {
+auto_format <- function(tree, sel) {
   # if the array/object spans multiple lines then pretty formatting
-  if (json$start_row[sel] != json$end_row[sel]) {
+  if (tree$start_row[sel] != tree$end_row[sel]) {
     "pretty"
   } else {
     # if there is no space after children (except the last ], }), compact
     # except if it is the empty array/object
-    chdn <- json$children[[sel]]
+    chdn <- tree$children[[sel]]
     if (length(chdn) == 2 || sel == 1L) {
       "pretty"
-    } else if (all(json$tws[head(chdn, -1)] == "")) {
+    } else if (all(tree$tws[head(chdn, -1)] == "")) {
       "compact"
     } else {
       "oneline"
@@ -151,7 +158,7 @@ insert_into_document <- function(json, new, options) {
   notcmt <- top[json$type[top] != "comment"]
   # TODO: can this ever happen?
   if (length(notcmt) != 0) {
-    stop(cnd(
+    stop(ts_cnd(
       "Cannot insert JSON element at the document root if the document \\
        already has other non-comment elements."
     ))
@@ -165,7 +172,10 @@ insert_into_document <- function(json, new, options) {
   list(
     select = 1L,
     after = nrow(json),
-    code = paste0(nl, serialize_json(new, collapse = TRUE, options = options)),
+    code = paste0(
+      nl,
+      ts_serialize_jsonc(new, collapse = TRUE, options = options)
+    ),
     leading_comma = FALSE,
     trailing_comma = FALSE,
     trailing_newline = FALSE # TODO
@@ -174,7 +184,7 @@ insert_into_document <- function(json, new, options) {
 
 insert_into_array <- function(json, sel1, new, at, format) {
   if (!is.numeric(at)) {
-    stop(cnd(
+    stop(ts_cnd(
       "Invalid `at` value for inserting JSON element into array. \\
            It must be an integer scalar or `Inf`."
     ))
@@ -233,7 +243,7 @@ insert_into_array <- function(json, sel1, new, at, format) {
   list(
     select = sel1,
     after = chdn[after],
-    code = serialize_json(
+    code = ts_serialize_jsonc(
       new,
       collapse = TRUE,
       options = list(format = "compact")
@@ -306,7 +316,7 @@ insert_into_object <- function(json, sel1, new, key, at, format) {
     '"',
     key,
     '":',
-    serialize_json(new, collapse = TRUE, options = list(format = "compact"))
+    ts_serialize_jsonc(new, collapse = TRUE, options = list(format = "compact"))
   )
 
   # handle appending when there is a trailig comma

@@ -1,6 +1,7 @@
 /.dev
-docs
+/docs
 /man/_cache
 /README.html
 /quickstart.Rmd
 /.dev
+/man/macros/eval2.Rd

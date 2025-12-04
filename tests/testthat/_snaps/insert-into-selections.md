@@ -1,26 +1,26 @@
-# insert_into_selected
+# ts_tree_insert
 
     Code
-      insert_into_selected(select(json, "b"), "foo", at = 1, options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "b"), "foo", at = 1, options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": true, "b": [ 1, "foo", 2, 3 ] }
 
-# insert_into_selected with empty selection
+# ts_tree_insert with empty selection
 
     Code
-      insert_into_selected(select(json, "new"), "foo", options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "new"), "foo", options = list(format = "auto"))
     Output
-      # json (1 line, 0 selected elements)
+      # jsonc (1 line, 0 selected elements)
       1 | { "a": true, "b": [1, 2, 3] }
 
-# insert_into_selected multi-line array is pretty
+# ts_tree_insert multi-line array is pretty
 
     Code
-      insert_into_selected(select(json, "b"), list(a = 1, b = 2), options = list(
+      ts_tree_insert(ts_tree_select(json, "b"), list(a = 1, b = 2), options = list(
         format = "auto"))
     Output
-      # json (9 lines)
+      # jsonc (9 lines)
       1 | { "a": true, "b": [
       2 |     1,
       3 |     2,
@@ -31,47 +31,47 @@
       8 |     }
       9 | ] }
 
-# insert_into_selected with compact array is compact
+# ts_tree_insert with compact array is compact
 
     Code
-      insert_into_selected(select(json, "b"), list(1, 2), options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "b"), list(1, 2), options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a":true, "b":[1,2,3,[1,2]] }
 
-# insert_into_selected document
+# ts_tree_insert document
 
     Code
-      insert_into_selected(json, list(a = 1, b = 2), options = list(format = "auto"))
+      ts_tree_insert(json, list(a = 1, b = 2), options = list(format = "auto"))
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | {
       2 |   "a": 1,
       3 |   "b": 2
       4 | }
 
-# insert_into_selected object
+# ts_tree_insert object
 
     Code
-      insert_into_selected(select(json, "a"), 42, key = "b", options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "a"), 42, key = "b", options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": { "b": 42 } }
 
 ---
 
     Code
-      insert_into_selected(select(json, "a"), 43, key = "c", options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "a"), 43, key = "c", options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": { "b": 42, "c": 43 } }
 
-# insert_into_selected force formatting
+# ts_tree_insert force formatting
 
     Code
-      insert_into_selected(select(json, "b"), list(1, 2), options = list(format = "pretty"))
+      ts_tree_insert(ts_tree_select(json, "b"), list(1, 2), options = list(format = "pretty"))
     Output
-      # json (9 lines)
+      # jsonc (9 lines)
       1 | { "a":true, "b":[
       2 |     1,
       3 |     2,
@@ -90,12 +90,12 @@
       Error in `insert_into_document()`:
       ! Cannot insert JSON element at the document root if the document already has other non-comment elements.
 
-# insert_into_selected adds newline if needed
+# ts_tree_insert adds newline if needed
 
     Code
-      insert_into_selected(json, list(a = 1, b = 2), options = list(format = "auto"))
+      ts_tree_insert(json, list(a = 1, b = 2), options = list(format = "auto"))
     Output
-      # json (5 lines)
+      # jsonc (5 lines)
       1 | // comment
       2 | {
       3 |     "a": 1,
@@ -105,9 +105,9 @@
 ---
 
     Code
-      insert_into_selected(json, list(a = 1, b = 2), options = list(format = "auto"))
+      ts_tree_insert(json, list(a = 1, b = 2), options = list(format = "auto"))
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | // comment
       2 | // comment2
       3 | {
@@ -115,54 +115,53 @@
       5 |     "b": 2
       6 | }
 
-# insert_into_selected invalid index
+# ts_tree_insert invalid index
 
     Code
-      insert_into_selected(select(json, "b"), "foo", at = "bar", options = list(
+      ts_tree_insert(ts_tree_select(json, "b"), "foo", at = "bar", options = list(
         format = "auto"))
     Condition
       Error in `insert_into_array()`:
       ! Invalid `at` value for inserting JSON element into array. It must be an integer scalar or `Inf`.
 
-# insert_into_selected insert into empty array
+# ts_tree_insert insert into empty array
 
     Code
-      insert_into_selected(select(json, "b"), "foo", options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "b"), "foo", options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": true, "b": ["foo"] }
 
-# insert_into_selected insert at beginning of array
+# ts_tree_insert insert at beginning of array
 
     Code
-      insert_into_selected(select(json, "b"), "foo", at = 0, options = list(format = "auto"))
+      ts_tree_insert(ts_tree_select(json, "b"), "foo", at = 0, options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": true, "b": ["foo",1] }
 
-# insert_into_selected insert into object by key
+# ts_tree_insert insert into object by key
 
     Code
-      insert_into_selected(json, "val", key = "key", at = "a", options = list(format = "auto"))
+      ts_tree_insert(json, "val", key = "key", at = "a", options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": true, "key": "val", "b": [ 1 ] }
 
-# insert_into_selected insert into object by non-existing key
+# ts_tree_insert insert into object by non-existing key
 
     Code
-      insert_into_selected(json, "val", key = "key", at = "nope", options = list(
-        format = "auto"))
+      ts_tree_insert(json, "val", key = "key", at = "nope", options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": true, "b": [ 1 ], "key": "val" }
 
-# insert_into_selected insert into object at be beginning
+# ts_tree_insert insert into object at be beginning
 
     Code
-      insert_into_selected(json, "val", key = "key", at = 0, options = list(format = "auto"))
+      ts_tree_insert(json, "val", key = "key", at = 0, options = list(format = "auto"))
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "key": "val", "a": true, "b": [ 1 ] }
 
 # insert_into_array, comment is kept on same line
@@ -170,14 +169,14 @@
     Code
       json
     Output
-      # json (3 lines)
+      # jsonc (3 lines)
       1 | { "a": [1, 2 // comment
       2 | ]
       3 | }
     Code
-      insert_into_selected(select(json, "a"), 42, at = Inf)
+      ts_tree_insert(ts_tree_select(json, "a"), 42, at = Inf)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | { "a": [
       2 |     1,
       3 |     2, // comment
@@ -185,9 +184,9 @@
       5 | ]
       6 | }
     Code
-      insert_into_selected(select(json, "a"), 42, at = 2)
+      ts_tree_insert(ts_tree_select(json, "a"), 42, at = 2)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | { "a": [
       2 |     1,
       3 |     2, // comment
@@ -200,16 +199,16 @@
     Code
       json
     Output
-      # json (5 lines)
+      # jsonc (5 lines)
       1 | { "a": [1
       2 | // comment1
       3 | // comment2
       4 | , 2]
       5 | }
     Code
-      insert_into_selected(select(json, "a"), 42, at = 1)
+      ts_tree_insert(ts_tree_select(json, "a"), 42, at = 1)
     Output
-      # json (9 lines)
+      # jsonc (9 lines)
       1 | { "a": [
       2 |     1
       3 |     // comment1
@@ -225,14 +224,14 @@
     Code
       json
     Output
-      # json (3 lines)
+      # jsonc (3 lines)
       1 | { "a": 1, // comment
       2 |   "b": 2
       3 | }
     Code
-      insert_into_selected(json, 42, key = "x", at = "a")
+      ts_tree_insert(json, 42, key = "x", at = "a")
     Output
-      # json (5 lines)
+      # jsonc (5 lines)
       1 | {
       2 |     "a": 1, // comment
       3 |     "x": 42,
@@ -244,16 +243,16 @@
     Code
       json
     Output
-      # json (5 lines)
+      # jsonc (5 lines)
       1 | { "a": 1
       2 | // comment1
       3 | // comment2
       4 | , "b": 2
       5 | }
     Code
-      insert_into_selected(json, 42, at = "a", key = "x")
+      ts_tree_insert(json, 42, at = "a", key = "x")
     Output
-      # json (8 lines)
+      # jsonc (8 lines)
       1 | {
       2 |     "a": 1
       3 |     // comment1
@@ -268,13 +267,13 @@
     Code
       json
     Output
-      # json (2 lines)
+      # jsonc (2 lines)
       1 | [1,2,3,//comment
       2 | ]
     Code
-      insert_into_selected(json, 4)
+      ts_tree_insert(json, 4)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | [
       2 |     1,
       3 |     2,
@@ -287,13 +286,13 @@
     Code
       json
     Output
-      # json (2 lines)
+      # jsonc (2 lines)
       1 | { "a": 1, "b": 2, "c": 3, // comment
       2 | }
     Code
-      insert_into_selected(json, key = "d", 4)
+      ts_tree_insert(json, key = "d", 4)
     Output
-      # json (6 lines)
+      # jsonc (6 lines)
       1 | {
       2 |     "a": 1,
       3 |     "b": 2,

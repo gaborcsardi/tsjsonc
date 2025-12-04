@@ -1,67 +1,67 @@
-# get_selection, get_selected_nodes
+# ts_tree_selection, ts_tree_selected_nodes
 
     Code
-      get_selection(json)
+      ts_tree_selection(json)
     Output
       [[1]]
       [[1]]$selector
       list()
       attr(,"class")
-      [1] "tsjson_selector_default" "tsjson_selector"        
-      [3] "list"                   
+      [1] "ts_tree_selector_default" "ts_tree_selector"        
+      [3] "list"                    
       
       [[1]]$nodes
       [1] 1
       
       
     Code
-      get_selection(json, default = FALSE)
+      ts_tree_selection(json, default = FALSE)
     Output
       NULL
     Code
-      get_selected_nodes(json)
+      ts_tree_selected_nodes(json)
     Output
       [1] 1
     Code
-      get_selected_nodes(json, default = FALSE)
+      ts_tree_selected_nodes(json, default = FALSE)
     Output
       integer(0)
 
 ---
 
     Code
-      get_selection(json)
+      ts_tree_selection(json)
     Output
       [[1]]
       [[1]]$selector
       list()
       attr(,"class")
-      [1] "tsjson_selector_default" "tsjson_selector"        
-      [3] "list"                   
+      [1] "ts_tree_selector_default" "ts_tree_selector"        
+      [3] "list"                    
       
       [[1]]$nodes
       [1] 2
       
       
     Code
-      get_selection(json, default = FALSE)
+      ts_tree_selection(json, default = FALSE)
     Output
       NULL
     Code
-      get_selected_nodes(json)
+      ts_tree_selected_nodes(json)
     Output
       [1] 2
     Code
-      get_selected_nodes(json, default = FALSE)
+      ts_tree_selected_nodes(json, default = FALSE)
     Output
       integer(0)
 
-# select
+# ts_tree_select
 
     Code
-      select(json)
+      ts_tree_select(json)
     Output
-      # json (13 lines, 1 selected element)
+      # jsonc (13 lines, 1 selected element)
       >  1 | {
       >  2 |   "a": 1,
       >  3 |   "b": {
@@ -76,9 +76,9 @@
       > 12 |   ]
       > 13 | }
     Code
-      select(json, "a")
+      ts_tree_select(json, "a")
     Output
-      # json (13 lines, 1 selected element)
+      # jsonc (13 lines, 1 selected element)
         1   | {
       > 2   |   "a": 1,
         3   |   "b": {
@@ -86,9 +86,9 @@
         5   |     "b2": 22
         ...   
     Code
-      select(json, c("a", "b"))
+      ts_tree_select(json, c("a", "b"))
     Output
-      # json (13 lines, 2 selected elements)
+      # jsonc (13 lines, 2 selected elements)
          1  | {
       >  2  |   "a": 1,
       >  3  |   "b": {
@@ -100,9 +100,9 @@
          9  |     1,
         ...   
     Code
-      select(json, "b", "b1")
+      ts_tree_select(json, "b", "b1")
     Output
-      # json (13 lines, 1 selected element)
+      # jsonc (13 lines, 1 selected element)
         1   | {
         2   |   "a": 1,
         3   |   "b": {
@@ -112,9 +112,9 @@
         7   |   "c": 3,
         ...   
     Code
-      select(json, list("b", "b1"))
+      ts_tree_select(json, list("b", "b1"))
     Output
-      # json (13 lines, 1 selected element)
+      # jsonc (13 lines, 1 selected element)
         1   | {
         2   |   "a": 1,
         3   |   "b": {
@@ -124,9 +124,9 @@
         7   |   "c": 3,
         ...   
     Code
-      select(json, "d", 1)
+      ts_tree_select(json, "d", 1)
     Output
-      # json (13 lines, 1 selected element)
+      # jsonc (13 lines, 1 selected element)
         ...   
          6  |   },
          7  |   "c": 3,
@@ -137,9 +137,9 @@
         12  |   ]
         ...   
     Code
-      select(json, "d", TRUE)
+      ts_tree_select(json, "d", TRUE)
     Output
-      # json (13 lines, 3 selected elements)
+      # jsonc (13 lines, 3 selected elements)
         ...   
          6  |   },
          7  |   "c": 3,
@@ -153,25 +153,25 @@
 ---
 
     Code
-      select(json, raw(0))
+      ts_tree_select(json, raw(0))
     Condition
-      Error in `select1()`:
-      ! Invalid JSON selector
+      Error in `ts_tree_select1.default()`:
+      ! Don't know how to select nodes from a `ts_tree` (JSONC) object using selector of class `raw`.
 
 # deselect with NULL
 
     Code
-      select(json, "a")
+      ts_tree_select(json, "a")
     Output
-      # json (4 lines, 1 selected element)
+      # jsonc (4 lines, 1 selected element)
         1 | {
       > 2 |   "a": 1,
         3 |   "c": 3
         4 | }
     Code
-      select(select(json, "a"), NULL)
+      ts_tree_select(ts_tree_select(json, "a"), NULL)
     Output
-      # json (4 lines)
+      # jsonc (4 lines)
       1 | {
       2 |   "a": 1,
       3 |   "c": 3
@@ -267,13 +267,13 @@
     Output
       NULL
 
-# [[<-.tsjson
+# [[<-.tsjsonc
 
     Code
       json[["a"]] <- 2
       json
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |   "a": 2,
        3 |   "b": {
@@ -293,7 +293,7 @@
       json[[c("a", "c")]] <- TRUE
       json
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |   "a": true,
        3 |   "b": {
@@ -313,7 +313,7 @@
       json[[list("b", "b1")]] <- 100
       json
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |   "a": true,
        3 |   "b": {
@@ -333,7 +333,7 @@
       json[[list("b", "b1")]] <- 100
       json
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |   "a": 1,
        3 |   "b": {
@@ -347,12 +347,12 @@
       i 3 more lines
       i Use `print(n = ...)` to see more lines
 
-# [[<-.tsjson empty doc
+# [[<-.tsjsonc empty doc
 
     Code
       json
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | []
 
 ---
@@ -360,16 +360,16 @@
     Code
       json
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | {}
 
-# [[<-.tsjson deletion
+# [[<-.tsjsonc deletion
 
     Code
-      json[[c("a", "b")]] <- deleted()
+      json[[c("a", "b")]] <- ts_tree_deleted()
       json
     Output
-      # json (8 lines)
+      # jsonc (8 lines)
       1 | {
       2 |   "c": 3,
       3 |   "d": [
@@ -384,28 +384,7 @@
     Code
       json[[c(regex = "^a")]]
     Output
-      [[1]]
-      [1] 1
-      
-      [[2]]
-      [[2]]$b1
-      [1] 21
-      
-      [[2]]$b2
-      [1] 22
-      
-      
-      [[3]]
-      [[3]][[1]]
-      [1] 1
-      
-      [[3]][[2]]
-      [1] 2
-      
-      [[3]][[3]]
-      [1] 3
-      
-      
+      list()
 
 ---
 
@@ -432,22 +411,22 @@
       [1] 2
       
 
-# sel_ids
+# select I()
 
     Code
-      json[[sel_ids(26)]]
+      json[[I(26)]]
     Output
       [[1]]
       [1] 21
       
 
-# select<-
+# ts_tree_select<-
 
     Code
-      select(json, "a") <- 2
+      ts_tree_select(json, "a") <- 2
       json
     Output
-      # json (13 lines)
+      # jsonc (13 lines)
        1 | {
        2 |   "a": 2,
        3 |   "b": {
@@ -464,10 +443,10 @@
 ---
 
     Code
-      select(json, c("a")) <- deleted()
+      ts_tree_select(json, c("a")) <- ts_tree_deleted()
       json
     Output
-      # json (12 lines)
+      # jsonc (12 lines)
        1 | {
        2 |   "b": {
        3 |     "b1": 21,
@@ -484,10 +463,10 @@
 ---
 
     Code
-      select(json, list("b", "b1")) <- 100
+      ts_tree_select(json, list("b", "b1")) <- 100
       json
     Output
-      # json (12 lines)
+      # jsonc (12 lines)
        1 | {
        2 |   "b": {
        3 |     "b1": 100,
@@ -517,15 +496,15 @@
     Code
       json[[list("b", c(1, 2, 0, 3))]]
     Condition
-      Error in `select1()`:
-      ! Zero indices are not allowed in JSON selectors.
+      Error in `ts_tree_select1.ts_tree.integer()`:
+      ! Zero indices are not allowed in ts selectors.
 
-# select_query
+# TS query
 
     Code
-      update_selected(select_query(load_json(text = txt),
-      "((pair value: (number) @num))"), 100)
+      ts_tree_update(ts_tree_select(ts_parse_jsonc(text = txt), query = "((pair value: (number) @num))"),
+      100)
     Output
-      # json (1 line)
+      # jsonc (1 line)
       1 | { "a": 100, "b": "foo", "c": 100}
 

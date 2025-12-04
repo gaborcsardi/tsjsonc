@@ -87,13 +87,13 @@ test_that("as_choice", {
 
 test_that("default options", {
   expect_snapshot({
-    as_tsjson_options(NULL)
+    as_tsjsonc_options(NULL)
   })
 })
 
-test_that("as_tsjson_options", {
+test_that("as_tsjsonc_options", {
   expect_snapshot({
-    as_tsjson_options(list(format = "compact", allow_comments = FALSE))
+    as_tsjsonc_options(list(format = "compact", allow_comments = FALSE))
   })
 
   v1 <- 1:10
@@ -105,13 +105,13 @@ test_that("as_tsjson_options", {
   v7 <- list(indent_width = -2)
   v8 <- list(indent_style = "fancy")
   expect_snapshot(error = TRUE, {
-    as_tsjson_options(v1)
-    as_tsjson_options(v2)
-    as_tsjson_options(v3)
-    as_tsjson_options(v4)
-    as_tsjson_options(v5)
-    as_tsjson_options(v6)
-    as_tsjson_options(v7)
-    as_tsjson_options(v8)
+    as_tsjsonc_options(v1)
+    as_tsjsonc_options(v2)
+    as_tsjsonc_options(v3)
+    as_tsjsonc_options(v4)
+    as_tsjsonc_options(v5)
+    as_tsjsonc_options(v6)
+    as_tsjsonc_options(v7)
+    as_tsjsonc_options(v8)
   })
 })
