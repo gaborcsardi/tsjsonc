@@ -4,7 +4,7 @@ test_that("empty file parsing works", {
     ts_parse_jsonc(text = "") |>
       ts_tree_select("a") |>
       ts_tree_unserialize(),
-    list(NULL)
+    list()
   )
 })
 

@@ -31,6 +31,11 @@ ts_tree_unserialize.ts_tree_jsonc <- function(tree) {
 unserialize_element <- function(tree, id) {
   switch(
     tree$type[id],
+    document = {
+      # this only happens for empty documents, otherwise we select the
+      # a root element that is below document
+      NULL
+    },
     null = {
       unserialize_null(tree, id)
     },

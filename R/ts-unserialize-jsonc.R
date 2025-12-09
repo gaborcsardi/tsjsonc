@@ -47,7 +47,6 @@ ts_unserialize_jsonc <- function(
   }
   options <- as_tsjsonc_options(options)
   # parse file/text
-  # TODO: error on error, get error position
   tree <- ts_tree_new(
     language = ts_language_jsonc(),
     file = file,
@@ -56,18 +55,6 @@ ts_unserialize_jsonc <- function(
     options = options
   )
 
-  # document is the top element. easier to process without NA parents
-  # TODO: do not fail for empty file, but what to return? NULL, maybe?
-  tree$parent[1] <- 0L
-
-  # it must have one non-comment element
-  # multiple top-level values (e.g. JSONL) are not (yet) allowed
-  top <- tree$children[[1]]
-  top <- top[tree$type[top] != "comment"]
-
-  if (length(top) == 0) {
-    NULL
-  } else {
-    unserialize_element(tree, top)
-  }
+  # this uses the default selection
+  unserialize_element(tree, ts_tree_selected_nodes(tree))
 }
