@@ -27,3 +27,4 @@ Config/Needs/website:
     tidyverse/tidytemplate
 URL: https://github.com/gaborcsardi/tsjsonc
 BugReports: https://github.com/gaborcsardi/tsjsonc/issues
+Biarch: true
