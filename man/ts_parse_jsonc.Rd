@@ -81,6 +81,6 @@ ts_parse_jsonc(text) |>
 object, \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} to extract the selected part(s),
 \code{\link[ts:ts_tree_format]{ts::ts_tree_format()}} to format the selected part(s),
 \code{\link[ts:ts_tree_delete]{ts::ts_tree_delete()}}, \code{\link[ts:ts_tree_insert]{ts::ts_tree_insert()}} and
-\code{\link[ts:ts_tree_update]{ts::ts_tree_update()}} to manipulate it. \code{\link[=ts_tree_write]{ts_tree_write()}} to save
+\code{\link[ts:ts_tree_update]{ts::ts_tree_update()}} to manipulate it. \code{\link[ts:ts_tree_write]{ts::ts_tree_write()}} to save
 the JSON document to a file.
 }

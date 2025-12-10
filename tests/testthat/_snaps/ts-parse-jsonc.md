@@ -1,4 +1,4 @@
-# ts_parse_json
+# ts_parse_jsonc
 
     Code
       json
@@ -72,7 +72,7 @@
       8     8      2 <NA>       number   3             10       11         2            8       2          9 FALSE      FALSE     <NULL>   <int [0]> ""        <NULL>                2 <NA>     number  
       9     9      2 <NA>       ]        ]             11       12         2            9       2         10 FALSE      FALSE     <NULL>   <int [0]> "\n"      <NULL>               NA <NA>     <NA>    
 
-# ts_parse_json with options
+# ts_parse_jsonc with options
 
     Code
       json
@@ -81,7 +81,7 @@
       1 | // comment
       2 | { "a": 1 }
 
-# ts_read_json errors
+# ts_read_jsonc errors
 
     Code
       ts_tree_new(ts_language_jsonc())

@@ -1,4 +1,4 @@
-test_that("ts_parse_json", {
+test_that("ts_parse_jsonc", {
   testthat::local_reproducible_output(width = 500)
   json <- ts_parse_jsonc(text = "")
   expect_snapshot(json)
@@ -31,7 +31,7 @@ test_that("ts_parse_json", {
   })
 })
 
-test_that("ts_parse_json with options", {
+test_that("ts_parse_jsonc with options", {
   testthat::local_reproducible_output(width = 500)
   json <- ts_parse_jsonc(
     text = "// comment\n{ \"a\": 1 }",
@@ -42,7 +42,7 @@ test_that("ts_parse_json with options", {
   })
 })
 
-test_that("ts_read_json errors", {
+test_that("ts_read_jsonc errors", {
   expect_snapshot(error = TRUE, {
     ts_tree_new(ts_language_jsonc())
     ts_tree_new(ts_language_jsonc(), file = tempfile(), text = "foo")
