@@ -23,12 +23,7 @@
 #'
 #' tree |> ts_tree_select("a") |> ts_tree_update(list("new", "element"))
 
-ts_tree_update.ts_tree_jsonc <- function(
-  tree,
-  new,
-  options = NULL,
-  ...
-) {
+ts_tree_update.ts_tree_jsonc <- function(tree, new, options = NULL, ...) {
   if (!missing(options)) {
     ts_check_named_arg(options)
   }
