@@ -64,7 +64,7 @@ to format the selected part(s),
 and
 [`ts::ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.html)
 to manipulate it.
-[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.html)
+[`ts::ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.html)
 to save the JSON document to a file.
 
 ## Examples

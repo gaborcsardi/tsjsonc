@@ -27,7 +27,7 @@ The updated tsjsonc object.
 ## See also
 
 Save the updated tjsonc object to a file with
-[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.html).
+[`ts::ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.html).
 
 ## Examples
 
