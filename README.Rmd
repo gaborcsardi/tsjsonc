@@ -30,6 +30,7 @@ asciicast::init_knitr_engine(
 <!-- badges: start -->
 ![lifecycle](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
 [![R-CMD-check](https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/tsjsonc/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/gaborcsardi/tsjsonc/graph/badge.svg)](https://app.codecov.io/gh/gaborcsardi/tsjsonc)
 <!-- badges: end -->
 
 Extract and manipulate parts of JSON files without touching the formatting
