@@ -23,7 +23,3 @@ ts_format_jsonc(file = NULL, text = NULL, options = NULL)
 
   Named list of parsing and formatting options, see [tsjsonc
   options](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc_options.md).
-
-## Value
-
-Nothing.
