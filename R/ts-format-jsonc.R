@@ -5,7 +5,6 @@
 #'  of `file` or `text`.
 #' @param options Named list of parsing and formatting options, see
 #'  [tsjsonc options][tsjsonc_options].
-#' @return Nothing.
 #' @export
 
 ts_format_jsonc <- function(

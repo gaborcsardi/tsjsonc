@@ -15,9 +15,6 @@ of \code{file} or \code{text}.}
 \item{options}{Named list of parsing and formatting options, see
 \link[=tsjsonc_options]{tsjsonc options}.}
 }
-\value{
-Nothing.
-}
 \description{
 Format a JSONC file
 }
