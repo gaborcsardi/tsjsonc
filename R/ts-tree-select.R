@@ -201,3 +201,23 @@ NULL
 #' @name ts_tree_select<-
 #' @keywords internal
 NULL
+
+#' @title
+#' Select parts of a JSONC tree-sitter tree
+#' @usage
+#' \method{ts_tree_select}{tsjsonc}(tree, ..., refine = FALSE)
+#' @param tree \eval{tsjsonc:::docs("ts_tree_select", "param-tree")}
+#' @param ... \eval{tsjsonc:::docs("ts_tree_select", "param-...")}
+#' @param refine \eval{tsjsonc:::docs("ts_tree_select", "param-refine")}
+#' @return \eval{tsjsonc:::docs("ts_tree_select", "return")}
+#'
+#' @description
+#' \eval{tsjsonc:::docs("ts_tree_select", "description")}
+#' @details
+#' \eval{tsjsonc:::docs("ts_tree_select", "details")}
+#' @examples
+#' # hardcoded examples
+
+ts_tree_select.tsjsonc <- function(tree, ..., refine = FALSE) {
+  NextMethod()
+}
