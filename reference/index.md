@@ -13,8 +13,8 @@
   to parse JSON into R.
 - See
   [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
-  `ts_tree_select()`, and `ts_tree_unserialize()` to parse parts of JSON
-  into R.
+  [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.tsjsonc.md),
+  and `ts_tree_unserialize()` to parse parts of JSON into R.
 - See
   [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
   `ts_tree_select()`, `ts_tree_format()`, and `ts_save_json()` to format
@@ -33,6 +33,11 @@
   : Parse a JSON file or string into a tsjsonc object
 - [`ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.md)
   : Tree sitter language object for JSONC
+
+## Selection
+
+- [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.tsjsonc.md)
+  : Select parts of a JSONC tree-sitter tree.
 
 ## Serialization
 
