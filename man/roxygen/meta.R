@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
   error = FALSE
 )
 
+Sys.setenv("R_TS_PACKAGE" = "tsjsonc")
 ts:::ts_roclet_register()
 
 list(

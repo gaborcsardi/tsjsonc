@@ -7,21 +7,23 @@
 \method{ts_tree_select}{tsjsonc}(tree, ..., refine = FALSE)
 }
 \arguments{
-\item{tree}{\eval{tsjsonc:::docs("ts_tree_select", "param-tree")}}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_select_param_tree", "tsjsonc")}}
 
-\item{...}{\eval{tsjsonc:::docs("ts_tree_select", "param-...")}}
+\item{...}{\eval{ts:::doc_insert("ts::ts_tree_select_param_dots", "tsjsonc")}}
 
-\item{refine}{\eval{tsjsonc:::docs("ts_tree_select", "param-refine")}}
+\item{refine}{\eval{ts:::doc_insert("ts::ts_tree_select_param_refine", "tsjsonc")}}
 }
 \value{
-\eval{tsjsonc:::docs("ts_tree_select", "return")}
+\eval{ts:::doc_insert("ts::ts_tree_select_return", "tsjsonc")}
 }
 \description{
-\eval{tsjsonc:::docs("ts_tree_select", "description")}
+\eval{ts:::doc_insert("ts::ts_tree_select_description", "tsjsonc")}
+
+This is the S3 method of the \code{\link[ts:ts_tree_select]{ts::ts_tree_select()}} generic,
+for \link{tsjsonc} objects.
 }
 \details{
-\eval{tsjsonc:::docs("ts_tree_select", "details")}
-}
-\examples{
-# hardcoded examples
+\eval{ts:::doc_insert("ts::ts_tree_select_details", "tsjsonc")}
+\eval{ts:::doc_insert("tsjsonc::ts_tree_select_examples", "tsjsonc")}
+\eval{ts:::doc_extra()}
 }

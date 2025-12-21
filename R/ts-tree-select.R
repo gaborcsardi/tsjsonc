@@ -1,7 +1,4 @@
-#' @ts ts_tree_select_true
-#'
-#' **JSONC example**
-#' <p/>
+#' @ts ts_tree_select_true JSONC example
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -10,10 +7,7 @@
 #' json |> ts_tree_select(c("b", "c"), TRUE)
 #' ```
 #'
-#' @ts ts_tree_select_character
-#'
-#' **JSONC example**
-#' <p/>
+#' @ts ts_tree_select_character JSONC example
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -22,16 +16,10 @@
 #' json |> ts_tree_select(c("a", "c"), c("c1"))
 #' ```
 #'
-#' @ts ts_tree_select_integer
-#'
-#' **JSONC**
-#' <p/>
+#' @ts ts_tree_select_integer JSONC
 #'
 #' For JSONC positional indices can be used both for arrays and objects.
 #' For other nodes nothing is selected.
-#' <p/>
-#'
-#' **JSONC example**
 #' <p/>
 #'
 #' ```{asciicast}
@@ -41,10 +29,7 @@
 #' json |> ts_tree_select(c("b", "c"), -1)
 #' ```
 #'
-#' @ts ts_tree_select_regex
-#'
-#' **JSONC example**
-#' <p/>
+#' @ts ts_tree_select_regex JSONC example
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -53,15 +38,9 @@
 #' json |> ts_tree_select(regex = "^a")
 #' ```
 #'
-#' @ts ts_tree_select_tsquery
-#'
-#' **JSONC**
-#' <p/>
+#' @ts ts_tree_select_tsquery JSONC
 #'
 #' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
-#' <p/>
-#'
-#' **JSONC example**
 #' <p/>
 #'
 #' This example selects all numbers in the JSON document.
@@ -74,10 +53,7 @@
 #' json |> ts_tree_select(query = "(number) @number")
 #' ```
 #'
-#' @ts ts_tree_select_ids
-#'
-#' **JSONC example**
-#' <p/>
+#' @ts ts_tree_select_ids JSONC example
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -90,8 +66,9 @@
 #' json |> ts_tree_select(I(18))
 #' ```
 #'
-#' @ts ts_tree_select_examples
-#' ## JSONC examples
+#' @ts ts_tree_select_examples JSONC examples
+#'
+#' ## Examples
 #'
 #' ```{asciicast}
 #' library(ts)
@@ -206,17 +183,26 @@ NULL
 #' Select parts of a JSONC tree-sitter tree
 #' @usage
 #' \method{ts_tree_select}{tsjsonc}(tree, ..., refine = FALSE)
-#' @param tree \eval{tsjsonc:::docs("ts_tree_select", "param-tree")}
-#' @param ... \eval{tsjsonc:::docs("ts_tree_select", "param-...")}
-#' @param refine \eval{tsjsonc:::docs("ts_tree_select", "param-refine")}
-#' @return \eval{tsjsonc:::docs("ts_tree_select", "return")}
+#' @param tree
+#' \eval{ts:::doc_insert("ts::ts_tree_select_param_tree", "tsjsonc")}
+#' @param ...
+#' \eval{ts:::doc_insert("ts::ts_tree_select_param_dots", "tsjsonc")}
+#' @param refine
+#' \eval{ts:::doc_insert("ts::ts_tree_select_param_refine", "tsjsonc")}
+#' @return
+#' \eval{ts:::doc_insert("ts::ts_tree_select_return", "tsjsonc")}
 #'
 #' @description
-#' \eval{tsjsonc:::docs("ts_tree_select", "description")}
+#' \eval{ts:::doc_insert("ts::ts_tree_select_description", "tsjsonc")}
+#'
+#' This is the S3 method of the [ts::ts_tree_select()] generic,
+#' for [tsjsonc] objects.
+#'
 #' @details
-#' \eval{tsjsonc:::docs("ts_tree_select", "details")}
-#' @examples
-#' # hardcoded examples
+#' \eval{ts:::doc_insert("ts::ts_tree_select_details", "tsjsonc")}
+#' \eval{ts:::doc_insert("tsjsonc::ts_tree_select_examples", "tsjsonc")}
+#' \eval{ts:::doc_extra()}
+#' @export
 
 ts_tree_select.tsjsonc <- function(tree, ..., refine = FALSE) {
   NextMethod()

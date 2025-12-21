@@ -1,4 +1,6 @@
-\subsection{JSONC examples}{
+#| title: JSONC examples
+# ---
+\subsection{Examples}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{library(ts)
 json <- ts_parse_jsonc(ts_serialize_jsonc(list(

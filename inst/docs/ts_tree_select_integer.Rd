@@ -1,15 +1,7 @@
-\strong{JSONC}\if{html}{\out{
-<p/>
-}}
-
-
+#| title: JSONC
+# ---
 For JSONC positional indices can be used both for arrays and objects.
 For other nodes nothing is selected.\if{html}{\out{
-<p/>
-}}
-
-
-\strong{JSONC example}\if{html}{\out{
 <p/>
 }}
 

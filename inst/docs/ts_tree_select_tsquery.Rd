@@ -1,14 +1,6 @@
-\strong{JSONC}\if{html}{\out{
-<p/>
-}}
-
-
+#| title: JSONC
+# ---
 See \code{\link[=ts_language_jsonc]{ts_language_jsonc()}} for details on the JSONC grammar.\if{html}{\out{
-<p/>
-}}
-
-
-\strong{JSONC example}\if{html}{\out{
 <p/>
 }}
 

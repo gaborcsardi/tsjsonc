@@ -1,8 +1,5 @@
-\strong{JSONC example}\if{html}{\out{
-<p/>
-}}
-
-
+#| title: JSONC example
+# ---
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
   '\{ "a": 1, "b": [10, 20, 30], "c": \{ "c1": true, "c2": null \} \}'
 )
