@@ -1,6 +1,6 @@
 #| title: JSONC example
 # ---
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
  '\{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 \}'
 )
 json |> ts_tree_select(regex = "^a")

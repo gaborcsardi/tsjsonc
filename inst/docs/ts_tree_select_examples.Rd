@@ -2,7 +2,7 @@
 # ---
 \subsection{Examples}{
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{library(ts)
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{library(ts)
 json <- ts_parse_jsonc(ts_serialize_jsonc(list(
   a = list(a1 = list(1,2,3), a2 = "string"),
   b = list(4, 5, 6),
@@ -15,7 +15,7 @@ json <- ts_parse_jsonc(ts_serialize_jsonc(list(
 }}
 
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines)</span>                                                              
@@ -37,7 +37,7 @@ json <- ts_parse_jsonc(ts_serialize_jsonc(list(
 
 Select object by key:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select("a")
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select("a")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines, 1 selected element)</span>                                          
@@ -60,7 +60,7 @@ Select object by key:
 
 Select within select, these are the same:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select("a", "a1")
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select("a", "a1")
 json |> ts_tree_select(list("a", "a1"))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
@@ -94,7 +94,7 @@ json |> ts_tree_select(list("a", "a1"))
 
 Select elements of an array. All elements:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select("b", TRUE)
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select("b", TRUE)
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines, 3 selected elements)</span>                                         
@@ -115,7 +115,7 @@ Select elements of an array. All elements:
 
 First two elements:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select("b", 1:2)
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select("b", 1:2)
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>                                         
@@ -135,7 +135,7 @@ First two elements:
 
 First and last elements:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select("b", c(1, -1))
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select("b", c(1, -1))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>                                         
@@ -156,7 +156,7 @@ First and last elements:
 
 Regular expressions:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select(c("a", "c"), regex = "1$")
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select(c("a", "c"), regex = "1$")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>                                         

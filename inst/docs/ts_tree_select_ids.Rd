@@ -1,6 +1,6 @@
 #| title: JSONC example
 # ---
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
   '\{ "a": 1, "b": [10, 20, 30], "c": \{ "c1": true, "c2": null \} \}'
 )
 ts_tree_dom(json)
@@ -20,7 +20,7 @@ ts_tree_dom(json)
 }}
 
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select(I(18))
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json |> ts_tree_select(I(18))
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (1 line, 1 selected element)</span>                                            

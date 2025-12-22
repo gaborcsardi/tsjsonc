@@ -20,7 +20,6 @@
 #'
 #' For JSONC positional indices can be used both for arrays and objects.
 #' For other nodes nothing is selected.
-#' <p/>
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(
@@ -41,10 +40,8 @@
 #' @ts ts_tree_select_tsquery JSONC
 #'
 #' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
-#' <p/>
 #'
 #' This example selects all numbers in the JSON document.
-#' <p/>
 #'
 #' ```{asciicast}
 #' json <- tsjsonc::ts_parse_jsonc(

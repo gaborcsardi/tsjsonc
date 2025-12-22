@@ -1,12 +1,9 @@
 #| title: JSONC
 # ---
 For JSONC positional indices can be used both for arrays and objects.
-For other nodes nothing is selected.\if{html}{\out{
-<p/>
-}}
+For other nodes nothing is selected.
 
-
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{json <- tsjsonc::ts_parse_jsonc(
   '\{ "a": 1, "b": [10, 20, 30], "c": \{ "c1": true, "c2": null \} \}'
 )
 json |> ts_tree_select(c("b", "c"), -1)
