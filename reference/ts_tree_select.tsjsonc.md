@@ -41,9 +41,11 @@ A `ts_tree` object with the selected parts.
 A selection starts from the root of the DOM tree, the document node (see
 [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.html)),
 unless `refine = TRUE` is set, in which case it starts from the current
-selection.A list of selection expressions is applied in order. Each
-selection expression selects nodes from the currently selected nodes.See
-the various types of selection expressions below.
+selection.
+
+A list of selection expressions is applied in order. Each selection
+expression selects nodes from the currently selected nodes.See the
+various types of selection expressions below.
 
 ### Selectors
 
