@@ -1,6 +1,14 @@
 #| title: JSONC
 # ---
-See \code{\link[=ts_language_jsonc]{ts_language_jsonc()}} for details on the JSONC grammar.
+\if{html}{\out{
+<p>
+}}
+
+
+See \code{\link[=ts_language_jsonc]{ts_language_jsonc()}} for details on the JSONC grammar.\if{html}{\out{
+<p>
+}}
+
 
 This example selects all numbers in the JSON document.
 

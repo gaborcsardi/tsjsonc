@@ -18,6 +18,8 @@
 #'
 #' @ts ts_tree_select_integer JSONC
 #'
+#' <p>
+#'
 #' For JSONC positional indices can be used both for arrays and objects.
 #' For other nodes nothing is selected.
 #'
@@ -39,7 +41,11 @@
 #'
 #' @ts ts_tree_select_tsquery JSONC
 #'
+#' <p>
+#'
 #' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
+#'
+#' <p>
 #'
 #' This example selects all numbers in the JSON document.
 #'
