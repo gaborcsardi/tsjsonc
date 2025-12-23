@@ -78,7 +78,8 @@ a new selection.</p></dd>
 (see <code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_dom.html" class="external-link">ts_tree_dom()</a></code>), unless <code>refine = TRUE</code> is set, in which case it
 starts from the current selection.
 </p><p>A list of selection expressions is applied in order. Each selection
-expression selects nodes from the currently selected nodes.See the various types of selection expressions below.
+expression selects nodes from the currently selected nodes.
+</p><p>See the various types of selection expressions below.
 </p><div class="section">
 <h3 id="selectors">Selectors<a class="anchor" aria-label="anchor" href="#selectors"></a></h3><div class="section">
 <h4 id="all-elements-true">All elements: <code>TRUE</code><a class="anchor" aria-label="anchor" href="#all-elements-true"></a></h4><p>Selects all child nodes of the current nodes.</p>
@@ -135,7 +136,7 @@ queries.
 the first element is the query string and the second element is a
 character vector of capture names to select. In this case only nodes
 matching the given capture names will be selected.</p>
-<p></p><p></p><p>See <code><a href="ts_language_jsonc.html">ts_language_jsonc()</a></code> for details on the JSONC grammar.
+<p></p><p></p><p>See <code><a href="ts_language_jsonc.html">tsjsonc::ts_language_jsonc()</a></code> for details on the JSONC grammar.
 </p><p></p><p>This example selects all numbers in the JSON document.</p>
 <p></p><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="../reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'</span></span>
@@ -175,7 +176,7 @@ simultanously), instead of starting from the document element.</p>
 </div><div class="section">
 <h3 id="the-and-lt-operators">The <code>[[</code> and <code>[[&lt;-</code> operators<a class="anchor" aria-label="anchor" href="#the-and-lt-operators"></a></h3><p>The <code>[[</code> operator works similarly to <code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts_tree_select()</a></code> on ts_tree
 objects, but it might be more readable.
-</p><p></p><p>The <code>[[&lt;-</code> operator works similarly to <code><a href="select-set.html">ts_tree_select&lt;-()</a></code>, but it
+</p><p></p><p>The <code>[[&lt;-</code> operator works similarly to <code><a href="https://gaborcsardi.github.io/ts/reference/select-set.html" class="external-link">ts::ts_tree_select&lt;-()</a></code>, but it
 might be more readable.</p>
 </div>
 
@@ -419,9 +420,7 @@ function openCity(evt, language) {
   border-left: 1px solid #ccc!important
 }.w3-border-right{
   border-right: 1px solid #ccc!important
-}
-</style><style>
-/* undo the gradient in tidytemplate, but add it to the whole tab */
+}/* undo the gradient in tidytemplate, but add it to the whole tab */
 .ts-package {
   background-image: linear-gradient(-160deg, #f8f8f8 0, #f1f1f1 100%);
 }

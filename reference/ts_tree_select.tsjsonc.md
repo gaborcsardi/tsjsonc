@@ -44,8 +44,9 @@ unless `refine = TRUE` is set, in which case it starts from the current
 selection.
 
 A list of selection expressions is applied in order. Each selection
-expression selects nodes from the currently selected nodes.See the
-various types of selection expressions below.
+expression selects nodes from the currently selected nodes.
+
+See the various types of selection expressions below.
 
 ### Selectors
 
@@ -126,7 +127,7 @@ character vector of capture names to select. In this case only nodes
 matching the given capture names will be selected.
 
 See
-[`ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.md)
+[`tsjsonc::ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.md)
 for details on the JSONC grammar.
 
 This example selects all numbers in the JSON document.
@@ -186,7 +187,7 @@ The `[[` operator works similarly to
 on ts_tree objects, but it might be more readable.
 
 The `[[<-` operator works similarly to
-[`ts_tree_select<-()`](https://gaborcsardi.github.io/tsjsonc/reference/select-set.md),
+[`ts::ts_tree_select<-()`](https://gaborcsardi.github.io/ts/reference/select-set.html),
 but it might be more readable.
 
 ### Examples
