@@ -15,7 +15,7 @@ ts_tree_update(tree, new, options = NULL, ...)
 
 - tree:
 
-  tsjsonc object.
+  ts_tree_jsonc object.
 
 - new:
 
@@ -34,7 +34,7 @@ ts_tree_update(tree, new, options = NULL, ...)
 
 ## Value
 
-The updated tsjsonc object
+The updated ts_tree_jsonc object
 
 ## Examples
 

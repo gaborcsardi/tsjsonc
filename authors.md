@@ -16,13 +16,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/gaborcsardi/tsjsonc/blob/main/DESCRIPTION)
 
-Csárdi G (2025). *tsjsonc: Edit JSON Files*. R package version
+Csárdi G (2026). *tsjsonc: Edit JSON Files*. R package version
 0.0.0.9000, <https://github.com/gaborcsardi/tsjsonc>.
 
     @Manual{,
       title = {tsjsonc: Edit JSON Files},
       author = {Gábor Csárdi},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.0.0.9000},
       url = {https://github.com/gaborcsardi/tsjsonc},
     }

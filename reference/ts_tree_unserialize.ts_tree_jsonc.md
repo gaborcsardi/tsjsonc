@@ -1,4 +1,4 @@
-# Unserialize selected elements from a tsjsonc object
+# Unserialize selected elements from a ts_tree_jsonc object
 
 Uses
 [`ts::ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html)
@@ -15,7 +15,7 @@ ts_tree_unserialize(tree)
 
 - tree:
 
-  tsjsonc object.
+  ts_tree_jsonc object.
 
 ## Value
 

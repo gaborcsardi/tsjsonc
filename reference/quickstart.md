@@ -4,9 +4,9 @@ tsjsonc quickstart
 
 ## Details
 
-### Create a tsjsonc object
+### Create a ts_tree_jsonc object
 
-Create a tsjsonc object from a string:
+Create a ts_tree_jsonc object from a string:
 
     txt <- r"(
     // this is a comment
@@ -30,7 +30,7 @@ Create a tsjsonc object from a string:
     )"
     json <- ts_parse_jsonc(text = txt)
 
-Pretty print a tsjsonc object:
+Pretty print a ts_tree_jsonc object:
 
     json
 
@@ -48,7 +48,7 @@ Pretty print a tsjsonc object:
     #> ℹ 9 more lines
     #> ℹ Use `print(n = ...)` to see more lines
 
-### Select elements in a tsjsonc object
+### Select elements in a ts_tree_jsonc object
 
 Select element by objects key:
 

@@ -1,7 +1,8 @@
-# Parse a JSON file or string into a tsjsonc object
+# Parse a JSON file or string into a ts_tree_jsonc object
 
-Parse a JSON file or string and create a tsjsonc object that represents
-its document. This object can then be queried and manipulated.
+Parse a JSON file or string and create a ts_tree_jsonc object that
+represents its document. This object can then be queried and
+manipulated.
 
 ## Usage
 
@@ -15,7 +16,7 @@ ts_read_jsonc(file, ranges = NULL, fail_on_parse_error = TRUE, options = NULL)
 
 - text:
 
-  String. Use either `file` or `text`, but not both.
+  String to parse. Use either `file` or `text`, but not both.
 
 - ranges:
 
@@ -35,17 +36,18 @@ ts_read_jsonc(file, ranges = NULL, fail_on_parse_error = TRUE, options = NULL)
 
 - file:
 
-  Path of a file. Use either `file` or `text`, but not both.
+  Path of a file to parse. Use either `file` or `text`, but not both.
 
 ## Value
 
-A tsjsonc object.
+A ts_tree_jsonc object.
 
 ## Details
 
-tsjsonc objects have [`format()`](https://rdrr.io/r/base/format.html)
-and [`print()`](https://rdrr.io/r/base/print.html) methods to
-pretty-print them to the screen.
+ts_tree_jsonc objects have
+[`format()`](https://rdrr.io/r/base/format.html) and
+[`print()`](https://rdrr.io/r/base/print.html) methods to pretty-print
+them to the screen.
 
 They can be converted to a data frame using the [single
 bracket](https://gaborcsardi.github.io/ts/reference/ts_tree-brackets.html)
@@ -54,7 +56,7 @@ operator.
 ## See also
 
 [`ts::ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.html)
-to select part(s) of a tsjsonc object,
+to select part(s) of a ts_tree_jsonc object,
 [`ts::ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html)
 to extract the selected part(s),
 [`ts::ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.html)

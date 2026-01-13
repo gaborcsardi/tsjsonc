@@ -13,7 +13,7 @@
   to parse JSON into R.
 - See
   [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
-  [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.tsjsonc.md),
+  [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.ts_tree_jsonc.md),
   and `ts_tree_unserialize()` to parse parts of JSON into R.
 - See
   [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md),
@@ -28,16 +28,24 @@
 
 ## Parsing
 
+- [`ts_tree_new()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_new.ts_language_jsonc.md)
+  : Create a new tree-sitter tree for a JSONC document.
+
 - [`ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md)
   [`ts_read_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.md)
-  : Parse a JSON file or string into a tsjsonc object
+  : Parse a JSON file or string into a ts_tree_jsonc object
 - [`ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.md)
   : Tree sitter language object for JSONC
 
 ## Selection
 
-- [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.tsjsonc.md)
+- [`ts_tree_select()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.ts_tree_jsonc.md)
   : Select parts of a JSONC tree-sitter tree.
+
+## Editing
+
+- [`ts_tree_delete()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_delete.ts_tree_jsonc.md)
+  : Delete selected elements from a JSONC tree-sitter tree.
 
 ## Serialization
 

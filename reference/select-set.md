@@ -1,4 +1,4 @@
-# Update selected elements in a tsjsonc object
+# Update selected elements in a ts_tree_jsonc object
 
 Update the selected elements of a JSON document, using the replacement
 function syntax.
@@ -7,7 +7,7 @@ function syntax.
 
 - x, json:
 
-  tsjsonc object. Create a tsjsonc object with
+  ts_tree_jsonc object. Create a ts_tree_jsonc object with
   [`ts::ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.html).
 
 - i, ...:
@@ -22,11 +22,11 @@ function syntax.
 
 ## Value
 
-The updated tsjsonc object.
+The updated ts_tree_jsonc object.
 
 ## See also
 
-Save the updated tjsonc object to a file with
+Save the updated ts_tree_jsonc object to a file with
 [`ts::ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.html).
 
 ## Examples

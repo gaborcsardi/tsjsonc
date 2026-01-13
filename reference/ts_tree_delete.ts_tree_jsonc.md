@@ -1,8 +1,6 @@
-# Delete selected elements from a tsjsonc object
+# Delete selected elements from a ts_tree_jsonc object
 
-The formatting of the rest of JSON document is kept as is. Comments
-appearing inside the deleted elements are also deleted. Other comments
-are left as is.
+Delete selected elements from a ts_tree_jsonc object
 
 ## Usage
 
@@ -15,7 +13,7 @@ ts_tree_delete(tree, ...)
 
 - tree:
 
-  tsjsonc object.
+  A `ts_tree` object.
 
 - ...:
 
@@ -23,12 +21,14 @@ ts_tree_delete(tree, ...)
 
 ## Value
 
-Modified tsjsonc object.
+The modified `ts_tree` object with the selected elements removed.
 
 ## Details
 
-If `tree` has no selection then the the whole document is deleted. If
-`tree` has an empty selection, then nothing is delted.
+The formatting of the rest of the document is left as is.
+
+Comments appearing inside the deleted elements are also deleted. Other
+comments are left as is.
 
 ## Examples
 

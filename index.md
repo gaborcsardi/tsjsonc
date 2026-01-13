@@ -18,13 +18,13 @@ pak::pak("gaborcsardi/tsjsonc")
 See at
 [`https://gaborcsardi.github.io/tsjsonc/`](https://gaborcsardi.github.io/tsjsonc/reference/index.html/)
 and also in the installed package:
-[`help(package = "tsjsonc")`](https://rdrr.io/pkg/tsjsonc/man).
+[`help(package = "tsjsonc")`](https://gaborcsardi.github.io/tsjsonc/reference).
 
 ## Quickstart
 
-### Create a tsjsonc object
+### Create a ts_tree_jsonc object
 
-Create a tsjsonc object from a string:
+Create a ts_tree_jsonc object from a string:
 
 ``` r
 txt <- r"(
@@ -50,7 +50,7 @@ txt <- r"(
 json <- ts_parse_jsonc(text = txt)
 ```
 
-Pretty print a tsjsonc object:
+Pretty print a ts_tree_jsonc object:
 
 ``` r
 json
@@ -70,7 +70,7 @@ json
     #> ℹ 9 more lines
     #> ℹ Use `print(n = ...)` to see more lines
 
-### Select elements in a tsjsonc object
+### Select elements in a ts_tree_jsonc object
 
 Select element by objects key:
 

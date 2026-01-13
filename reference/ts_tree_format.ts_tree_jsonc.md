@@ -13,7 +13,7 @@ ts_tree_format(tree, options = NULL, ...)
 
 - tree:
 
-  tsjsonc object.
+  ts_tree_jsonc object.
 
 - options:
 
@@ -26,7 +26,7 @@ ts_tree_format(tree, options = NULL, ...)
 
 ## Value
 
-The updated tsjsonc object.
+The updated ts_tree_jsonc object.
 
 ## Details
 

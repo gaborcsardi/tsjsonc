@@ -1,4 +1,4 @@
-# Insert a new element into the selected ones in a tsjsonc object
+# Insert a new element into the selected ones in a ts_tree_jsonc object
 
 Insert a new element into each selected array or object.
 
@@ -13,7 +13,7 @@ ts_tree_insert(tree, new, key = NULL, at = Inf, options = NULL, ...)
 
 - tree:
 
-  tsjsonc object
+  ts_tree_jsonc object
 
 - new:
 
@@ -50,7 +50,7 @@ ts_tree_insert(tree, new, key = NULL, at = Inf, options = NULL, ...)
 
 ## Value
 
-The modified tsjsonc object.
+The modified ts_tree_jsonc object.
 
 ## Details
 
