@@ -70,6 +70,73 @@
 #' json |> ts_tree_select(I(18))
 #' ```
 #'
+#' @ts ts_tree_select_refine JSONC example
+#'
+#' ```{asciicast}
+#' #| results = "hide"
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json <- json |> ts_tree_select(c("b", "c"))
+#' ```
+#'
+#' ```{asciicast}
+#' json |> ts_tree_select(1:2)
+#' ```
+#'
+#' ```{asciicast}
+#' json |> ts_tree_select(1:2, refine = TRUE)
+#' ```
+#'
+#' @ts ts_tree_select_set JSONC example
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json
+#' ```
+#'
+#' ```{asciicast}
+#' json |> ts_tree_select("b", 1)
+#' ```
+#'
+#' ```{asciicast}
+#' ts_tree_select(json, "b", 1) <- 100
+#' json
+#' ```
+#'
+#' @ts ts_tree_select_brackets JSONC example
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json |> ts_tree_select("b", 1)
+#' ```
+#'
+#' ```{asciicast}
+#' json[[list("b", 1)]]
+#' ```
+#'
+#' @ts ts_tree_select_brackets_set JSONC example
+#'
+#' ```{asciicast}
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+#' )
+#' json
+#' ```
+#'
+#' ```{asciicast}
+#' json |> ts_tree_select("b", 1)
+#' ```
+#'
+#' ```{asciicast}
+#' json[[list("b", 1)]] <- 100
+#' json
+#' ```
+#'
 #' @ts ts_tree_select_examples JSONC examples
 #'
 #' ## Examples
