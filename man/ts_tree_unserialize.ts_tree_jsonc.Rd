@@ -2,12 +2,12 @@
 % Please edit documentation in R/ts-tree-unserialize.R
 \name{ts_tree_unserialize.ts_tree_jsonc}
 \alias{ts_tree_unserialize.ts_tree_jsonc}
-\title{Unserialize selected elements from a tsjsonc object}
+\title{Unserialize selected elements from a ts_tree_jsonc object}
 \usage{
 \method{ts_tree_unserialize}{ts_tree_jsonc}(tree)
 }
 \arguments{
-\item{tree}{tsjsonc object.}
+\item{tree}{ts_tree_jsonc object.}
 }
 \value{
 List of R objects, each the unserialization of a selected element

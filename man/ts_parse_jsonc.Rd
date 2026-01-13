@@ -3,37 +3,34 @@
 \name{ts_parse_jsonc}
 \alias{ts_parse_jsonc}
 \alias{ts_read_jsonc}
-\title{Parse a JSON file or string into a tsjsonc object}
+\title{Parse a JSON file or string into a ts_tree_jsonc object}
 \usage{
 ts_parse_jsonc(text, ranges = NULL, fail_on_parse_error = TRUE, options = NULL)
 
 ts_read_jsonc(file, ranges = NULL, fail_on_parse_error = TRUE, options = NULL)
 }
 \arguments{
-\item{text}{String. Use either \code{file} or \code{text}, but not both.}
+\item{text}{\Sexpr[stage=render,results=rd]{ts:::doc_insert("ts::ts_tree_new_param_text", "ts")}}
 
-\item{ranges}{Can be used to parse part(s) of the input. It must be a
-data frame with integer columns \code{start_row}, \code{start_col}, \code{end_row},
-\code{end_col}, \code{start_byte}, \code{end_byte}, in this order.}
+\item{ranges}{\Sexpr[stage=render,results=rd]{ts:::doc_insert("ts::ts_tree_new_param_ranges", "ts")}}
 
-\item{fail_on_parse_error}{Logical, whether to error if there are
-parse errors in the document. Default is \code{TRUE}.}
+\item{fail_on_parse_error}{\Sexpr[stage=render,results=rd]{ts:::doc_insert("ts::ts_tree_new_param_fail_on_parse_error", "ts")}}
 
 \item{options}{Named list of parsing options, see
 \link[=tsjsonc_options]{tsjsonc options}.}
 
-\item{file}{Path of a file. Use either \code{file} or \code{text}, but not both.}
+\item{file}{\Sexpr[stage=render,results=rd]{ts:::doc_insert("ts::ts_tree_new_param_file", "ts")}}
 }
 \value{
-A tsjsonc object.
+A ts_tree_jsonc object.
 }
 \description{
-Parse a JSON file or string and create a tsjsonc object that
+Parse a JSON file or string and create a ts_tree_jsonc object that
 represents its document. This object can then be queried and
 manipulated.
 }
 \details{
-tsjsonc objects have \code{format()} and \code{print()} methods to pretty-print
+ts_tree_jsonc objects have \code{format()} and \code{print()} methods to pretty-print
 them to the screen.
 
 They can be converted to a data frame using the
@@ -77,7 +74,7 @@ ts_parse_jsonc(text) |>
   ts_tree_unserialize()
 }
 \seealso{
-\code{\link[ts:ts_tree_select]{ts::ts_tree_select()}} to select part(s) of a tsjsonc
+\code{\link[ts:ts_tree_select]{ts::ts_tree_select()}} to select part(s) of a ts_tree_jsonc
 object, \code{\link[ts:ts_tree_unserialize]{ts::ts_tree_unserialize()}} to extract the selected part(s),
 \code{\link[ts:ts_tree_format]{ts::ts_tree_format()}} to format the selected part(s),
 \code{\link[ts:ts_tree_delete]{ts::ts_tree_delete()}}, \code{\link[ts:ts_tree_insert]{ts::ts_tree_insert()}} and

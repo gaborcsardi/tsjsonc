@@ -2,5 +2,6 @@
 #'
 #' ## JSONC
 #'
-#' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
+#' See \code{\link[tsjsonc:ts_language_jsonc]{ts_language_jsonc()}}
+#' for details on the JSONC grammar.
 NULL

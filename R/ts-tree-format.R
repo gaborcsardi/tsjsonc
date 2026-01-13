@@ -4,11 +4,11 @@
 #' If `tree` does not have a selection, then all of it is formatted.
 #' If `tree` has an empty selection, then nothing happens.
 #'
-#' @param tree tsjsonc object.
+#' @param tree ts_tree_jsonc object.
 #' @param options Named list of formatting options, see
 #'   [tsjsonc options][tsjsonc_options].
 #' @param ... Reserved for future use.
-#' @return The updated tsjsonc object.
+#' @return The updated ts_tree_jsonc object.
 #'
 #' @export
 #' @keywords internal

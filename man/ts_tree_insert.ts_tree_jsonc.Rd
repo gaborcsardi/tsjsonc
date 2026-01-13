@@ -2,12 +2,12 @@
 % Please edit documentation in R/ts-tree-insert.R
 \name{ts_tree_insert.ts_tree_jsonc}
 \alias{ts_tree_insert.ts_tree_jsonc}
-\title{Insert a new element into the selected ones in a tsjsonc object}
+\title{Insert a new element into the selected ones in a ts_tree_jsonc object}
 \usage{
 \method{ts_tree_insert}{ts_tree_jsonc}(tree, new, key = NULL, at = Inf, options = NULL, ...)
 }
 \arguments{
-\item{tree}{tsjsonc object}
+\item{tree}{ts_tree_jsonc object}
 
 \item{new}{New element to insert. Will be serialized with
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}}.}
@@ -30,7 +30,7 @@ not exist, then the new element is inserted at the end of the object.
 \item{...}{Must be empty currently, reserved for future use.}
 }
 \value{
-The modified tsjsonc object.
+The modified ts_tree_jsonc object.
 }
 \description{
 Insert a new element into each selected array or object.

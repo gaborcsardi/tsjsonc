@@ -7,9 +7,9 @@
 tsjsonc quickstart
 }
 \details{
-\subsection{Create a tsjsonc object}{
+\subsection{Create a ts_tree_jsonc object}{
 
-Create a tsjsonc object from a string:
+Create a ts_tree_jsonc object from a string:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{txt <- r"(
 // this is a comment
@@ -34,7 +34,7 @@ Create a tsjsonc object from a string:
 json <- ts_parse_jsonc(text = txt)
 }\if{html}{\out{</div>}}
 
-Pretty print a tsjsonc object:
+Pretty print a ts_tree_jsonc object:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{json
 }\if{html}{\out{</div>}}\if{html}{\out{
@@ -57,7 +57,7 @@ Pretty print a tsjsonc object:
 
 }
 
-\subsection{Select elements in a tsjsonc object}{
+\subsection{Select elements in a ts_tree_jsonc object}{
 
 Select element by objects key:
 

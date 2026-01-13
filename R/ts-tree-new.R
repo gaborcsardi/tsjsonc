@@ -1,3 +1,49 @@
+#' Create a new tree-sitter tree for a JSONC document
+#'
+#' @usage
+#' \method{ts_tree_new}{ts_language_jsonc}(
+#'   language,
+#'   file = NULL,
+#'   text = NULL,
+#'   ranges = NULL,
+#'   fail_on_parse_error = TRUE,
+#'   options = NULL,
+#'   ...
+#' )
+#' @param language
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_language", "tsjsonc")}
+#' @param file
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_file", "tsjsonc")}
+#' @param text
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_text", "tsjsonc")}
+#' @param ranges
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_ranges", "tsjsonc")}
+#' @param fail_on_parse_error
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_fail_on_parse_error",
+#'   "tsjsonc")}
+#' @param options Named list of formatting options, see
+#'   [tsjsonc options][tsjsonc_options].
+#' @param ... Reserved for future use.
+#' @return
+#' \eval{ts:::doc_insert("ts::ts_tree_new_return", "tsjsonc")}
+#'
+#' @description
+#' \eval{ts:::doc_insert("ts::ts_tree_new_description", "tsjsonc")}
+#' @details
+#' \eval{ts:::doc_extra()}
+#' \eval{ts:::doc_insert("ts::ts_tree_new_details", "tsjsonc")}
+#'
+#' @ts ts_tree_new_examples JSONC examples
+#'
+#' ```{asciicast}
+#' jsonc <- ts::ts_tree_new(
+#'   tsjsonc::ts_language_jsonc(),
+#'   text = "{ \"a\": true, // comment\n \"b\": [1, 2, 3], }"
+#' )
+#' jsonc
+#' ```
+#'
+#' @aliases ts_tree_jsonc
 #' @export
 
 ts_tree_new.ts_language_jsonc <- function(

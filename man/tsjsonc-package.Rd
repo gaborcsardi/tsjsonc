@@ -12,6 +12,7 @@ Extract and manipulate parts of JSON files without touching the formatting and c
 Useful links:
 \itemize{
   \item \url{https://github.com/gaborcsardi/tsjsonc}
+  \item \url{https://gaborcsardi.github.io/tsjsonc/}
   \item Report bugs at \url{https://github.com/gaborcsardi/tsjsonc/issues}
 }
 

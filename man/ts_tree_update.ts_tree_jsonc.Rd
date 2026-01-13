@@ -7,7 +7,7 @@
 \method{ts_tree_update}{ts_tree_jsonc}(tree, new, options = NULL, ...)
 }
 \arguments{
-\item{tree}{tsjsonc object.}
+\item{tree}{ts_tree_jsonc object.}
 
 \item{new}{R object that will be serialized to JSON (using
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}}) and inserted in place of the selected JSON
@@ -19,7 +19,7 @@ elements.}
 \item{...}{Reserved for future use.}
 }
 \value{
-The updated tsjsonc object
+The updated ts_tree_jsonc object
 }
 \description{
 Replace all selected elements with a new element. If \code{tree} has no

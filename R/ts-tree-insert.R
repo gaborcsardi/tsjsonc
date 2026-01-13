@@ -5,14 +5,14 @@
 # If no selection then insert into the root element or at top level if
 # none
 
-#' Insert a new element into the selected ones in a tsjsonc object
+#' Insert a new element into the selected ones in a ts_tree_jsonc object
 #'
 #' Insert a new element into each selected array or object.
 #'
 #' It is an error trying to insert into an element that is not an array and
 #' not an object.
 #'
-#' @param tree tsjsonc object
+#' @param tree ts_tree_jsonc object
 #' @param new New element to insert. Will be serialized with
 #'   [ts_serialize_jsonc()].
 #' @param key Key of the new element, when inserting into an object.
@@ -26,7 +26,7 @@
 #' @param options Named list of formatting options, see
 #'   [tsjsonc options][tsjsonc_options].
 #' @param ... Must be empty currently, reserved for future use.
-#' @return The modified tsjsonc object.
+#' @return The modified ts_tree_jsonc object.
 #'
 #' @export
 #' @keywords internal

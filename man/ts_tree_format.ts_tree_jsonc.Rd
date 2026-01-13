@@ -7,7 +7,7 @@
 \method{ts_tree_format}{ts_tree_jsonc}(tree, options = NULL, ...)
 }
 \arguments{
-\item{tree}{tsjsonc object.}
+\item{tree}{ts_tree_jsonc object.}
 
 \item{options}{Named list of formatting options, see
 \link[=tsjsonc_options]{tsjsonc options}.}
@@ -15,7 +15,7 @@
 \item{...}{Reserved for future use.}
 }
 \value{
-The updated tsjsonc object.
+The updated ts_tree_jsonc object.
 }
 \description{
 Format the selected JSON elements

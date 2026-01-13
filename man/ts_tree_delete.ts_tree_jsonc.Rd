@@ -2,26 +2,26 @@
 % Please edit documentation in R/ts-tree-delete.R
 \name{ts_tree_delete.ts_tree_jsonc}
 \alias{ts_tree_delete.ts_tree_jsonc}
-\title{Delete selected elements from a tsjsonc object}
+\title{Delete selected elements from a ts_tree_jsonc object}
 \usage{
 \method{ts_tree_delete}{ts_tree_jsonc}(tree, ...)
 }
 \arguments{
-\item{tree}{tsjsonc object.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_delete_param_tree", "tsjsonc")}}
 
 \item{...}{Reserved for future use.}
 }
 \value{
-Modified tsjsonc object.
+\eval{ts:::doc_insert("ts::ts_tree_delete_return", "tsjsonc")}
 }
 \description{
-The formatting of the rest of JSON document is kept as is. Comments
-appearing inside the deleted elements are also deleted. Other comments
-are left as is.
+Delete selected elements from a ts_tree_jsonc object
 }
 \details{
-If \code{tree} has no selection then the the whole document is deleted.
-If \code{tree} has an empty selection, then nothing is delted.
+\eval{ts:::doc_insert("ts_tree_delete_details", "tsjsonc")}
+
+Comments appearing inside the deleted elements are also deleted. Other
+comments are left as is.
 }
 \examples{
 library(ts)
@@ -31,4 +31,3 @@ tree
 tree |> ts_tree_select("a")
 tree |> ts_tree_select("a") |> ts_tree_delete()
 }
-\keyword{internal}

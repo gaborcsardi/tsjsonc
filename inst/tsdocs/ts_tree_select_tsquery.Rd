@@ -5,7 +5,8 @@
 }}
 
 
-See \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}} for details on the JSONC grammar.\if{html}{\out{
+See \code{\link[tsjsonc:ts_language_jsonc]{ts_language_jsonc()}} for
+details on the JSONC grammar.\if{html}{\out{
 <p>
 }}
 

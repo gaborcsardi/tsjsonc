@@ -2,9 +2,9 @@
 % Please edit documentation in R/ts-tree-select.R
 \name{ts_tree_select<-}
 \alias{ts_tree_select<-}
-\title{Update selected elements in a tsjsonc object}
+\title{Update selected elements in a ts_tree_jsonc object}
 \arguments{
-\item{x, json}{tsjsonc object. Create a tsjsonc object with
+\item{x, json}{ts_tree_jsonc object. Create a ts_tree_jsonc object with
 \code{\link[ts:ts_tree_new]{ts::ts_tree_new()}}.}
 
 \item{i, ...}{Selectors, see \code{\link[ts:ts_tree_select]{ts::ts_tree_select()}}.}
@@ -13,7 +13,7 @@
 \code{\link[=ts_serialize_jsonc]{ts_serialize_jsonc()}}.}
 }
 \value{
-The updated tsjsonc object.
+The updated ts_tree_jsonc object.
 }
 \description{
 Update the selected elements of a JSON document, using the replacement
@@ -57,6 +57,7 @@ json |> ts_tree_select("foo") |>
   ts_tree_insert(0, at = Inf, options = list(indent_width = 2))
 }
 \seealso{
-Save the updated tjsonc object to a file with \code{\link[ts:ts_tree_write]{ts::ts_tree_write()}}.
+Save the updated ts_tree_jsonc object to a file with
+\code{\link[ts:ts_tree_write]{ts::ts_tree_write()}}.
 }
 \keyword{internal}

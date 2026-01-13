@@ -43,7 +43,8 @@
 #'
 #' <p>
 #'
-#' See [tsjsonc::ts_language_jsonc()] for details on the JSONC grammar.
+#' See \code{\link[tsjsonc:ts_language_jsonc]{ts_language_jsonc()}} for
+#' details on the JSONC grammar.
 #'
 #' <p>
 #'
@@ -127,19 +128,20 @@ NULL
 # TODO: keep the parse tree as an external pointer and reuse it.
 # TODO: do we need to make sure that there is no recursive selection? Probably.
 
-#' Update selected elements in a tsjsonc object
+#' Update selected elements in a ts_tree_jsonc object
 #'
 #' Update the selected elements of a JSON document, using the replacement
 #' function syntax.
 #'
-#' @param x,json tsjsonc object. Create a tsjsonc object with
+#' @param x,json ts_tree_jsonc object. Create a ts_tree_jsonc object with
 #'   [ts::ts_tree_new()].
 #' @param i,... Selectors, see [ts_tree_select()].
 #' @param value New value. Will be serialized to JSON with
 #'   [ts_serialize_jsonc()].
-#' @return The updated tsjsonc object.
+#' @return The updated ts_tree_jsonc object.
 #'
-#' @seealso Save the updated tjsonc object to a file with [ts_tree_write()].
+#' @seealso Save the updated ts_tree_jsonc object to a file with
+#'   [ts_tree_write()].
 #'
 #' @rdname select-set
 #' @examples
@@ -185,11 +187,10 @@ NULL
 #' @title
 #' Select parts of a JSONC tree-sitter tree
 #' @usage
-#' \method{ts_tree_select}{tsjsonc}(tree, ..., refine = FALSE)
+#' \method{ts_tree_select}{ts_tree_jsonc}(tree, ..., refine = FALSE)
 #' @param tree
 #' \eval{ts:::doc_insert("ts::ts_tree_select_param_tree", "tsjsonc")}
-#' @param ...
-#' \eval{ts:::doc_insert("ts::ts_tree_select_param_dots", "tsjsonc")}
+#' @param ... Reserved for future use.
 #' @param refine
 #' \eval{ts:::doc_insert("ts::ts_tree_select_param_refine", "tsjsonc")}
 #' @return
@@ -199,7 +200,7 @@ NULL
 #' \eval{ts:::doc_insert("ts::ts_tree_select_description", "tsjsonc")}
 #'
 #' This is the S3 method of the [ts::ts_tree_select()] generic,
-#' for [tsjsonc] objects.
+#' for [ts_tree_jsonc][tsjsonc::ts_tree_jsonc] objects.
 #'
 #' @details
 #' \eval{ts:::doc_insert("ts::ts_tree_select_details", "tsjsonc")}
@@ -207,6 +208,6 @@ NULL
 #' \eval{ts:::doc_extra()}
 #' @export
 
-ts_tree_select.tsjsonc <- function(tree, ..., refine = FALSE) {
+ts_tree_select.ts_tree_jsonc <- function(tree, ..., refine = FALSE) {
   NextMethod()
 }

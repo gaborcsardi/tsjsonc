@@ -1,11 +1,11 @@
-#' Unserialize selected elements from a tsjsonc object
+#' Unserialize selected elements from a ts_tree_jsonc object
 #'
 #' Uses [ts_tree_unserialize()] on the selected elements.
 #'
 #' If `json` does not have a selection, then all of it is unserialized.
 #' If `json` has an empty selection, then an empty list is returned.
 #'
-#' @param tree tsjsonc object.
+#' @param tree ts_tree_jsonc object.
 #' @return List of R objects, each the unserialization of a selected element
 #'   in tsjsonc.
 #'

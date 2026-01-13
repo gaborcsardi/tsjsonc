@@ -4,14 +4,14 @@
 #' selection then the whole document is replaced. If `tree` has an empty
 #' selection, then nothing happens.
 #'
-#' @param tree tsjsonc object.
+#' @param tree ts_tree_jsonc object.
 #' @param new R object that will be serialized to JSON (using
 #'   [ts_serialize_jsonc()]) and inserted in place of the selected JSON
 #'   elements.
 #' @param options Named list of formatting options, see
 #'   [tsjsonc options][tsjsonc_options].
 #' @param ... Reserved for future use.
-#' @return The updated tsjsonc object
+#' @return The updated ts_tree_jsonc object
 #'
 #' @export
 #' @keywords internal

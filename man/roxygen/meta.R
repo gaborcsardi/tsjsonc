@@ -10,6 +10,9 @@ asciicast::init_knitr_engine(
     options(cli.num_colors = 256)
     library(ts)
     library(tsjsonc)
+    loadNamespace("pillar")
+    options(width = 70)
+    options(cli.width = 70)
   })
 )
 

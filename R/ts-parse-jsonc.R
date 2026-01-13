@@ -1,11 +1,11 @@
-#' Parse a JSON file or string into a tsjsonc object
+#' Parse a JSON file or string into a ts_tree_jsonc object
 #'
-#' Parse a JSON file or string and create a tsjsonc object that
+#' Parse a JSON file or string and create a ts_tree_jsonc object that
 #' represents its document. This object can then be queried and
 #' manipulated.
 #'
 # TODO: add manual page and link it here
-#' tsjsonc objects have `format()` and `print()` methods to pretty-print
+#' ts_tree_jsonc objects have `format()` and `print()` methods to pretty-print
 #' them to the screen.
 #'
 #' They can be converted to a data frame using the
@@ -15,9 +15,9 @@
 #' @inheritParams ts::ts_tree_new
 #' @param options Named list of parsing options, see
 #'   [tsjsonc options][tsjsonc_options].
-#' @return A tsjsonc object.
+#' @return A ts_tree_jsonc object.
 #'
-#' @seealso [ts_tree_select()] to select part(s) of a tsjsonc
+#' @seealso [ts_tree_select()] to select part(s) of a ts_tree_jsonc
 #'   object, [ts_tree_unserialize()] to extract the selected part(s),
 #'   [ts_tree_format()] to format the selected part(s),
 #'   [ts_tree_delete()], [ts_tree_insert()] and
