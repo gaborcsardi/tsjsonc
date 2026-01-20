@@ -39,6 +39,8 @@
 \eval{ts:::doc_insert("ts::ts_tree_new_description", "tsjsonc")}
 }
 \details{
+\if{text}{This is the S3 method of the [ts::ts_tree_new()] generic.}
+
 \eval{ts:::doc_extra()}
 \eval{ts:::doc_insert("ts::ts_tree_new_details", "tsjsonc")}
 }
