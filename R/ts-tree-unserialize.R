@@ -5,6 +5,28 @@
 #' If `json` does not have a selection, then all of it is unserialized.
 #' If `json` has an empty selection, then an empty list is returned.
 #'
+#' @ts ts_tree_unserialize_details_no_selection
+#'
+#' ```{asciicast}
+#' #| results = "hide"
+#' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' ```
+#'
+#' ```{asciicast}
+#' ts_tree_unserialize(tree)
+#' ```
+#'
+#' @ts ts_tree_unserialize_details_empty_selection
+#'
+#' ```{asciicast}
+#' #| results = "hide"
+#' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' ```
+#'
+#' ```{asciicast}
+#' tree |> ts_tree_select("nope") |> ts_tree_unserialize()
+#' ```
+#'
 #' @param tree ts_tree_jsonc object.
 #' @return List of R objects, each the unserialization of a selected element
 #'   in tsjsonc.

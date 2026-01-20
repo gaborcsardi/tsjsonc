@@ -23,8 +23,7 @@ The updated ts_tree_jsonc object
 }
 \description{
 Replace all selected elements with a new element. If \code{tree} has no
-selection then the whole document is replaced. If \code{tree} has an empty
-selection, then nothing happens.
+selection then the whole document is replaced.
 }
 \examples{
 library(ts)

@@ -1,5 +1,31 @@
 #' Format the selected JSON elements
 #'
+#' @ts ts_tree_format_details_no_selection
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": [1,2,3] }")
+#' jsonc |> ts_tree_format()
+#' ```
+#'
+#' @ts ts_tree_format_details_empty_selection
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": [1,2,3] }")
+#' jsonc |> ts_tree_select("c") |> ts_tree_format()
+#' ```
+#'
+#' @ts ts_tree_format_details_options
+#'
+#' ```{asciicast}
+#' #| results = "hide"
+#' jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": [1,2,3] }") |>
+#'   ts_tree_format()
+#' ```
+#'
+#' ```{asciicast}
+#' jsonc |> ts_tree_select(TRUE) |>
+#'   ts_tree_format(options = list(format = "oneline"))
+#'
 #' @details
 #' If `tree` does not have a selection, then all of it is formatted.
 #' If `tree` has an empty selection, then nothing happens.

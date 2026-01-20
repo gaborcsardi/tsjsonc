@@ -14,7 +14,12 @@ ts_serialize_jsonc(obj, file = NULL, collapse = FALSE, options = NULL)
 \item{collapse}{If \code{file} is \code{NULL} then whether to return a character
 scalar or a character vector.}
 
-\item{options}{A list of options for the formatting, see methods.}
+\item{options}{\Sexpr[stage=render,results=rd]{ts:::doc_insert("ts::ts_tree_format_param_options")}\if{html}{\out{
+<p>
+}}
+
+
+See details in the manual of the specific parser.}
 }
 \value{
 If \code{file} is \code{NULL} then a character scalar (\code{collapse} = TRUE)

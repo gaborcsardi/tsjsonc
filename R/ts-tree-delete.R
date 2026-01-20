@@ -1,5 +1,46 @@
 #' Delete selected elements from a ts_tree_jsonc object
 #'
+#' @ts ts_tree_delete_details_formatting JSONC example
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc(
+#'   "{ \"a\": true, \"b\": [1, 2, 3] }"
+#' ) |>
+#'   ts::ts_tree_format()
+#' jsonc
+#' ```
+#'
+#' ```{asciicast}
+#' jsonc |> ts_tree_select("a") |> ts_tree_delete()
+#' ```
+#'
+#' @ts ts_tree_delete_details_no_selection JSONC example
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' jsonc |> ts_tree_delete()
+#' ```
+#'
+#' @ts ts_tree_delete_details_empty_selection
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' jsonc |> ts_tree_select("c") |> ts_tree_delete()
+#' ```
+#'
+#' @ts ts_tree_delete_details_comments
+#'
+#' ```{asciicast}
+#' jsonc <- tsjsonc::ts_parse_jsonc(
+#'   "// top comment\n{ \"a\": // comment\n  true,\n \"b\": [1, 2, 3] }"
+#' ) |> ts::ts_tree_format()
+#' jsonc
+#' ```
+#'
+#' ```{asciicast}
+#' jsonc |> ts_tree_select("a") |> ts_tree_delete()
+#' ```
+#'
 #' @details
 #' \eval{ts:::doc_insert("ts_tree_delete_details", "tsjsonc")}
 #'

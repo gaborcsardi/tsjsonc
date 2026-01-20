@@ -12,6 +12,27 @@
 #' It is an error trying to insert into an element that is not an array and
 #' not an object.
 #'
+#' @ts ts_tree_insert_details_errors
+#'
+#' ```{asciicast}
+#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json |> ts_tree_select("a") |> ts_tree_insert("foo")
+#' ```
+#'
+#' @ts ts_tree_insert_details_no_selection
+#'
+#' ```{asciicast}
+#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json |> ts_tree_insert(key = "c", new = "foo")
+#' ```
+#'
+#' @ts ts_tree_insert_details_empty_selection
+#'
+#' ```{asciicast}
+#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json |> ts_tree_select("nonexistent") |> ts_tree_insert("foo")
+#' ```
+#'
 #' @param tree ts_tree_jsonc object
 #' @param new New element to insert. Will be serialized with
 #'   [ts_serialize_jsonc()].
