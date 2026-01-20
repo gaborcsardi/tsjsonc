@@ -1,8 +1,7 @@
 # Replace selected JSON elements with a new element
 
 Replace all selected elements with a new element. If `tree` has no
-selection then the whole document is replaced. If `tree` has an empty
-selection, then nothing happens.
+selection then the whole document is replaced.
 
 ## Usage
 

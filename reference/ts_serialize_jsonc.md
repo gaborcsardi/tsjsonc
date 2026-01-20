@@ -29,7 +29,9 @@ ts_serialize_jsonc(obj, file = NULL, collapse = FALSE, options = NULL)
 
 - options:
 
-  A list of options for the formatting, see methods.
+  A list of options for the formatting.
+
+  See details in the manual of the specific parser.
 
 ## Value
 
