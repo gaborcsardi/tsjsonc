@@ -1,6 +1,6 @@
 #| title: 
 # ---
-\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{tree <- ts_parse_jsonc("\{ \\"a\\": true, \\"b\\": [1, 2, 3] \}")
+\if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{tree <- tsjsonc::ts_parse_jsonc("\{ \\"a\\": true, \\"b\\": [1, 2, 3] \}")
 }\if{html}{\out{</div>}}
 
 \if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{tree |> ts_tree_select("nope") |> ts_tree_unserialize()

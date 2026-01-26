@@ -15,21 +15,21 @@
 #' @ts ts_tree_insert_details_errors
 #'
 #' ```{asciicast}
-#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json |> ts_tree_select("a") |> ts_tree_insert("foo")
 #' ```
 #'
 #' @ts ts_tree_insert_details_no_selection
 #'
 #' ```{asciicast}
-#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json |> ts_tree_insert(key = "c", new = "foo")
 #' ```
 #'
 #' @ts ts_tree_insert_details_empty_selection
 #'
 #' ```{asciicast}
-#' json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' json |> ts_tree_select("nonexistent") |> ts_tree_insert("foo")
 #' ```
 #'

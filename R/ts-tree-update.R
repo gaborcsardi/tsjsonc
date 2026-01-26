@@ -6,17 +6,17 @@
 #' @ts ts_tree_update_details_no_selection
 #'
 #' ```{asciicast}
-#' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' tree |> ts_tree_update(as.list(4:6))
 #' ```
 #'
 #' @ts ts_tree_update_details_empty_selection
 #'
 #' ```{asciicast}
-#' tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+#' tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 #' tree |> ts_tree_select("new") |> ts_tree_update(as.list(4:6))
 #' ```
-
+#'
 #' @param tree ts_tree_jsonc object.
 #' @param new R object that will be serialized to JSON (using
 #'   [ts_serialize_jsonc()]) and inserted in place of the selected JSON
