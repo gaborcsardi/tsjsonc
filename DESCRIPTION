@@ -10,7 +10,7 @@ Authors@R: c(
 Description: Extract and manipulate parts of JSON files without touching
   the formatting and comments in other parts.
 License: MIT + file LICENSE
-Depends: R (>= 4.1.0)
+Depends: R (>= 3.5.0)
 Imports:
     ts
 Suggests:
