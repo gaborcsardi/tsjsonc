@@ -199,6 +199,8 @@ as_tsjsonc_options <- function(
   )
   if ((is.list(x) || is.null(x)) && is_named(x) && all(names(x) %in% nms)) {
     force(arg)
+    # older R versions would set NULL to logical(), not list()
+    x <- as.list(x)
 
     x[["allow_empty_content"]] <- as_flag(
       x[["allow_empty_content"]] %||% opt_allow_empty_content_default(),
