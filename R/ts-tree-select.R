@@ -41,8 +41,6 @@
 #'
 #' @ts ts_tree_select_tsquery JSONC
 #'
-#' <p>
-#'
 #' See \code{\link[tsjsonc:ts_language_jsonc]{ts_language_jsonc()}} for
 #' details on the JSONC grammar.
 #'
