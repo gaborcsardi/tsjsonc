@@ -86,15 +86,15 @@ Default is <code>TRUE</code>.</p></dd>
     <p>ts_tree_jsonc objects have <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> and <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> methods to pretty-print
 them to the screen.</p>
 <p>They can be converted to a data frame using the
-<a href="https://gaborcsardi.github.io/ts/reference/ts_tree-brackets.html" class="external-link">single bracket</a> operator.</p>
+<a href="https://rdrr.io/pkg/ts/man/ts_tree-brackets.html" class="external-link">single bracket</a> operator.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts::ts_tree_select()</a></code> to select part(s) of a ts_tree_jsonc
-object, <code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html" class="external-link">ts::ts_tree_unserialize()</a></code> to extract the selected part(s),
-<code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_format.html" class="external-link">ts::ts_tree_format()</a></code> to format the selected part(s),
-<code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_delete.html" class="external-link">ts::ts_tree_delete()</a></code>, <code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_insert.html" class="external-link">ts::ts_tree_insert()</a></code> and
-<code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_update.html" class="external-link">ts::ts_tree_update()</a></code> to manipulate it. <code><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_write.html" class="external-link">ts::ts_tree_write()</a></code> to save
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/ts/man/ts_tree_select.html" class="external-link">ts::ts_tree_select()</a></code> to select part(s) of a ts_tree_jsonc
+object, <code><a href="https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html" class="external-link">ts::ts_tree_unserialize()</a></code> to extract the selected part(s),
+<code><a href="https://rdrr.io/pkg/ts/man/ts_tree_format.html" class="external-link">ts::ts_tree_format()</a></code> to format the selected part(s),
+<code><a href="https://rdrr.io/pkg/ts/man/ts_tree_delete.html" class="external-link">ts::ts_tree_delete()</a></code>, <code><a href="https://rdrr.io/pkg/ts/man/ts_tree_insert.html" class="external-link">ts::ts_tree_insert()</a></code> and
+<code><a href="https://rdrr.io/pkg/ts/man/ts_tree_update.html" class="external-link">ts::ts_tree_update()</a></code> to manipulate it. <code><a href="https://rdrr.io/pkg/ts/man/ts_tree_write.html" class="external-link">ts::ts_tree_write()</a></code> to save
 the JSON document to a file.</p></div>
     </div>
 
@@ -134,8 +134,8 @@ the JSON document to a file.</p></div>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Extract parts of the JSON</span></span></span>
 <span class="r-in"><span><span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]][[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
@@ -148,8 +148,8 @@ the JSON document to a file.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"[r]"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"[r]"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]$this</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "setting"</span>
@@ -159,8 +159,8 @@ the JSON document to a file.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"[r]"</span>, <span class="st">"that"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"[r]"</span>, <span class="st">"that"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -168,8 +168,8 @@ the JSON document to a file.</p></div>
 <span class="r-in"><span><span class="co"># Use a `list()` combining strings and positional indices when</span></span></span>
 <span class="r-in"><span><span class="co"># arrays are involved</span></span></span>
 <span class="r-in"><span><span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_select.html" class="external-link">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html" class="external-link">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

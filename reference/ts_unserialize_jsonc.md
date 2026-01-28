@@ -43,12 +43,12 @@ objects.
 
 [`ts_serialize_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_serialize_jsonc.md)
 for the opposite,
-[`ts::ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.html)
+[`ts::ts_tree_select()`](https://rdrr.io/pkg/ts/man/ts_tree_select.html)
 and
-[`ts::ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html)
+[`ts::ts_tree_unserialize()`](https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html)
 to unserialize part(s) of a JSON document.
-[`ts::ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.html)
-to load a JSON document and then manipulate it.
+[`ts::ts_tree_new()`](https://rdrr.io/pkg/ts/man/ts_tree_new.html) to
+load a JSON document and then manipulate it.
 
 ## Examples
 

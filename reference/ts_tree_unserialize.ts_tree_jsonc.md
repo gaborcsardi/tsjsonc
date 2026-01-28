@@ -1,7 +1,7 @@
 # Unserialize selected elements from a ts_tree_jsonc object
 
 Uses
-[`ts::ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html)
+[`ts::ts_tree_unserialize()`](https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html)
 on the selected elements.
 
 ## Usage
@@ -29,7 +29,7 @@ If `json` does not have a selection, then all of it is unserialized. If
 
 ## See also
 
-[`ts::ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.html)
+[`ts::ts_tree_unserialize()`](https://rdrr.io/pkg/ts/man/ts_tree_unserialize.html)
 to unserialize a JSON document from a file or string.
 [`ts_serialize_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_serialize_jsonc.md)
 to create JSON from R objects.
